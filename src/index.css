@@ -12,3 +12,92 @@ body {
 a {
   text-decoration: none;
 }
+
+/* Add these styles to enhance the Services component */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.service-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Improve card readability with a subtle text selection color */
+.MuiCard-root {
+  -webkit-font-smoothing: antialiased;
+}
+
+.MuiCard-root::selection {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Add these new styles for ServicesOverview */
+.service-card-overview {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.service-card-overview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  z-index: 1;
+}
+
+.service-icon-overview {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Infinite scroll animation styles */
+.infinite-scroll-container {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+.scroll-content {
+  animation: scroll 80s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-300px * 6 - 24px * 6));
+  }
+}
+
+/* Smoother pause on hover */
+.infinite-scroll-container:hover .scroll-content {
+  animation-play-state: paused;
+}
+
+/* Enhance smooth scrolling */
+.scroll-content {
+  will-change: transform;
+}

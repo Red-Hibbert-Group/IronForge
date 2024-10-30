@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 
 const DynamicFooter = () => {
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0.8, 1], [0.8, 1]);
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0.7, 0.9], [0.95, 1]);
+  const opacity = useTransform(scrollYProgress, [0.7, 0.9], [0.8, 1]);
 
   const footerLinks = {
     company: ['About Us', 'Careers', 'Contact Us', 'Blog'],
@@ -28,6 +28,8 @@ const DynamicFooter = () => {
         position: 'relative',
         borderTop: '1px solid',
         borderColor: 'divider',
+        willChange: 'transform',
+        transformOrigin: 'center bottom',
       }}
     >
       <Container maxWidth="lg">

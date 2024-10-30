@@ -56,6 +56,19 @@ const Home = () => {
             backgroundColor: 'background.subtle',
             transform: 'translateZ(0)',
             willChange: 'transform',
+            position: 'relative',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'radial-gradient(circle at top right, rgba(0,0,0,0.02) 0%, transparent 70%)',
+              pointerEvents: 'none'
+            },
+            perspective: 1000,
+            backfaceVisibility: 'hidden'
           }}
         >
           <ServicesOverview />

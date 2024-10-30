@@ -1,107 +1,127 @@
-import { Box, Container, Grid, Card, CardContent, Typography, Icon } from '@mui/material';
-import {
-  Biotech,
-  Psychology,
-  ShowChart,
-  AutoAwesome,
-  CloudSync,
-  Shield,
-} from '@mui/icons-material';
+import { Box, Container, Typography, Card, CardContent, Icon } from '@mui/material';
+import { SmartToy, Psychology, Timeline, Assessment, Storage, Security } from '@mui/icons-material';
 
 const ServicesOverview = () => {
   const services = [
     {
-      title: 'AI Integration',
-      description: 'Seamlessly integrate cutting-edge AI solutions to transform your business operations',
-      icon: Biotech,
-      color: 'primary.main'
+      title: 'AI Integration Solutions',
+      description: 'Seamlessly integrate cutting-edge AI technologies into your existing systems and workflows.',
+      icon: SmartToy,
+      gradient: 'linear-gradient(135deg, #6B73FF 0%, #000DFF 100%)'
     },
     {
-      title: 'Machine Learning',
-      description: 'Harness the power of advanced ML algorithms for intelligent decision-making',
+      title: 'Machine Learning Consulting',
+      description: 'Expert guidance on implementing machine learning models for your specific business needs.',
       icon: Psychology,
-      color: 'secondary.main'
+      gradient: 'linear-gradient(135deg, #FF6B6B 0%, #FF000F 100%)'
     },
     {
       title: 'Predictive Analytics',
-      description: 'Transform raw data into actionable insights with advanced forecasting models',
-      icon: ShowChart,
-      color: 'accent.teal'
+      description: 'Leverage AI-powered analytics to forecast trends and make data-driven decisions.',
+      icon: Timeline,
+      gradient: 'linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%)'
     },
     {
-      title: 'Intelligent Automation',
-      description: 'Revolutionize workflows with smart, AI-powered automation solutions',
-      icon: AutoAwesome,
-      color: 'accent.orange'
+      title: 'AI Process Automation',
+      description: 'Automate repetitive tasks and workflows using intelligent AI systems.',
+      icon: Assessment,
+      gradient: 'linear-gradient(135deg, #FF9966 0%, #FF5E62 100%)'
     },
     {
-      title: 'Cloud AI Solutions',
-      description: 'Scale your AI capabilities with robust cloud-based infrastructure',
-      icon: CloudSync,
-      color: 'accent.rose'
+      title: 'Big Data Solutions',
+      description: 'Handle and analyze large datasets with our advanced AI-powered data processing systems.',
+      icon: Storage,
+      gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
     },
     {
       title: 'AI Security & Compliance',
-      description: 'Ensure your AI systems are secure, ethical, and compliant with regulations',
-      icon: Shield,
-      color: 'accent.amber'
+      description: 'Ensure your AI implementations are secure and compliant with industry standards.',
+      icon: Security,
+      gradient: 'linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%)'
     }
   ];
 
+  const tripleServices = [...services, ...services, ...services];
+
   return (
-    <Container sx={{ py: 8 }}>
-      <Grid container spacing={4}>
-        {services.map((service, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card
-              sx={{
-                height: '100%',
-                transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: (theme) => theme.shadows[8],
-                },
-                background: (theme) => `linear-gradient(135deg, ${theme.palette.background.paper} 0%, ${theme.palette.background.subtle} 100%)`,
-              }}
-            >
-              <CardContent>
-                <Box
+    <Box sx={{ py: 8, overflow: 'hidden' }}>
+      <Container maxWidth="xl">
+        <Box sx={{ position: 'relative' }}>
+          <Box 
+            className="scroll-content" 
+            sx={{ 
+              display: 'flex', 
+              gap: 3,
+              py: 2,
+              px: 2
+            }}
+          >
+            {tripleServices.map((service, index) => (
+              <Card
+                key={index}
+                sx={{
+                  width: '300px',
+                  height: '280px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  borderRadius: 4,
+                  flexShrink: 0,
+                  transition: 'all 0.3s ease-in-out',
+                  background: service.gradient,
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                  '&:hover': {
+                    transform: 'translateY(-10px)',
+                    boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
+                    '& .service-icon-overview': {
+                      transform: 'scale(1.2)',
+                    }
+                  }
+                }}
+              >
+                <CardContent
                   sx={{
+                    height: '100%',
                     display: 'flex',
-                    alignItems: 'center',
-                    mb: 2,
+                    flexDirection: 'column',
+                    color: 'white',
+                    p: 3
                   }}
                 >
-                  <Box
+                  <Icon
+                    component={service.icon}
+                    className="service-icon-overview"
                     sx={{
-                      p: 1,
-                      borderRadius: '12px',
-                      backgroundColor: `${service.color}15`,
-                      mr: 2,
+                      fontSize: 50,
+                      mb: 2,
+                      transition: 'transform 0.3s ease-in-out'
+                    }}
+                  />
+                  <Typography
+                    variant="h6"
+                    component="h3"
+                    sx={{
+                      fontWeight: 700,
+                      mb: 1.5
                     }}
                   >
-                    <Icon
-                      component={service.icon}
-                      sx={{
-                        fontSize: 40,
-                        color: service.color,
-                      }}
-                    />
-                  </Box>
-                  <Typography variant="h5" component="h3" gutterBottom>
                     {service.title}
                   </Typography>
-                </Box>
-                <Typography variant="body1" color="text.secondary">
-                  {service.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      lineHeight: 1.6
+                    }}
+                  >
+                    {service.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
-export default ServicesOverview; 
+export default ServicesOverview;
