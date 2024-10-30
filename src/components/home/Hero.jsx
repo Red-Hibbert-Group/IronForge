@@ -67,7 +67,7 @@ const Hero = () => {
                     mb: 3,
                   }}
                 >
-                  Transform Your Digital <br />
+                  OneStream Excellence <br />
                   <Box
                     component="span"
                     sx={{
@@ -76,7 +76,7 @@ const Hero = () => {
                       WebkitTextFillColor: 'transparent',
                     }}
                   >
-                    Presence
+                    Simplified
                   </Box>
                 </Typography>
               </motion.div>
@@ -95,8 +95,9 @@ const Hero = () => {
                     maxWidth: '600px',
                   }}
                 >
-                  We craft innovative digital solutions that empower businesses 
-                  to thrive in the modern world.
+                  Empowering organizations with seamless OneStream implementation, 
+                  unifying financial consolidation, planning, reporting, and analytics 
+                  in a single intelligent platform.
                 </Typography>
               </motion.div>
 

@@ -11,6 +11,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { theme } from '../theme/theme';
 import Navbar from '../components/Navbar';
+import MissionSection from '../components/home/MissionSection';
+import ClientSuccess from '../components/home/ClientSuccess';
 
 const Home = () => {
   useEffect(() => {
@@ -44,7 +46,7 @@ const Home = () => {
         
         <AnimatedHeader 
           title="Our Services" 
-          subtitle="Discover what we can do for you"
+          subtitle="Expert OneStream Implementation Solutions"
           data-aos="fade-down"
           data-aos-delay="100"
         />
@@ -72,6 +74,34 @@ const Home = () => {
           }}
         >
           <ServicesOverview />
+        </Box>
+
+        <Box
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-duration="1000"
+          sx={{
+            backgroundColor: 'background.default',
+            transform: 'translateZ(0)',
+            willChange: 'transform',
+            py: 8,
+          }}
+        >
+          <MissionSection />
+        </Box>
+
+        <Box
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-duration="1000"
+          sx={{
+            backgroundColor: 'background.paper',
+            transform: 'translateZ(0)',
+            willChange: 'transform',
+            py: 8,
+          }}
+        >
+          <ClientSuccess />
         </Box>
 
         <Box 
