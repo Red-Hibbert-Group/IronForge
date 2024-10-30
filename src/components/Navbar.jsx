@@ -126,7 +126,7 @@ const Navbar = () => {
             }}
           >
             <span className="iron">Iron</span>
-            <span className="edge">Edge</span>
+            <span className="edge">Forge</span>
           </Typography>
 
           {isMobile ? (
