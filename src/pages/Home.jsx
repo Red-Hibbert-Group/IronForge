@@ -13,6 +13,7 @@ import { theme } from '../theme/theme';
 import Navbar from '../components/Navbar';
 import MissionSection from '../components/home/MissionSection';
 import ClientSuccess from '../components/home/ClientSuccess';
+import OneStreamImplementation from '../components/home/OneStreamImplementation';
 
 const Home = () => {
   useEffect(() => {
@@ -74,6 +75,19 @@ const Home = () => {
           }}
         >
           <ServicesOverview />
+        </Box>
+
+        <Box
+          data-aos="fade-up"
+          data-aos-delay="150"
+          data-aos-duration="1000"
+          sx={{
+            backgroundColor: 'background.paper',
+            transform: 'translateZ(0)',
+            willChange: 'transform',
+          }}
+        >
+          <OneStreamImplementation />
         </Box>
 
         <Box

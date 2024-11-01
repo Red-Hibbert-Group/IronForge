@@ -25,7 +25,7 @@ const Navbar = () => {
         { label: 'Consulting', path: '/services/consulting' },
       ],
     },
-    { label: 'CASE STUDIES', path: '/case-studies' },
+    { label: 'IMPLEMENTATION', path: '/implementation' },
     { label: 'RESOURCES', path: '/resources' },
     { label: 'CONTACT', path: '/contact' }
   ];

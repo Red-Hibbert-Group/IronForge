@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import CaseStudies from './pages/CaseStudies';
+import Implementation from './pages/Implementation';
 import Resources from './pages/Resources';
 import { theme } from './theme/theme';
 
@@ -17,7 +17,7 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/implementation" element={<Implementation />} />
           <Route path="/resources" element={<Resources />} />
         </Routes>
       </Router>

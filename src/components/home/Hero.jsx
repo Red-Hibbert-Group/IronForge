@@ -67,7 +67,7 @@ const Hero = () => {
                     mb: 3,
                   }}
                 >
-                  OneStream Excellence <br />
+                  Unlock Your Organization's <br />
                   <Box
                     component="span"
                     sx={{
@@ -76,7 +76,7 @@ const Hero = () => {
                       WebkitTextFillColor: 'transparent',
                     }}
                   >
-                    Simplified
+                    Potential
                   </Box>
                 </Typography>
               </motion.div>
@@ -95,9 +95,9 @@ const Hero = () => {
                     maxWidth: '600px',
                   }}
                 >
-                  Empowering organizations with seamless OneStream implementation, 
-                  unifying financial consolidation, planning, reporting, and analytics 
-                  in a single intelligent platform.
+                  Transform your financial management with an integrated cloud platform for planning, 
+                  budgeting, forecasting, consolidation and reporting - all in one place. Experience 
+                  seamless automation and intuitive processes that drive efficiency across your organization.
                 </Typography>
               </motion.div>
 
@@ -165,13 +165,14 @@ const Hero = () => {
             >
               <Box
                 component="img"
-                src="/hero-illustration.svg" // Make sure to add this image to your public folder
+                src="https://raw.githubusercontent.com/ShaifArfan/one-page-website-html-css-project/main/img/hero-img.svg"
                 alt="Digital Transformation Illustration"
                 sx={{
                   width: '100%',
                   maxWidth: '500px',
                   height: 'auto',
                   display: { xs: 'none', md: 'block' },
+                  filter: 'brightness(1.1)',
                 }}
               />
             </motion.div>
