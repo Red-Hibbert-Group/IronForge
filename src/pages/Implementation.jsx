@@ -1,4 +1,5 @@
-import { Box, Container, Typography, Grid, Card, CardContent, CardMedia } from '@mui/material';
+import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, Fade, IconButton } from '@mui/material';
+import { ArrowForward, CheckCircleOutline } from '@mui/icons-material';
 import Navbar from '../components/Navbar';
 import DynamicFooter from '../components/home/DynamicFooter';
 
@@ -46,22 +47,64 @@ const Implementation = () => {
       <Box sx={{ 
         pt: 15,
         pb: 6,
-        backgroundColor: 'white',
-        borderBottom: '1px solid #eaeaea'
+        background: 'linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%)',
+        borderBottom: '1px solid rgba(0,0,0,0.05)',
+        position: 'relative',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 50% 50%, rgba(25, 118, 210, 0.05) 0%, transparent 50%)',
+        }
       }}>
         <Container maxWidth="lg">
-          <Typography 
-            variant="h2" 
-            align="center" 
-            gutterBottom 
-            sx={{ 
-              fontWeight: 600,
-              color: '#1a1a1a',
-              fontSize: { xs: '2.5rem', md: '3.5rem' }
-            }}
-          >
-            OneStream Implementation Services
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 3 }}>
+            <Box
+              component="img"
+              src="/onestream-logo.webp"
+              alt="OneStream"
+              sx={{
+                height: { xs: '35px', sm: '45px', md: '55px' },
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                },
+              }}
+            />
+            <Typography
+              variant="h2"
+              component="span"
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '2.2rem', sm: '2.7rem', md: '3.2rem' },
+                background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                position: 'relative',
+                textShadow: '0 4px 12px rgba(25, 118, 210, 0.1)',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  bottom: '-10px',
+                  left: '0',
+                  width: '100%',
+                  height: '4px',
+                  background: 'linear-gradient(45deg, #1976d2, #42a5f5)',
+                  borderRadius: '2px',
+                  boxShadow: '0 2px 4px rgba(25, 118, 210, 0.2)',
+                }
+              }}
+            >
+              Implementation Services
+            </Typography>
+          </Box>
           <Typography 
             variant="h5" 
             align="center" 
@@ -79,7 +122,13 @@ const Implementation = () => {
 
       <Box sx={{ py: 8, backgroundColor: '#f8f9fa' }}>
         <Container>
-          <Box sx={{ mb: 8 }}>
+          <Box sx={{ 
+            mb: 8, 
+            p: 4, 
+            borderRadius: 4,
+            background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
+          }}>
             <Typography 
               variant="body1" 
               paragraph 
@@ -87,8 +136,9 @@ const Implementation = () => {
                 textAlign: 'center', 
                 maxWidth: '800px', 
                 margin: '0 auto',
-                fontSize: '1.1rem',
-                lineHeight: 1.8
+                fontSize: '1.2rem',
+                lineHeight: 1.8,
+                color: '#2c3e50'
               }}
             >
               Our certified OneStream experts deliver comprehensive implementation services for both Enterprise Performance Management (EPM) and Corporate Performance Management (CPM) solutions. We follow OneStream's proven methodology to ensure successful deployments that meet your specific business requirements.
@@ -102,36 +152,77 @@ const Implementation = () => {
                   height: '100%', 
                   display: 'flex', 
                   flexDirection: 'column',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+                  borderRadius: 3,
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0 6px 12px rgba(0,0,0,0.15)'
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 12px 30px rgba(0,0,0,0.12)',
+                    '& .MuiCardMedia-root': {
+                      transform: 'scale(1.05)'
+                    }
                   }
                 }}>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={implementation.image}
-                    alt={implementation.title}
-                    sx={{ objectFit: 'cover' }}
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
+                  <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+                    <CardMedia
+                      component="img"
+                      height="240"
+                      image={implementation.image}
+                      alt={implementation.title}
+                      sx={{ 
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease'
+                      }}
+                    />
+                    <Box sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+                      height: '50%'
+                    }} />
+                  </Box>
+                  <CardContent sx={{ 
+                    flexGrow: 1, 
+                    p: 3,
+                    position: 'relative'
+                  }}>
                     <Typography 
                       variant="h5" 
                       gutterBottom
                       sx={{ 
-                        fontWeight: 600,
+                        fontWeight: 700,
                         fontSize: '1.5rem',
-                        mb: 2
+                        mb: 2,
+                        color: '#1976d2',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 1
                       }}
                     >
                       {implementation.title}
+                      <IconButton 
+                        size="small" 
+                        sx={{ 
+                          ml: 'auto',
+                          opacity: 0,
+                          transition: 'opacity 0.2s',
+                          '.MuiCard-root:hover &': {
+                            opacity: 1
+                          }
+                        }}
+                      >
+                        <ArrowForward />
+                      </IconButton>
                     </Typography>
                     <Typography 
                       variant="body1" 
-                      color="text.secondary"
-                      sx={{ lineHeight: 1.7 }}
+                      sx={{ 
+                        lineHeight: 1.8,
+                        color: '#546e7a'
+                      }}
                     >
                       {implementation.description}
                     </Typography>
@@ -141,34 +232,55 @@ const Implementation = () => {
             ))}
           </Grid>
 
-          <Box sx={{ mt: 8, textAlign: 'center' }}>
+          <Box sx={{ 
+            mt: 12, 
+            textAlign: 'center',
+            p: 5,
+            borderRadius: 4,
+            background: 'linear-gradient(135deg, #1976d2 0%, #1565c0 100%)',
+            color: 'white',
+            boxShadow: '0 8px 32px rgba(25, 118, 210, 0.2)'
+          }}>
             <Typography 
               variant="h4" 
               gutterBottom 
               data-aos="fade-up"
               sx={{ 
-                fontWeight: 600,
-                mb: 4
+                fontWeight: 700,
+                mb: 4,
+                color: 'white'
               }}
             >
               Why Choose Our Implementation Services?
             </Typography>
-            <Typography 
-              variant="body1" 
-              paragraph 
-              data-aos="fade-up"
-              sx={{
-                fontSize: '1.1rem',
-                lineHeight: 2
-              }}
-            >
-              • Certified OneStream implementation experts<br />
-              • Proven methodology and best practices<br />
-              • Tailored solutions for your specific industry needs<br />
-              • End-to-end project management and support<br />
-              • Training and knowledge transfer included<br />
-              • Post-implementation support and optimization
-            </Typography>
+            <Grid container spacing={3} sx={{ maxWidth: '900px', margin: '0 auto' }}>
+              {[
+                'Certified OneStream implementation experts',
+                'Proven methodology and best practices',
+                'Tailored solutions for your specific industry needs',
+                'End-to-end project management and support',
+                'Training and knowledge transfer included',
+                'Post-implementation support and optimization'
+              ].map((benefit, index) => (
+                <Grid item xs={12} sm={6} key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 2,
+                    p: 2,
+                    borderRadius: 2,
+                    backgroundColor: 'rgba(255,255,255,0.1)',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'translateX(8px)'
+                    }
+                  }}>
+                    <CheckCircleOutline sx={{ color: '#81d4fa' }} />
+                    <Typography sx={{ textAlign: 'left' }}>{benefit}</Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </Container>
       </Box>
