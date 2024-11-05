@@ -22,7 +22,7 @@ const Contact = () => {
             <Box sx={{ mt: 4 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <Email sx={{ mr: 2 }} />
-                <Typography>contact@yourcompany.com</Typography>
+                <Typography>info@ironforgeanalytics.com</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <Phone sx={{ mr: 2 }} />

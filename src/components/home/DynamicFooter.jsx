@@ -13,8 +13,20 @@ const DynamicFooter = () => {
 
   const footerLinks = {
     company: ['About Us', 'Careers', 'Contact Us', 'Blog'],
-    services: ['Web Development', 'Mobile Apps', 'Cloud Solutions', 'Consulting'],
-    legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+    services: [
+      'Financial Close & Consolidation',
+      'Planning & Budgeting',
+      'Account Reconciliation',
+      'Enterprise Cost Management',
+      'Tax Reporting',
+      'Narrative Reporting'
+    ],
+    solutions: [
+      'Enterprise Performance Management',
+      'Implementation Services',
+      'Cloud Solutions',
+      'Consulting Services'
+    ]
   };
 
   return (
@@ -108,11 +120,15 @@ const DynamicFooter = () => {
                   <Button
                     key={link}
                     component={Link}
-                    to={`/services/${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    to={`/services#${link.toLowerCase().replace(/\s+/g, '-')}`}
                     sx={{
                       justifyContent: 'flex-start',
                       color: 'text.secondary',
                       '&:hover': { color: 'primary.main' },
+                      textAlign: 'left',
+                      lineHeight: 1.2,
+                      minHeight: 'auto',
+                      padding: '4px 8px',
                     }}
                   >
                     {link}
@@ -123,18 +139,22 @@ const DynamicFooter = () => {
 
             <Grid item xs={12} sm={4}>
               <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
-                Legal
+                Solutions
               </Typography>
               <Stack spacing={1}>
-                {footerLinks.legal.map((link) => (
+                {footerLinks.solutions.map((link) => (
                   <Button
                     key={link}
                     component={Link}
-                    to={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    to={`/implementation#${link.toLowerCase().replace(/\s+/g, '-')}`}
                     sx={{
                       justifyContent: 'flex-start',
                       color: 'text.secondary',
                       '&:hover': { color: 'primary.main' },
+                      textAlign: 'left',
+                      lineHeight: 1.2,
+                      minHeight: 'auto',
+                      padding: '4px 8px',
                     }}
                   >
                     {link}

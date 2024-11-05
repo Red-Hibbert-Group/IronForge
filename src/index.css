@@ -16,13 +16,13 @@ a {
 /* Add these styles to enhance the Services component */
 @keyframes float {
   0% {
-    transform: translateY(0px);
+    transform: translateY(0) translateX(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-20px) translateX(20px);
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(0) translateX(0);
   }
 }
 
@@ -100,4 +100,16 @@ a {
 /* Enhance smooth scrolling */
 .scroll-content {
   will-change: transform;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
