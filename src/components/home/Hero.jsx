@@ -4,6 +4,17 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  // Add floating animation for background elements
+  const floatingAnimation = {
+    y: ['-10px', '10px'],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      repeatType: 'reverse',
+      ease: 'easeInOut',
+    },
+  };
+
   return (
     <Box
       component={motion.div}
@@ -19,29 +30,25 @@ const Hero = () => {
         background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
       }}
     >
-      {/* Animated background elements */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          overflow: 'hidden',
-          '&::before': {
-            content: '""',
+      {/* Animated floating circles */}
+      {[...Array(5)].map((_, index) => (
+        <motion.div
+          key={index}
+          animate={floatingAnimation}
+          style={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            width: '200%',
-            height: '200%',
-            background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%)',
-            transform: 'translate(-50%, -50%)',
-            animation: 'pulse 15s infinite',
-          },
-        }}
-      />
-      
+            width: `${Math.random() * 200 + 50}px`,
+            height: `${Math.random() * 200 + 50}px`,
+            borderRadius: '50%',
+            background: `rgba(255, 255, 255, ${Math.random() * 0.1})`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            filter: 'blur(50px)',
+            zIndex: 1,
+          }}
+        />
+      ))}
+
       <Container
         sx={{
           position: 'relative',
@@ -65,19 +72,32 @@ const Hero = () => {
                     color: 'white',
                     lineHeight: 1.2,
                     mb: 3,
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
                   }}
                 >
-                  Unlock Your Organization's <br />
-                  <Box
-                    component="span"
-                    sx={{
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
+                  Unlock Your Organization's{' '}
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.5,
+                      duration: 0.8,
+                      type: 'spring',
+                      stiffness: 100,
                     }}
                   >
-                    Potential
-                  </Box>
+                    <Box
+                      component="span"
+                      sx={{
+                        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        display: 'inline-block',
+                      }}
+                    >
+                      Potential
+                    </Box>
+                  </motion.span>
                 </Typography>
               </motion.div>
 
@@ -119,12 +139,12 @@ const Hero = () => {
                       borderRadius: '50px',
                       fontSize: '1.1rem',
                       textTransform: 'none',
-                      backgroundColor: 'white',
-                      color: 'primary.main',
+                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                      color: 'white',
+                      transition: 'all 0.3s ease-in-out',
                       '&:hover': {
-                        backgroundColor: 'rgba(255,255,255,0.9)',
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
+                        transform: 'translateY(-2px) scale(1.02)',
+                        boxShadow: '0 8px 25px rgba(33, 150, 243, 0.4)',
                       },
                     }}
                   >
@@ -142,10 +162,13 @@ const Hero = () => {
                       fontSize: '1.1rem',
                       textTransform: 'none',
                       borderColor: 'rgba(255,255,255,0.5)',
+                      borderWidth: '2px',
                       color: 'white',
+                      transition: 'all 0.3s ease-in-out',
                       '&:hover': {
                         borderColor: 'white',
                         backgroundColor: 'rgba(255,255,255,0.1)',
+                        transform: 'translateY(-2px)',
                       },
                     }}
                   >
@@ -163,16 +186,25 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 1 }}
               style={{ height: '100%', display: 'flex', alignItems: 'center' }}
             >
+              {/* Add animated illustration or 3D element here */}
               <Box
-                component="img"
-                src="https://raw.githubusercontent.com/ShaifArfan/one-page-website-html-css-project/main/img/hero-img.svg"
-                alt="Digital Transformation Illustration"
+                component={motion.div}
+                animate={{
+                  rotate: [0, 5, -5, 0],
+                  transition: {
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  },
+                }}
                 sx={{
                   width: '100%',
-                  maxWidth: '500px',
-                  height: 'auto',
-                  display: { xs: 'none', md: 'block' },
-                  filter: 'brightness(1.1)',
+                  height: '400px',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  borderRadius: '20px',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                 }}
               />
             </motion.div>
@@ -180,7 +212,7 @@ const Hero = () => {
         </Grid>
       </Container>
 
-      {/* Gradient overlay */}
+      {/* Enhanced gradient overlay */}
       <Box
         sx={{
           position: 'absolute',
@@ -188,7 +220,7 @@ const Hero = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%)',
+          background: 'radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)',
           zIndex: 1,
         }}
       />

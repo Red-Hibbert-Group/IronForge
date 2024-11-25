@@ -30,7 +30,7 @@ const Contact = () => {
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <LocationOn sx={{ mr: 2 }} />
-                <Typography>123 AI Street, Tech City, TC 12345</Typography>
+                <Typography>123 AI Street, Tech City, TC 12345</Typography>  
               </Box>
             </Box>
           </Grid>

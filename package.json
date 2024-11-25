@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
     "@mui/icons-material": "^5.16.7",
-    "@mui/material": "^5.15.10",
+    "@mui/material": "^5.16.7",
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.17",
-    "framer-motion": "^11.11.10",
+    "framer-motion": "^11.11.17",
     "postcss": "^8.4.35",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

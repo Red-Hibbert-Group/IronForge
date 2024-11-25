@@ -22,10 +22,12 @@ const DynamicFooter = () => {
       'Narrative Reporting'
     ],
     solutions: [
-      'Enterprise Performance Management',
-      'Implementation Services',
-      'Cloud Solutions',
-      'Consulting Services'
+      'Oracle EPM Implementation',
+      'SAP Implementation',
+      'Data Migration Services',
+      'System Integration',
+      'Training & Support',
+      'Process Optimization'
     ]
   };
 
