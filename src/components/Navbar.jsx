@@ -107,25 +107,6 @@ const Navbar = () => {
                   filter: 'brightness(100%) contrast(100%)',
                 },
               },
-              '&::after': {
-                content: '""',
-                position: 'absolute',
-                top: 0,
-                left: '-100%',
-                width: '50%',
-                height: '100%',
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-                animation: 'shimmer 3s infinite',
-                transform: 'skewX(-25deg)',
-              },
-              '@keyframes shimmer': {
-                '0%': {
-                  left: '-100%',
-                },
-                '100%': {
-                  left: '200%',
-                },
-              },
               '&::before': {
                 content: '""',
                 position: 'absolute',
@@ -156,22 +137,7 @@ const Navbar = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 animation: 'metallic 3s infinite',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: isScrolled
-                    ? 'radial-gradient(circle at 30% 107%, #1565C0 0%, #2196F3 5%, #64B5F6 45%, #1565C0 60%, #2196F3 90%)'
-                    : 'radial-gradient(circle at 30% 107%, #ffffff 0%, #e0e0e0 5%, #ffffff 45%, #e0e0e0 60%, #ffffff 90%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  filter: 'blur(4px)',
-                  opacity: 0,
-                  animation: 'glow 3s ease-in-out infinite',
-                },
+                overflow: 'hidden',
                 '&::after': {
                   content: '""',
                   position: 'absolute',
@@ -182,7 +148,7 @@ const Navbar = () => {
                   background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
                   animation: 'shimmerMetallic 3s infinite',
                   transform: 'skewX(-45deg)',
-                },
+                }
               },
               '& span.edge': {
                 position: 'relative',
@@ -193,22 +159,7 @@ const Navbar = () => {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 animation: 'metallic 3s infinite 0.15s',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: isScrolled
-                    ? 'radial-gradient(circle at 30% 107%, #2196F3 0%, #64B5F6 5%, #90CAF9 45%, #2196F3 60%, #64B5F6 90%)'
-                    : 'radial-gradient(circle at 30% 107%, #f0f0f0 0%, #ffffff 5%, #f0f0f0 45%, #ffffff 60%, #f0f0f0 90%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  filter: 'blur(4px)',
-                  opacity: 0,
-                  animation: 'glow 3s ease-in-out infinite 0.15s',
-                },
+                overflow: 'hidden',
                 '&::after': {
                   content: '""',
                   position: 'absolute',
@@ -219,7 +170,7 @@ const Navbar = () => {
                   background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
                   animation: 'shimmerMetallic 3s infinite 0.15s',
                   transform: 'skewX(-45deg)',
-                },
+                }
               },
               '@keyframes shimmerMetallic': {
                 '0%': {
