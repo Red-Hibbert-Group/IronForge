@@ -88,6 +88,44 @@ const Navbar = () => {
                 ? '2px 2px 4px rgba(33, 150, 243, 0.3)'
                 : '2px 2px 4px rgba(255, 255, 255, 0.3)',
               transition: 'all 0.3s ease-in-out',
+              '@keyframes pulse': {
+                '0%, 100%': {
+                  transform: 'scale(1)',
+                },
+                '50%': {
+                  transform: 'scale(1.02)',
+                },
+              },
+              '@keyframes metallic': {
+                '0%': {
+                  filter: 'brightness(100%) contrast(100%)',
+                },
+                '50%': {
+                  filter: 'brightness(150%) contrast(110%)',
+                },
+                '100%': {
+                  filter: 'brightness(100%) contrast(100%)',
+                },
+              },
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: '-100%',
+                width: '50%',
+                height: '100%',
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                animation: 'shimmer 3s infinite',
+                transform: 'skewX(-25deg)',
+              },
+              '@keyframes shimmer': {
+                '0%': {
+                  left: '-100%',
+                },
+                '100%': {
+                  left: '200%',
+                },
+              },
               '&::before': {
                 content: '""',
                 position: 'absolute',
@@ -110,21 +148,107 @@ const Navbar = () => {
                 },
               },
               '& span.iron': {
+                position: 'relative',
                 fontWeight: 900,
                 background: isScrolled
                   ? 'linear-gradient(45deg, #1565C0 30%, #2196F3 90%)'
                   : 'linear-gradient(45deg, #ffffff 30%, #e0e0e0 90%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                animation: 'metallic 3s infinite',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: isScrolled
+                    ? 'radial-gradient(circle at 30% 107%, #1565C0 0%, #2196F3 5%, #64B5F6 45%, #1565C0 60%, #2196F3 90%)'
+                    : 'radial-gradient(circle at 30% 107%, #ffffff 0%, #e0e0e0 5%, #ffffff 45%, #e0e0e0 60%, #ffffff 90%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'blur(4px)',
+                  opacity: 0,
+                  animation: 'glow 3s ease-in-out infinite',
+                },
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '200%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+                  animation: 'shimmerMetallic 3s infinite',
+                  transform: 'skewX(-45deg)',
+                },
               },
               '& span.edge': {
+                position: 'relative',
                 fontWeight: 700,
                 background: isScrolled
                   ? 'linear-gradient(45deg, #2196F3 30%, #64B5F6 90%)'
                   : 'linear-gradient(45deg, #f0f0f0 30%, #ffffff 90%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-              }
+                animation: 'metallic 3s infinite 0.15s',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: isScrolled
+                    ? 'radial-gradient(circle at 30% 107%, #2196F3 0%, #64B5F6 5%, #90CAF9 45%, #2196F3 60%, #64B5F6 90%)'
+                    : 'radial-gradient(circle at 30% 107%, #f0f0f0 0%, #ffffff 5%, #f0f0f0 45%, #ffffff 60%, #f0f0f0 90%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  filter: 'blur(4px)',
+                  opacity: 0,
+                  animation: 'glow 3s ease-in-out infinite 0.15s',
+                },
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '200%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+                  animation: 'shimmerMetallic 3s infinite 0.15s',
+                  transform: 'skewX(-45deg)',
+                },
+              },
+              '@keyframes shimmerMetallic': {
+                '0%': {
+                  left: '-200%',
+                  opacity: 0,
+                },
+                '45%': {
+                  opacity: 0.3,
+                },
+                '50%': {
+                  opacity: 0.6,
+                },
+                '55%': {
+                  opacity: 0.3,
+                },
+                '100%': {
+                  left: '200%',
+                  opacity: 0,
+                },
+
+              },
+              '@keyframes glow': {
+                '0%, 100%': {
+                  opacity: 0,
+                },
+                '50%': {
+                  opacity: 0.5,
+                },
+              },
             }}
           >
             <span className="iron">Iron</span>
@@ -364,3 +488,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
