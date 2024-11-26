@@ -17,7 +17,7 @@ import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstruct
 import DataUsageIcon from '@mui/icons-material/DataUsage';
 
 const About = () => {
-  const theme = useTheme();
+  const theme = useTheme();     
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const fadeIn = {
