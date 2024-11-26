@@ -35,7 +35,7 @@ const About = () => {
       <Navbar />
       <Box 
         sx={{
-          background: 'linear-gradient(135deg, #f8f9ff 0%, #e8ecf7 100%)',
+          background: 'linear-gradient(135deg, #0a192f 0%, #112240 100%)',
           position: 'relative',
           overflow: 'hidden'
         }}
@@ -48,7 +48,7 @@ const About = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'linear-gradient(45deg, rgba(26,35,126,0.05) 0%, rgba(13,71,161,0.05) 100%)',
+            background: 'rgba(255,255,255,0.02)',
             '&::before': {
               content: '""',
               position: 'absolute',
@@ -56,7 +56,7 @@ const About = () => {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundImage: 'radial-gradient(circle at 25px 25px, #ffffff 2%, transparent 0%)',
+              backgroundImage: 'radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2%, transparent 0%)',
               backgroundSize: '50px 50px',
               opacity: 0.4,
               animation: 'pulse 4s ease-in-out infinite'
@@ -76,9 +76,7 @@ const About = () => {
                   fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' },
                   fontWeight: 800,
                   textAlign: 'center',
-                  background: 'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)',
-                  backgroundClip: 'text',
-                  textFillColor: 'transparent',
+                  color: 'white',
                   mb: 3
                 }}
               >
@@ -88,7 +86,7 @@ const About = () => {
                 variant="h4"
                 sx={{
                   textAlign: 'center',
-                  color: '#334155',
+                  color: 'rgba(255,255,255,0.7)',
                   maxWidth: '800px',
                   mx: 'auto',
                   fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.8rem' }
@@ -112,18 +110,20 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card
-                    elevation={0}
                     sx={{
-                      background: 'transparent',
+                      background: 'rgba(255,255,255,0.05)',
+                      backdropFilter: 'blur(10px)',
                       textAlign: 'center',
-                      position: 'relative'
+                      position: 'relative',
+                      borderRadius: 4,
+                      border: '1px solid rgba(255,255,255,0.1)'
                     }}
                   >
                     <CardContent>
                       <Typography
                         variant="h3"
                         sx={{
-                          color: theme.palette.primary.main,
+                          color: '#82B1FF',
                           fontWeight: 700,
                           mb: 1
                         }}
@@ -133,7 +133,7 @@ const About = () => {
                       <Typography
                         variant="body1"
                         sx={{
-                          color: '#334155',
+                          color: 'rgba(255,255,255,0.7)',
                           fontWeight: 500
                         }}
                       >
@@ -149,7 +149,7 @@ const About = () => {
 
         {/* OneStream Implementation Solutions */}
         <Box sx={{ 
-          background: 'linear-gradient(45deg, rgba(26,35,126,0.03) 0%, rgba(13,71,161,0.03) 100%)',
+          background: 'rgba(255,255,255,0.02)',
           py: 8 
         }}>
           <Container maxWidth="lg">
@@ -159,7 +159,7 @@ const About = () => {
                 textAlign: 'center',
                 mb: 2,
                 fontWeight: 700,
-                color: theme.palette.primary.main
+                color: 'white'
               }}
             >
               OneStream Implementation Solutions
@@ -169,7 +169,7 @@ const About = () => {
               sx={{
                 textAlign: 'center',
                 mb: 6,
-                color: '#334155',
+                color: 'rgba(255,255,255,0.7)',
                 maxWidth: '800px',
                 mx: 'auto'
               }}
