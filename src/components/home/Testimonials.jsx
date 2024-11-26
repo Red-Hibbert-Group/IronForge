@@ -1,72 +1,58 @@
-import { Box, Container, Typography, Paper, Grid, Avatar, Rating } from '@mui/material';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import { keyframes } from '@mui/system';
+import { Box, Container, Typography, Card, Avatar, Rating, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
-
-const shine = keyframes`
-  0% { background-position: -100% 0; }
-  100% { background-position: 200% 0; }
-`;
-
-const float = keyframes`
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-`;
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
+import { useState } from 'react';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const testimonials = [
   {
-    quote: "IronForge transformed our financial processes with their OneStream expertise. The implementation was smooth and the results exceeded our expectations.",
-    author: "Sarah Johnson",
-    position: "CFO, Tech Solutions Inc.",
-    avatar: "/avatars/avatar1.jpg",
-    rating: 5,
+    name: "Sarah Johnson",
+    role: "CFO",
     company: "Tech Solutions Inc.",
-    companyLogo: "/logos/tech-solutions.png"
+    image: "/avatars/sarah.jpg", // Add placeholder image path
+    rating: 5,
+    testimonial: "IronForge transformed our financial processes completely. The implementation was smooth, and the results were immediate. Our month-end close time reduced by 60%."
   },
   {
-    quote: "Their deep understanding of OneStream and commitment to our success made them the perfect partner for our digital transformation journey.",
-    author: "Michael Chen",
-    position: "Director of Finance, Global Corp",
-    avatar: "/avatars/avatar2.jpg",
-    rating: 5,
+    name: "Michael Chen",
+    role: "Director of Finance",
     company: "Global Corp",
-    companyLogo: "/logos/global-corp.png"
+    image: "/avatars/michael.jpg",
+    rating: 5,
+    testimonial: "The level of automation and accuracy we've achieved with IronForge's solutions is remarkable. Their team's expertise and support are unmatched."
   },
   {
-    quote: "The team's technical expertise combined with their business acumen delivered exceptional value to our organization.",
-    author: "David Miller",
-    position: "VP Finance, Enterprise Systems",
-    avatar: "/avatars/avatar3.jpg",
+    name: "Emma Williams",
+    role: "VP of Operations",
+    company: "Innovation Labs",
+    image: "/avatars/emma.jpg",
     rating: 5,
-    company: "Enterprise Systems",
-    companyLogo: "/logos/enterprise-systems.png"
+    testimonial: "Implementing IronForge's EPM solution was one of the best decisions we made. The ROI has been exceptional, and the ongoing support is outstanding."
   }
 ];
 
 const Testimonials = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const nextTestimonial = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
-    <Box 
-      component={motion.div}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      sx={{ 
-        py: 15,
+    <Box
+      sx={{
+        py: { xs: 8, md: 15 },
         background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
         position: 'relative',
         overflow: 'hidden',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
-        }
       }}
     >
+      {/* Background Elements */}
       <Box
         sx={{
           position: 'absolute',
@@ -75,203 +61,192 @@ const Testimonials = () => {
           right: 0,
           bottom: 0,
           opacity: 0.1,
-          background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-          animation: `${float} 20s infinite`,
+          background: 'radial-gradient(circle at center, #ffffff 0%, transparent 70%)',
         }}
       />
 
       <Container maxWidth="lg">
-        <Box
-          sx={{
-            textAlign: 'center',
-            mb: 10,
-            position: 'relative',
-          }}
-        >
-          <Typography 
-            variant="h1"
-            component={motion.div}
+        {/* Header Section */}
+        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
+          <Typography
+            variant="h2"
+            component={motion.h2}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            sx={{ 
-              color: '#fff',
-              fontWeight: 800,
-              fontSize: { xs: '2.5rem', md: '3.5rem' },
-              letterSpacing: '4px',
-              mb: 4,
-              textTransform: 'uppercase'
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            sx={{
+              color: 'white',
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              fontWeight: 700,
+              mb: 2,
             }}
           >
             TESTIMONIALS
           </Typography>
-          <Typography 
-            variant="h2" 
-            component={motion.h2}
+          <Typography
+            variant="h3"
+            component={motion.h3}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            sx={{ 
-              color: '#fff',
-              fontWeight: 800,
-              mb: 2,
-              fontSize: { xs: '2rem', md: '2.5rem' },
-              '& span': {
-                color: '#FFD700'
-              }
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            sx={{
+              color: 'white',
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+              fontWeight: 600,
+              mb: 3,
             }}
           >
-            What Our <span>Clients</span> Say
+            What Our <span style={{ color: '#ffd700' }}>Clients</span> Say
           </Typography>
           <Typography
-            variant="h6"
+            variant="body1"
             component={motion.p}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
             sx={{
-              color: 'rgba(255,255,255,0.7)',
-              maxWidth: '600px',
-              margin: '0 auto',
+              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: { xs: '1rem', md: '1.2rem' },
+              maxWidth: '800px',
+              mx: 'auto',
+              lineHeight: 1.8,
             }}
           >
             Don't just take our word for it. Here's what industry leaders say about our services.
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
-          {testimonials.map((testimonial, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
+        {/* Testimonials Carousel */}
+        <Box
+          sx={{
+            position: 'relative',
+            maxWidth: '1000px',
+            mx: 'auto',
+            px: { xs: 2, md: 8 },
+          }}
+        >
+          <Card
+            component={motion.div}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            key={activeIndex}
+            sx={{
+              p: { xs: 3, md: 6 },
+              borderRadius: 4,
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              position: 'relative',
+            }}
+          >
+            <FormatQuoteIcon
+              sx={{
+                position: 'absolute',
+                top: { xs: -20, md: -30 },
+                left: { xs: 20, md: 40 },
+                fontSize: { xs: '4rem', md: '6rem' },
+                color: 'rgba(255, 255, 255, 0.1)',
+                transform: 'rotate(180deg)',
+              }}
+            />
+            
+            <Box sx={{ textAlign: 'center' }}>
+              <Avatar
+                src={testimonials[activeIndex].image}
+                sx={{
+                  width: { xs: 80, md: 100 },
+                  height: { xs: 80, md: 100 },
+                  mx: 'auto',
+                  mb: 3,
+                  border: '4px solid rgba(255, 255, 255, 0.1)',
+                }}
+              />
+              <Rating 
+                value={testimonials[activeIndex].rating} 
+                readOnly 
+                sx={{ mb: 3 }}
+              />
+              <Typography
+                variant="body1"
+                sx={{
+                  color: 'white',
+                  fontSize: { xs: '1rem', md: '1.25rem' },
+                  lineHeight: 1.8,
+                  mb: 4,
+                  fontStyle: 'italic',
+                }}
               >
-                <Paper 
-                  elevation={0}
-                  sx={{
-                    p: 4,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    background: 'rgba(255,255,255,0.05)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '20px',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      transform: 'translateY(-10px)',
-                      background: 'rgba(255,255,255,0.1)',
-                      '& .quote-icon': {
-                        transform: 'rotate(10deg)',
-                        color: 'primary.light',
-                      }
-                    }
-                  }}
-                >
-                  <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                    <Avatar
-                      src={testimonial.avatar}
-                      sx={{ 
-                        width: 60, 
-                        height: 60,
-                        border: '2px solid',
-                        borderColor: 'primary.light'
-                      }}
-                    />
-                    <Box sx={{ ml: 2 }}>
-                      <Typography 
-                        variant="h6" 
-                        sx={{ 
-                          color: '#fff',
-                          fontWeight: 600
-                        }}
-                      >
-                        {testimonial.author}
-                      </Typography>
-                      <Typography 
-                        variant="body2" 
-                        sx={{ 
-                          color: 'rgba(255,255,255,0.7)'
-                        }}
-                      >
-                        {testimonial.position}
-                      </Typography>
-                    </Box>
-                  </Box>
+                "{testimonials[activeIndex].testimonial}"
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'white',
+                  fontWeight: 600,
+                  mb: 1,
+                }}
+              >
+                {testimonials[activeIndex].name}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  mb: 0.5,
+                }}
+              >
+                {testimonials[activeIndex].role}
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                sx={{
+                  color: 'rgba(255, 255, 255, 0.6)',
+                }}
+              >
+                {testimonials[activeIndex].company}
+              </Typography>
+            </Box>
+          </Card>
 
-                  <Rating 
-                    value={testimonial.rating} 
-                    readOnly 
-                    sx={{ 
-                      mb: 3,
-                      '& .MuiRating-icon': {
-                        color: '#FFD700'
-                      }
-                    }}
-                  />
-
-                  <FormatQuoteIcon 
-                    className="quote-icon"
-                    sx={{ 
-                      fontSize: 40,
-                      color: 'rgba(255,255,255,0.4)',
-                      mb: 2,
-                      transition: 'all 0.3s ease',
-                    }}
-                  />
-
-                  <Typography 
-                    sx={{ 
-                      color: '#fff',
-                      flex: 1,
-                      fontSize: '1.1rem',
-                      lineHeight: 1.6,
-                      mb: 3,
-                      fontWeight: 300,
-                    }}
-                  >
-                    "{testimonial.quote}"
-                  </Typography>
-
-                  <Box
-                    sx={{
-                      mt: 'auto',
-                      pt: 3,
-                      borderTop: '1px solid rgba(255,255,255,0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}
-                  >
-                    <Typography 
-                      variant="body2" 
-                      sx={{ 
-                        color: '#fff',
-                        fontWeight: 600
-                      }}
-                    >
-                      {testimonial.company}
-                    </Typography>
-                    <Box
-                      component="img"
-                      src={testimonial.companyLogo}
-                      alt={testimonial.company}
-                      sx={{
-                        height: 30,
-                        opacity: 0.9,
-                        filter: 'brightness(0) invert(1)',
-                      }}
-                    />
-                  </Box>
-                </Paper>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
+          {/* Navigation Buttons */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 2,
+              mt: 4,
+            }}
+          >
+            <IconButton
+              onClick={prevTestimonial}
+              sx={{
+                color: 'white',
+                bgcolor: 'rgba(255, 255, 255, 0.1)',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.2)',
+                },
+              }}
+            >
+              <KeyboardArrowLeftIcon />
+            </IconButton>
+            <IconButton
+              onClick={nextTestimonial}
+              sx={{
+                color: 'white',
+                bgcolor: 'rgba(255, 255, 255, 0.1)',
+                '&:hover': {
+                  bgcolor: 'rgba(255, 255, 255, 0.2)',
+                },
+              }}
+            >
+              <KeyboardArrowRightIcon />
+            </IconButton>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

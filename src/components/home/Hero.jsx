@@ -4,7 +4,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  // Add floating animation for background elements
   const floatingAnimation = {
     y: ['-10px', '10px'],
     transition: {
@@ -22,12 +21,13 @@ const Hero = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       sx={{
-        height: '100vh',
+        minHeight: '100vh',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
+        pt: { xs: 8, sm: 0 },
       }}
     >
       {/* Animated floating circles */}
@@ -49,14 +49,16 @@ const Hero = () => {
         />
       ))}
 
-      <Container
-        sx={{
-          position: 'relative',
-          zIndex: 2,
-          mt: { xs: 8, md: 0 },
-        }}
-      >
-        <Grid container spacing={4} alignItems="center">
+      <Container maxWidth="lg">
+        <Grid 
+          container 
+          spacing={4} 
+          alignItems="center"
+          sx={{ 
+            flexDirection: { xs: 'column-reverse', md: 'row' },
+            textAlign: { xs: 'center', md: 'left' }
+          }}
+        >
           <Grid item xs={12} md={7}>
             <Box>
               <motion.div
@@ -67,15 +69,18 @@ const Hero = () => {
                 <Typography
                   variant="h1"
                   sx={{
-                    fontSize: { xs: '2.5rem', md: '4rem', lg: '5rem' },
+                    fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem', lg: '5rem' },
                     fontWeight: 700,
                     color: 'white',
                     lineHeight: 1.2,
-                    mb: 3,
+                    mb: { xs: 2, md: 3 },
                     textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
                   }}
                 >
-                  Unlock Your Organization's{' '}
+                  Unlock Your{' '}
+                  <Box component="span" sx={{ display: { xs: 'block', sm: 'inline' } }}>
+                    Organization's{' '}
+                  </Box>
                   <motion.span
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -109,10 +114,12 @@ const Hero = () => {
                 <Typography
                   variant="h4"
                   sx={{
-                    fontSize: { xs: '1.2rem', md: '1.5rem' },
+                    fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem' },
                     color: 'rgba(255, 255, 255, 0.9)',
-                    mb: 4,
-                    maxWidth: '600px',
+                    mb: { xs: 3, md: 4 },
+                    maxWidth: { xs: '100%', md: '600px' },
+                    mx: { xs: 'auto', md: 0 },
+                    lineHeight: 1.6,
                   }}
                 >
                   Transform your financial management with an integrated cloud platform for planning, 
@@ -126,7 +133,12 @@ const Hero = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                <Stack 
+                  direction={{ xs: 'column', sm: 'row' }} 
+                  spacing={{ xs: 2, sm: 3 }}
+                  alignItems={{ xs: 'stretch', sm: 'center' }}
+                  justifyContent={{ xs: 'center', md: 'flex-start' }}
+                >
                   <Button
                     component={Link}
                     to="/contact"
@@ -134,11 +146,12 @@ const Hero = () => {
                     size="large"
                     endIcon={<ArrowForwardIcon />}
                     sx={{
-                      py: 1.5,
-                      px: 4,
+                      py: { xs: 2, sm: 1.5 },
+                      px: { xs: 6, sm: 4 },
                       borderRadius: '50px',
-                      fontSize: '1.1rem',
+                      fontSize: { xs: '1rem', sm: '1.1rem' },
                       textTransform: 'none',
+                      width: { xs: '100%', sm: 'auto' },
                       background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
                       color: 'white',
                       transition: 'all 0.3s ease-in-out',
@@ -156,11 +169,12 @@ const Hero = () => {
                     variant="outlined"
                     size="large"
                     sx={{
-                      py: 1.5,
-                      px: 4,
+                      py: { xs: 2, sm: 1.5 },
+                      px: { xs: 6, sm: 4 },
                       borderRadius: '50px',
-                      fontSize: '1.1rem',
+                      fontSize: { xs: '1rem', sm: '1.1rem' },
                       textTransform: 'none',
+                      width: { xs: '100%', sm: 'auto' },
                       borderColor: 'rgba(255,255,255,0.5)',
                       borderWidth: '2px',
                       color: 'white',
@@ -179,14 +193,13 @@ const Hero = () => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={5} sx={{ display: { xs: 'none', md: 'block' } }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8, duration: 1 }}
               style={{ height: '100%', display: 'flex', alignItems: 'center' }}
             >
-              {/* Add animated illustration or 3D element here */}
               <Box
                 component={motion.div}
                 animate={{
@@ -211,19 +224,6 @@ const Hero = () => {
           </Grid>
         </Grid>
       </Container>
-
-      {/* Enhanced gradient overlay */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%)',
-          zIndex: 1,
-        }}
-      />
     </Box>
   );
 };
