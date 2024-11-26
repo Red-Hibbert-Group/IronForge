@@ -19,12 +19,12 @@ const Navbar = () => {
       label: 'SERVICES',
       path: '/services',
       dropdownItems: [
-        { label: 'Financial Close & Consolidation', path: '/services/fccs' },
-        { label: 'Planning & Budgeting', path: '/services/epbcs' },
-        { label: 'Account Reconciliation', path: '/services/arcs' },
-        { label: 'Enterprise Cost Management', path: '/services/ecms' },
-        { label: 'Tax Reporting', path: '/services/trcs' },
-        { label: 'Narrative Reporting', path: '/services/narrative-reporting' }
+        { label: 'Financial Close & Consolidation', path: '/services#financial-close-consolidation' },
+        { label: 'Planning & Budgeting', path: '/services#planning-budgeting' },
+        { label: 'Account Reconciliation', path: '/services#account-reconciliation' },
+        { label: 'Enterprise Cost Management', path: '/services#enterprise-cost-management' },
+        { label: 'Tax Reporting', path: '/services#tax-reporting' },
+        { label: 'Narrative Reporting', path: '/services#narrative-reporting' }
       ],
     },
     { label: 'IMPLEMENTATION', path: '/implementation' },

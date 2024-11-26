@@ -12,22 +12,27 @@ const DynamicFooter = () => {
   const opacity = useTransform(scrollYProgress, [0.7, 0.9], [0.8, 1]);
 
   const footerLinks = {
-    company: ['About Us', 'Careers', 'Contact Us', 'Blog'],
+    company: [
+      { name: 'About Us', path: '/about' },
+      { name: 'Careers', path: '#' },
+      { name: 'Contact Us', path: '/contact' },
+      { name: 'Blog', path: '#' }
+    ],
     services: [
-      'Financial Close & Consolidation',
-      'Planning & Budgeting',
-      'Account Reconciliation',
-      'Enterprise Cost Management',
-      'Tax Reporting',
-      'Narrative Reporting'
+      { name: 'Financial Close & Consolidation', path: '/services#financial-close-consolidation' },
+      { name: 'Planning & Budgeting', path: '/services#planning-budgeting' },
+      { name: 'Account Reconciliation', path: '/services#account-reconciliation' },
+      { name: 'Enterprise Cost Management', path: '/services#enterprise-cost-management' },
+      { name: 'Tax Reporting', path: '/services#tax-reporting' },
+      { name: 'Narrative Reporting', path: '/services#narrative-reporting' }
     ],
     solutions: [
-      'Oracle EPM Implementation',
-      'SAP Implementation',
-      'Data Migration Services',
-      'System Integration',
-      'Training & Support',
-      'Process Optimization'
+      { name: 'Oracle EPM Implementation', path: '/implementation#oracle-epm-implementation' },
+      { name: 'SAP Implementation', path: '/implementation#sap-implementation' },
+      { name: 'Data Migration Services', path: '/implementation#data-migration-services' },
+      { name: 'System Integration', path: '/implementation#system-integration' },
+      { name: 'Training & Support', path: '/implementation#training-support' },
+      { name: 'Process Optimization', path: '/implementation#process-optimization' }
     ]
   };
 
@@ -98,16 +103,18 @@ const DynamicFooter = () => {
               <Stack spacing={1}>
                 {footerLinks.company.map((link) => (
                   <Button
-                    key={link}
+                    key={link.name}
                     component={Link}
-                    to={`/${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    to={link.path}
+                    onClick={link.path === '#' ? (e) => e.preventDefault() : undefined}
                     sx={{
                       justifyContent: 'flex-start',
                       color: 'text.secondary',
                       '&:hover': { color: 'primary.main' },
+                      cursor: 'pointer',
                     }}
                   >
-                    {link}
+                    {link.name}
                   </Button>
                 ))}
               </Stack>
@@ -120,9 +127,9 @@ const DynamicFooter = () => {
               <Stack spacing={1}>
                 {footerLinks.services.map((link) => (
                   <Button
-                    key={link}
+                    key={link.name}
                     component={Link}
-                    to={`/services#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    to={link.path}
                     sx={{
                       justifyContent: 'flex-start',
                       color: 'text.secondary',
@@ -133,7 +140,7 @@ const DynamicFooter = () => {
                       padding: '4px 8px',
                     }}
                   >
-                    {link}
+                    {link.name}
                   </Button>
                 ))}
               </Stack>
@@ -146,9 +153,9 @@ const DynamicFooter = () => {
               <Stack spacing={1}>
                 {footerLinks.solutions.map((link) => (
                   <Button
-                    key={link}
+                    key={link.name}
                     component={Link}
-                    to={`/implementation#${link.toLowerCase().replace(/\s+/g, '-')}`}
+                    to={link.path}
                     sx={{
                       justifyContent: 'flex-start',
                       color: 'text.secondary',
@@ -159,7 +166,7 @@ const DynamicFooter = () => {
                       padding: '4px 8px',
                     }}
                   >
-                    {link}
+                    {link.name}
                   </Button>
                 ))}
               </Stack>
