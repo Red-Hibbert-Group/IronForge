@@ -73,136 +73,119 @@ const Navbar = () => {
             sx={{
               textDecoration: 'none',
               fontWeight: 800,
-              fontSize: { xs: '1.5rem', md: '2rem' },
-              letterSpacing: '0.5px',
+              fontSize: { xs: '1.5rem', md: '2.4rem' },
               position: 'relative',
               display: 'inline-flex',
               alignItems: 'center',
-              padding: '0.2em 0',
-              background: isScrolled
-                ? 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)'
-                : 'linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textShadow: isScrolled
-                ? '2px 2px 4px rgba(33, 150, 243, 0.3)'
-                : '2px 2px 4px rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.3s ease-in-out',
-              '@keyframes pulse': {
-                '0%, 100%': {
-                  transform: 'scale(1)',
-                },
-                '50%': {
-                  transform: 'scale(1.02)',
-                },
-              },
-              '@keyframes metallic': {
-                '0%': {
-                  filter: 'brightness(100%) contrast(100%)',
-                },
-                '50%': {
-                  filter: 'brightness(150%) contrast(110%)',
-                },
-                '100%': {
-                  filter: 'brightness(100%) contrast(100%)',
-                },
-              },
+              padding: '0.2em 0.4em',
+              background: 'transparent',
+              borderRadius: '4px',
+              transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              transform: 'perspective(1000px)',
+              transformStyle: 'preserve-3d',
               '&::before': {
                 content: '""',
                 position: 'absolute',
-                width: '100%',
-                height: '2px',
-                bottom: 0,
-                left: 0,
-                background: isScrolled
-                  ? 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)'
-                  : 'linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%)',
-                transformOrigin: 'right',
-                transform: 'scaleX(0)',
-                transition: 'transform 0.3s ease-in-out',
+                inset: 0,
+                background: isScrolled 
+                  ? 'rgba(255, 255, 255, 0.1)'
+                  : 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(8px)',
+                borderRadius: '4px',
+                transform: 'translateZ(-10px)',
               },
               '&:hover': {
-                transform: 'translateY(-2px)',
-                '&::before': {
-                  transformOrigin: 'left',
-                  transform: 'scaleX(1)',
+                transform: 'perspective(1000px) translateY(-5px)',
+                '& .iron, & .edge': {
+                  transform: 'translateZ(20px)',
+                  textShadow: isScrolled
+                    ? '0 15px 25px rgba(0,0,0,0.3)'
+                    : '0 15px 25px rgba(255,255,255,0.3)',
                 },
+                '& .divider': {
+                  height: '80%',
+                  opacity: 1,
+                  transform: 'translateZ(25px)',
+                }
               },
+
+              '& .divider': {
+                position: 'absolute',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%) translateZ(15px)',
+                width: '2px',
+                height: '0%',
+                background: isScrolled
+                  ? 'linear-gradient(to bottom, transparent, #1B365D, transparent)'
+                  : 'linear-gradient(to bottom, transparent, #fff, transparent)',
+                opacity: 0,
+                transition: 'all 0.4s ease-in-out',
+              },
+
               '& span.iron': {
                 position: 'relative',
                 fontWeight: 900,
+                padding: '0 0.3em',
                 background: isScrolled
-                  ? 'linear-gradient(45deg, #1565C0 30%, #2196F3 90%)'
-                  : 'linear-gradient(45deg, #ffffff 30%, #e0e0e0 90%)',
+                  ? 'linear-gradient(135deg, #1B365D 0%, #2C3E50 50%, #1B365D 100%)'
+                  : 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #ffffff 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                animation: 'metallic 3s infinite',
-                overflow: 'hidden',
-                '&::after': {
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                transition: 'all 0.4s ease-in-out',
+                transform: 'translateZ(10px)',
+                textShadow: isScrolled
+                  ? '0 5px 15px rgba(0,0,0,0.2)'
+                  : '0 5px 15px rgba(255,255,255,0.2)',
+                '&::before': {
                   content: '""',
                   position: 'absolute',
-                  top: 0,
-                  left: '-100%',
-                  width: '200%',
-                  height: '100%',
-                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-                  animation: 'shimmerMetallic 3s infinite',
-                  transform: 'skewX(-45deg)',
+                  bottom: '-4px',
+                  left: '0',
+                  width: '100%',
+                  height: '2px',
+                  background: isScrolled
+                    ? 'linear-gradient(90deg, transparent, #1B365D, transparent)'
+                    : 'linear-gradient(90deg, transparent, #ffffff, transparent)',
+                  opacity: 0.5,
                 }
               },
+
               '& span.edge': {
                 position: 'relative',
-                fontWeight: 700,
+                fontWeight: 800,
+                padding: '0 0.3em',
                 background: isScrolled
-                  ? 'linear-gradient(45deg, #2196F3 30%, #64B5F6 90%)'
-                  : 'linear-gradient(45deg, #f0f0f0 30%, #ffffff 90%)',
+                  ? 'linear-gradient(135deg, #2C3E50 0%, #1B365D 50%, #2C3E50 100%)'
+                  : 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #ffffff 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                animation: 'metallic 3s infinite 0.15s',
-                overflow: 'hidden',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                transition: 'all 0.4s ease-in-out',
+                transform: 'translateZ(10px)',
+                textShadow: isScrolled
+                  ? '0 5px 15px rgba(0,0,0,0.2)'
+                  : '0 5px 15px rgba(255,255,255,0.2)',
                 '&::after': {
                   content: '""',
                   position: 'absolute',
-                  top: 0,
-                  left: '-100%',
-                  width: '200%',
-                  height: '100%',
-                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-                  animation: 'shimmerMetallic 3s infinite 0.15s',
-                  transform: 'skewX(-45deg)',
-                }
-              },
-              '@keyframes shimmerMetallic': {
-                '0%': {
-                  left: '-200%',
-                  opacity: 0,
-                },
-                '45%': {
-                  opacity: 0.3,
-                },
-                '50%': {
-                  opacity: 0.6,
-                },
-                '55%': {
-                  opacity: 0.3,
-                },
-                '100%': {
-                  left: '200%',
-                  opacity: 0,
-                },
-
-              },
-              '@keyframes glow': {
-                '0%, 100%': {
-                  opacity: 0,
-                },
-                '50%': {
+                  top: '-4px',
+                  left: '0',
+                  width: '100%',
+                  height: '2px',
+                  background: isScrolled
+                    ? 'linear-gradient(90deg, transparent, #2C3E50, transparent)'
+                    : 'linear-gradient(90deg, transparent, #ffffff, transparent)',
                   opacity: 0.5,
-                },
-              },
+                }
+              }
             }}
           >
             <span className="iron">Iron</span>
+            <div className="divider" />
             <span className="edge">Forge</span>
           </Typography>
 
