@@ -1,3 +1,5 @@
+This project is built using React+Vite framework.
+take a look at the website here : https://ironforge-three.vercel.app/
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
