@@ -48,7 +48,7 @@ const Hero = () => {
         display: 'flex',
         alignItems: 'center',
         pt: { xs: 8, sm: 0 },
-        background: 'linear-gradient(135deg, #0a0a18 0%, #14142a 100%)',
+        background: 'linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%)',
       }}
     >
       {/* 3D Particles Background */}
@@ -70,7 +70,7 @@ const Hero = () => {
             animate={{
               y: [Math.random() * 100, Math.random() * 100 + 500],
               x: [Math.random() * 100, Math.random() * 100 + 500],
-              opacity: [0, 0.7, 0],
+              opacity: [0, 0.5, 0],
               scale: [0, 1, 0.5],
             }}
             transition={{
@@ -85,8 +85,8 @@ const Hero = () => {
               width: `${Math.random() * 10 + 2}px`,
               height: `${Math.random() * 10 + 2}px`,
               borderRadius: '50%',
-              background: `rgba(82, 109, 254, ${Math.random() * 0.5})`,
-              boxShadow: '0 0 10px rgba(82, 109, 254, 0.8)',
+              background: `rgba(82, 109, 254, ${Math.random() * 0.3})`,
+              boxShadow: '0 0 10px rgba(82, 109, 254, 0.4)',
               zIndex: 1,
             }}
           />
@@ -101,7 +101,7 @@ const Hero = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 30% 50%, rgba(82, 109, 254, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle at 30% 50%, rgba(82, 109, 254, 0.03) 0%, transparent 70%)',
           zIndex: 1,
         }}
       />
@@ -116,7 +116,7 @@ const Hero = () => {
             width: `${Math.random() * 300 + 50}px`,
             height: `${Math.random() * 300 + 50}px`,
             borderRadius: '50%',
-            background: `radial-gradient(circle, rgba(82, 109, 254, ${Math.random() * 0.1}) 0%, transparent 70%)`,
+            background: `radial-gradient(circle, rgba(82, 109, 254, ${Math.random() * 0.07}) 0%, transparent 70%)`,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             filter: 'blur(50px)',
@@ -201,10 +201,10 @@ const Hero = () => {
                   sx={{
                     fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem', lg: '5rem' },
                     fontWeight: 800,
-                    color: 'white',
+                    color: '#1A1A2E',
                     lineHeight: 1.1,
                     mb: { xs: 2, md: 3 },
-                    background: 'linear-gradient(to right, #FFFFFF, #D1D5DB)',
+                    background: 'linear-gradient(to right, #1A1A2E, #526DFE)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -220,10 +220,10 @@ const Hero = () => {
                   variant="subtitle1"
                   sx={{
                     fontSize: { xs: '1.1rem', md: '1.25rem' },
-                    color: 'rgba(255,255,255,0.7)',
+                    color: '#505060',
                     mb: 4,
                     lineHeight: 1.7,
-                    fontWeight: 300,
+                    fontWeight: 400,
                     maxWidth: { md: '90%' }
                   }}
                 >
@@ -251,7 +251,7 @@ const Hero = () => {
                     sx={{
                       background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
                       color: 'white',
-                      boxShadow: '0 10px 30px rgba(82, 109, 254, 0.3)',
+                      boxShadow: '0 10px 30px rgba(82, 109, 254, 0.2)',
                       borderRadius: '50px',
                       fontSize: '1rem',
                       fontWeight: 600,
@@ -261,7 +261,7 @@ const Hero = () => {
                       '&:hover': {
                         background: 'linear-gradient(135deg, #6281FF 0%, #9D75FF 100%)',
                         transform: 'translateY(-3px)',
-                        boxShadow: '0 15px 40px rgba(82, 109, 254, 0.5)',
+                        boxShadow: '0 15px 40px rgba(82, 109, 254, 0.3)',
                       }
                     }}
                   >
@@ -274,8 +274,8 @@ const Hero = () => {
                     variant="outlined"
                     size="large"
                     sx={{
-                      borderColor: 'rgba(255, 255, 255, 0.3)',
-                      color: 'white',
+                      borderColor: '#526DFE',
+                      color: '#526DFE',
                       borderWidth: 2,
                       borderRadius: '50px',
                       py: 1.5,
@@ -284,8 +284,8 @@ const Hero = () => {
                       fontWeight: 600,
                       textTransform: 'none',
                       '&:hover': {
-                        borderColor: '#526DFE',
-                        backgroundColor: 'rgba(82, 109, 254, 0.1)',
+                        borderColor: '#8E5FFE',
+                        backgroundColor: 'rgba(82, 109, 254, 0.05)',
                       }
                     }}
                   >
@@ -297,7 +297,7 @@ const Hero = () => {
                   <Typography 
                     variant="body2" 
                     sx={{ 
-                      color: 'rgba(255,255,255,0.5)', 
+                      color: '#505060', 
                       fontSize: '0.95rem',
                       display: 'flex',
                       alignItems: 'center',
@@ -306,12 +306,12 @@ const Hero = () => {
                         display: 'block',
                         width: 20,
                         height: 1,
-                        backgroundColor: 'rgba(255,255,255,0.5)',
+                        backgroundColor: '#526DFE',
                         marginRight: 1.5
                       }
                     }}
                   >
-                    Trusted by Fortune companies worldwide
+                    Trusted by Fortune 500 companies worldwide
                   </Typography>
                 </Box>
               </motion.div>
@@ -345,7 +345,7 @@ const Hero = () => {
                       position: 'absolute',
                       width: '120%',
                       height: '120%',
-                      background: 'radial-gradient(ellipse at center, rgba(82, 109, 254, 0.2) 0%, transparent 60%)',
+                      background: 'radial-gradient(ellipse at center, rgba(82, 109, 254, 0.1) 0%, transparent 60%)',
                       transform: 'translateZ(-50px)',
                       filter: 'blur(40px)',
                       opacity: 0.7,
@@ -362,10 +362,10 @@ const Hero = () => {
                       minHeight: '400px',
                       borderRadius: '20px',
                       overflow: 'hidden',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      background: 'linear-gradient(145deg, rgba(20, 20, 35, 0.8) 0%, rgba(10, 10, 18, 0.8) 100%)',
+                      border: '1px solid rgba(82, 109, 254, 0.1)',
+                      background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 255, 0.9) 100%)',
                       backdropFilter: 'blur(10px)',
-                      boxShadow: '0 30px 60px rgba(0, 0, 0, 0.3)',
+                      boxShadow: '0 30px 60px rgba(82, 109, 254, 0.15)',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
@@ -430,7 +430,7 @@ const Hero = () => {
                               animate={{ opacity: 1 }}
                               transition={{ delay: 1.2 + index * 0.2, duration: 0.4 }}
                               variant="caption"
-                              sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.8rem' }}
+                              sx={{ color: '#505060', fontSize: '0.8rem' }}
                             >
                               {label}
                             </Typography>
