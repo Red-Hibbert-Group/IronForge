@@ -4,10 +4,31 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6 }
+    }
+  };
+
   const floatingAnimation = {
     y: ['-10px', '10px'],
     transition: {
-      duration: 2,
+      duration: 3,
       repeat: Infinity,
       repeatType: 'reverse',
       ease: 'easeInOut',
@@ -26,21 +47,76 @@ const Hero = () => {
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
-        background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
         pt: { xs: 8, sm: 0 },
+        background: 'linear-gradient(135deg, #0a0a18 0%, #14142a 100%)',
       }}
     >
-      {/* Animated floating circles */}
+      {/* 3D Particles Background */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: 'hidden',
+          zIndex: 0,
+        }}
+      >
+        {/* Create particle effect */}
+        {[...Array(25)].map((_, index) => (
+          <motion.div
+            key={index}
+            animate={{
+              y: [Math.random() * 100, Math.random() * 100 + 500],
+              x: [Math.random() * 100, Math.random() * 100 + 500],
+              opacity: [0, 0.7, 0],
+              scale: [0, 1, 0.5],
+            }}
+            transition={{
+              duration: 15 + Math.random() * 15,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+            style={{
+              position: 'absolute',
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 10 + 2}px`,
+              height: `${Math.random() * 10 + 2}px`,
+              borderRadius: '50%',
+              background: `rgba(82, 109, 254, ${Math.random() * 0.5})`,
+              boxShadow: '0 0 10px rgba(82, 109, 254, 0.8)',
+              zIndex: 1,
+            }}
+          />
+        ))}
+      </Box>
+      
+      {/* Gradient overlay */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 30% 50%, rgba(82, 109, 254, 0.05) 0%, transparent 70%)',
+          zIndex: 1,
+        }}
+      />
+      
+      {/* Animated floating elements */}
       {[...Array(5)].map((_, index) => (
         <motion.div
           key={index}
           animate={floatingAnimation}
           style={{
             position: 'absolute',
-            width: `${Math.random() * 200 + 50}px`,
-            height: `${Math.random() * 200 + 50}px`,
+            width: `${Math.random() * 300 + 50}px`,
+            height: `${Math.random() * 300 + 50}px`,
             borderRadius: '50%',
-            background: `rgba(255, 255, 255, ${Math.random() * 0.1})`,
+            background: `radial-gradient(circle, rgba(82, 109, 254, ${Math.random() * 0.1}) 0%, transparent 70%)`,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             filter: 'blur(50px)',
@@ -48,96 +124,123 @@ const Hero = () => {
           }}
         />
       ))}
+      
+      {/* Animated geometric shapes */}
+      <Box
+        component={motion.div}
+        animate={{
+          rotate: 360,
+          transition: { duration: 50, repeat: Infinity, ease: "linear" }
+        }}
+        sx={{
+          position: 'absolute',
+          width: { xs: '400px', md: '800px' },
+          height: { xs: '400px', md: '800px' },
+          borderRadius: '50%',
+          border: '1px dashed rgba(82, 109, 254, 0.2)',
+          top: { xs: '-200px', md: '-400px' },
+          right: { xs: '-200px', md: '-400px' },
+          zIndex: 1
+        }}
+      />
+      
+      <Box
+        component={motion.div}
+        animate={{
+          rotate: -360,
+          transition: { duration: 70, repeat: Infinity, ease: "linear" }
+        }}
+        sx={{
+          position: 'absolute',
+          width: { xs: '300px', md: '600px' },
+          height: { xs: '300px', md: '600px' },
+          borderRadius: '50%',
+          border: '1px dashed rgba(142, 95, 254, 0.2)',
+          bottom: { xs: '-150px', md: '-300px' },
+          left: { xs: '-150px', md: '-300px' },
+          zIndex: 1
+        }}
+      />
 
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 5 }}>
         <Grid 
           container 
           spacing={4} 
           alignItems="center"
           sx={{ 
             flexDirection: { xs: 'column-reverse', md: 'row' },
-            textAlign: { xs: 'center', md: 'left' }
+            textAlign: { xs: 'center', md: 'left' },
           }}
         >
           <Grid item xs={12} md={7}>
-            <Box>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-              >
+            <Box
+              component={motion.div}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div variants={itemVariants}>
+                <Typography
+                  variant="overline"
+                  sx={{
+                    color: '#526DFE',
+                    fontWeight: 600,
+                    letterSpacing: '0.15em',
+                    fontSize: '1rem',
+                    mb: 2,
+                    display: 'block'
+                  }}
+                >
+                  ENTERPRISE ONESTREAM IMPLEMENTATION
+                </Typography>
+              </motion.div>
+              
+              <motion.div variants={itemVariants}>
                 <Typography
                   variant="h1"
                   sx={{
                     fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem', lg: '5rem' },
-                    fontWeight: 700,
+                    fontWeight: 800,
                     color: 'white',
-                    lineHeight: 1.2,
+                    lineHeight: 1.1,
                     mb: { xs: 2, md: 3 },
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+                    background: 'linear-gradient(to right, #FFFFFF, #D1D5DB)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textFillColor: 'transparent',
                   }}
                 >
-                  Unlock Your{' '}
-                  <Box component="span" sx={{ display: { xs: 'block', sm: 'inline' } }}>
-                    Organization's{' '}
-                  </Box>
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      delay: 0.5,
-                      duration: 0.8,
-                      type: 'spring',
-                      stiffness: 100,
-                    }}
-                  >
-                    <Box
-                      component="span"
-                      sx={{
-                        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        display: 'inline-block',
-                      }}
-                    >
-                      Potential
-                    </Box>
-                  </motion.span>
+                  Transform Your Financial Operations
                 </Typography>
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
+              
+              <motion.div variants={itemVariants}>
                 <Typography
-                  variant="h4"
+                  variant="subtitle1"
                   sx={{
-                    fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem' },
-                    color: 'rgba(255, 255, 255, 0.9)',
-                    mb: { xs: 3, md: 4 },
-                    maxWidth: { xs: '100%', md: '600px' },
-                    mx: { xs: 'auto', md: 0 },
-                    lineHeight: 1.6,
+                    fontSize: { xs: '1.1rem', md: '1.25rem' },
+                    color: 'rgba(255,255,255,0.7)',
+                    mb: 4,
+                    lineHeight: 1.7,
+                    fontWeight: 300,
+                    maxWidth: { md: '90%' }
                   }}
                 >
-                  Transform your financial management with an integrated cloud platform for planning, 
-                  budgeting, forecasting, consolidation and reporting - all in one place. Experience 
-                  seamless automation and intuitive processes that drive efficiency across your organization.
+                  IronForge delivers premium OneStream implementation services that streamline 
+                  corporate performance management, simplify financial consolidation, and 
+                  empower decision-makers with real-time insights.
                 </Typography>
               </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
+              
+              <motion.div variants={itemVariants}>
                 <Stack 
                   direction={{ xs: 'column', sm: 'row' }} 
-                  spacing={{ xs: 2, sm: 3 }}
-                  alignItems={{ xs: 'stretch', sm: 'center' }}
-                  justifyContent={{ xs: 'center', md: 'flex-start' }}
+                  spacing={3}
+                  sx={{ 
+                    justifyContent: { xs: 'center', md: 'flex-start' },
+                    mt: 2
+                  }}
                 >
                   <Button
                     component={Link}
@@ -146,80 +249,198 @@ const Hero = () => {
                     size="large"
                     endIcon={<ArrowForwardIcon />}
                     sx={{
-                      py: { xs: 2, sm: 1.5 },
-                      px: { xs: 6, sm: 4 },
-                      borderRadius: '50px',
-                      fontSize: { xs: '1rem', sm: '1.1rem' },
-                      textTransform: 'none',
-                      width: { xs: '100%', sm: 'auto' },
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                      background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
                       color: 'white',
-                      transition: 'all 0.3s ease-in-out',
+                      boxShadow: '0 10px 30px rgba(82, 109, 254, 0.3)',
+                      borderRadius: '50px',
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      py: 1.5,
+                      px: 4,
+                      textTransform: 'none',
                       '&:hover': {
-                        transform: 'translateY(-2px) scale(1.02)',
-                        boxShadow: '0 8px 25px rgba(33, 150, 243, 0.4)',
-                      },
+                        background: 'linear-gradient(135deg, #6281FF 0%, #9D75FF 100%)',
+                        transform: 'translateY(-3px)',
+                        boxShadow: '0 15px 40px rgba(82, 109, 254, 0.5)',
+                      }
                     }}
                   >
-                    Start Your Project
+                    Get Started
                   </Button>
+                  
                   <Button
                     component={Link}
-                    to="/case-studies"
+                    to="/services"
                     variant="outlined"
                     size="large"
                     sx={{
-                      py: { xs: 2, sm: 1.5 },
-                      px: { xs: 6, sm: 4 },
-                      borderRadius: '50px',
-                      fontSize: { xs: '1rem', sm: '1.1rem' },
-                      textTransform: 'none',
-                      width: { xs: '100%', sm: 'auto' },
-                      borderColor: 'rgba(255,255,255,0.5)',
-                      borderWidth: '2px',
+                      borderColor: 'rgba(255, 255, 255, 0.3)',
                       color: 'white',
-                      transition: 'all 0.3s ease-in-out',
+                      borderWidth: 2,
+                      borderRadius: '50px',
+                      py: 1.5,
+                      px: 4,
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      textTransform: 'none',
                       '&:hover': {
-                        borderColor: 'white',
-                        backgroundColor: 'rgba(255,255,255,0.1)',
-                        transform: 'translateY(-2px)',
-                      },
+                        borderColor: '#526DFE',
+                        backgroundColor: 'rgba(82, 109, 254, 0.1)',
+                      }
                     }}
                   >
-                    View Our Work
+                    Our Solutions
                   </Button>
                 </Stack>
+                
+                <Box sx={{ mt: 5, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'rgba(255,255,255,0.5)', 
+                      fontSize: '0.95rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&::before': {
+                        content: '""',
+                        display: 'block',
+                        width: 20,
+                        height: 1,
+                        backgroundColor: 'rgba(255,255,255,0.5)',
+                        marginRight: 1.5
+                      }
+                    }}
+                  >
+                    Trusted by Fortune companies worldwide
+                  </Typography>
+                </Box>
               </motion.div>
             </Box>
           </Grid>
-
-          <Grid item xs={12} md={5} sx={{ display: { xs: 'none', md: 'block' } }}>
+          
+          <Grid item xs={12} md={5}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
-              style={{ height: '100%', display: 'flex', alignItems: 'center' }}
+              transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <Box
-                component={motion.div}
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                  transition: {
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  },
-                }}
-                sx={{
-                  width: '100%',
-                  height: '400px',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  borderRadius: '20px',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                }}
-              />
+              <Box sx={{ position: 'relative' }}>
+                {/* 3D Platform Visualization */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    height: '100%',
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    perspective: '1000px',
+                    transformStyle: 'preserve-3d',
+                    zIndex: 1
+                  }}
+                >
+                  {/* Background glow */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      width: '120%',
+                      height: '120%',
+                      background: 'radial-gradient(ellipse at center, rgba(82, 109, 254, 0.2) 0%, transparent 60%)',
+                      transform: 'translateZ(-50px)',
+                      filter: 'blur(40px)',
+                      opacity: 0.7,
+                      zIndex: -1
+                    }}
+                  />
+                  
+                  {/* Platform container */}
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      width: '100%',
+                      height: '100%',
+                      minHeight: '400px',
+                      borderRadius: '20px',
+                      overflow: 'hidden',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      background: 'linear-gradient(145deg, rgba(20, 20, 35, 0.8) 0%, rgba(10, 10, 18, 0.8) 100%)',
+                      backdropFilter: 'blur(10px)',
+                      boxShadow: '0 30px 60px rgba(0, 0, 0, 0.3)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      transform: 'perspective(1000px) rotateY(-10deg) rotateX(5deg)',
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.5s ease',
+                      '&:hover': {
+                        transform: 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02)',
+                      }
+                    }}
+                  >
+                    {/* Logo & Content */}
+                    <Box
+                      sx={{
+                        padding: 5,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transform: 'translateZ(30px)',
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        src="/onestream-logo.webp"
+                        alt="OneStream Platform"
+                        sx={{
+                          maxWidth: '100%',
+                          width: '250px',
+                          height: 'auto',
+                          mb: 4
+                        }}
+                      />
+                      
+                      {/* Integration lines */}
+                      <Box sx={{ position: 'relative', width: '100%', height: '150px' }}>
+                        {['Consolidation', 'Planning', 'Reporting', 'Analysis', 'Data Quality'].map((label, index) => (
+                          <Box
+                            key={index}
+                            sx={{
+                              position: 'absolute',
+                              top: `${index * 30}px`,
+                              left: index % 2 === 0 ? '10%' : '60%',
+                              display: 'flex',
+                              alignItems: 'center'
+                            }}
+                          >
+                            <Box
+                              component={motion.div}
+                              initial={{ width: 0 }}
+                              animate={{ width: '20px' }}
+                              transition={{ delay: 1 + index * 0.2, duration: 0.4 }}
+                              sx={{
+                                height: '2px',
+                                background: 'linear-gradient(90deg, #526DFE, #8E5FFE)',
+                                marginRight: 1
+                              }}
+                            />
+                            <Typography
+                              component={motion.div}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 1.2 + index * 0.2, duration: 0.4 }}
+                              variant="caption"
+                              sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.8rem' }}
+                            >
+                              {label}
+                            </Typography>
+                          </Box>
+                        ))}
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
             </motion.div>
           </Grid>
         </Grid>

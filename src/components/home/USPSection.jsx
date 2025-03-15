@@ -1,88 +1,146 @@
 import { Box, Container, Grid, Typography, Paper } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import SecurityIcon from '@mui/icons-material/Security';
+import { motion } from 'framer-motion';
 import SpeedIcon from '@mui/icons-material/Speed';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
-
-const USPCard = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  height: '100%',
-  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-  cursor: 'pointer',
-  '&:hover': {
-    transform: 'translateY(-8px)',
-    boxShadow: theme.shadows[8],
-  },
-}));
+import SecurityIcon from '@mui/icons-material/Security';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 const USPSection = () => {
-  const usps = [
-    {
-      icon: <SecurityIcon sx={{ fontSize: 40 }} />,
-      title: 'Trusted Expertise',
-      description: 'Over decade of experience in OneStream implementation with 100% success rate',
-    },
+  const features = [
     {
       icon: <SpeedIcon sx={{ fontSize: 40 }} />,
       title: 'Rapid Implementation',
-      description: 'Streamlined processes ensuring quick deployment without compromising quality',
+      description: 'Get your OneStream solution up and running in record time with our accelerated implementation methodology.'
     },
     {
-      icon: <EmojiObjectsIcon sx={{ fontSize: 40 }} />,
-      title: 'Innovative Solutions',
-      description: 'Custom-tailored approaches combining industry best practices with cutting-edge technology',
+      icon: <SecurityIcon sx={{ fontSize: 40 }} />,
+      title: 'Enterprise Security',
+      description: 'Bank-grade security protocols ensure your financial data remains protected at all times.'
     },
+    {
+      icon: <SupportAgentIcon sx={{ fontSize: 40 }} />,
+      title: '24/7 Support',
+      description: 'Our dedicated support team is available around the clock to address any issues or questions.'
+    },
+    {
+      icon: <InsightsIcon sx={{ fontSize: 40 }} />,
+      title: 'Advanced Analytics',
+      description: 'Turn data into actionable insights with our powerful analytics and reporting capabilities.'
+    }
   ];
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
     <Container maxWidth="lg">
-      <Typography
-        variant="h3"
-        align="center"
-        gutterBottom
-        sx={{
-          fontWeight: 700,
-          mb: 6,
-          background: (theme) =>
-            `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-          backgroundClip: 'text',
-          WebkitBackgroundClip: 'text',
-          color: 'transparent',
-        }}
-      >
-        Why Choose Us
-      </Typography>
-      <Grid container spacing={4}>
-        {usps.map((usp, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <USPCard elevation={3}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                }}
-              >
-                <Box
+      <Box py={4}>
+        <Grid 
+          container 
+          spacing={3}
+          component={motion.div}
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          {features.map((feature, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <motion.div variants={item}>
+                <Paper
+                  elevation={0}
                   sx={{
-                    color: 'primary.main',
-                    mb: 2,
+                    p: 3,
+                    height: '100%',
+                    borderRadius: '16px',
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.9) 100%)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.8)',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                    transition: 'all 0.3s ease',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    '&:hover': {
+                      transform: 'translateY(-5px)',
+                      boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
+                      '& .icon-container': {
+                        transform: 'scale(1.1)',
+                      }
+                    },
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      width: '100px',
+                      height: '100px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, rgba(26, 35, 126, 0.1) 0%, rgba(13, 71, 161, 0.05) 100%)',
+                      top: '-50px',
+                      right: '-50px',
+                    }
                   }}
                 >
-                  {usp.icon}
-                </Box>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-                  {usp.title}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  {usp.description}
-                </Typography>
-              </Box>
-            </USPCard>
-          </Grid>
-        ))}
-      </Grid>
+                  <Box
+                    className="icon-container"
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '70px',
+                      height: '70px',
+                      borderRadius: '16px',
+                      background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
+                      color: 'white',
+                      mb: 2,
+                      transition: 'transform 0.3s ease',
+                    }}
+                  >
+                    {feature.icon}
+                  </Box>
+                  <Typography 
+                    variant="h6" 
+                    sx={{ 
+                      fontWeight: 600, 
+                      mb: 1.5,
+                      fontSize: '1.25rem',
+                      color: '#1a237e'
+                    }}
+                  >
+                    {feature.title}
+                  </Typography>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'text.secondary',
+                      lineHeight: 1.6,
+                      fontSize: '0.95rem'
+                    }}
+                  >
+                    {feature.description}
+                  </Typography>
+                </Paper>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Container>
   );
 };

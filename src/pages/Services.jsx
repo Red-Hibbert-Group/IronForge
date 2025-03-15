@@ -561,7 +561,7 @@ const Services = () => {
                       <CheckCircle sx={{ color: '#2196f3', fontSize: 20 }} />
                     </Box>
                     <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
-                      Industry-leading solutions trusted by Fortune 500 companies
+                      Industry-leading solutions trusted by Fortune companies
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

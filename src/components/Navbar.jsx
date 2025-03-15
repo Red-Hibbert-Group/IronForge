@@ -1,22 +1,26 @@
-import { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Container, IconButton, Drawer, List, ListItem, useMediaQuery, useTheme } from '@mui/material';
+import { useState, useEffect, useRef } from 'react';
+import { AppBar, Toolbar, Typography, Button, Box, Container, IconButton, Drawer, List, ListItem, useMediaQuery, useTheme, Collapse, ListItemText } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const location = useLocation();
+  const navRef = useRef(null);
 
   const navigationItems = [
-    { label: 'HOME', path: '/' },
-    { label: 'ABOUT', path: '/about' },
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
     {
-      label: 'SERVICES',
+      label: 'Services',
       path: '/services',
       dropdownItems: [
         { label: 'Financial Close & Consolidation', path: '/services#financial-close-consolidation' },
@@ -27,9 +31,9 @@ const Navbar = () => {
         { label: 'Narrative Reporting', path: '/services#narrative-reporting' }
       ],
     },
-    { label: 'IMPLEMENTATION', path: '/implementation' },
-    { label: 'RESOURCES', path: '/resources' },
-    { label: 'CONTACT', path: '/contact' }
+    { label: 'Implementation', path: '/implementation' },
+    { label: 'Resources', path: '/resources' },
+    { label: 'Contact', path: '/contact' }
   ];
 
   useEffect(() => {
@@ -40,350 +44,515 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Close mobile drawer when route changes
+    setMobileOpen(false);
+  }, [location.pathname]);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleSubmenuToggle = (index) => {
+    setOpenSubmenu(openSubmenu === index ? null : index);
+  };
+
+  // Logo variants for animation
+  const logoVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5, 
+        ease: "easeOut" 
+      }
+    }
+  };
+
+  const navItemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: (custom) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.1 + custom * 0.05,
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    })
   };
 
   return (
     <AppBar 
       position="fixed" 
-      elevation={isScrolled ? 2 : 0}
+      elevation={isScrolled ? 4 : 0}
+      component={motion.div}
+      initial="hidden"
+      animate="visible"
       sx={{
         background: isScrolled 
-          ? 'rgba(255, 255, 255, 0.95)'
-          : 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 100%)',
-        backdropFilter: isScrolled ? 'blur(10px)' : 'none',
-        transition: 'all 0.3s ease-in-out',
+          ? 'rgba(13, 13, 29, 0.85)'
+          : 'linear-gradient(180deg, rgba(13, 13, 29, 0.9) 0%, rgba(13, 13, 29, 0) 100%)',
+        backdropFilter: isScrolled ? 'blur(15px)' : 'blur(8px)',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.05)' : 'none',
         zIndex: (theme) => theme.zIndex.drawer + 1
       }}
     >
       <Container maxWidth="xl">
         <Toolbar 
           disableGutters 
+          ref={navRef}
           sx={{ 
             height: isScrolled ? '70px' : '80px',
-            transition: 'all 0.3s ease-in-out',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             justifyContent: 'space-between'
           }}
         >
-          <Typography
-            variant="h5"
-            component={Link}
-            to="/"
-            sx={{
-              textDecoration: 'none',
-              fontWeight: 800,
-              fontSize: { xs: '1.5rem', md: '2.4rem' },
-              position: 'relative',
-              display: 'inline-flex',
-              alignItems: 'center',
-              padding: '0.2em 0.4em',
-              background: 'transparent',
-              borderRadius: '4px',
-              transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-              transform: 'perspective(1000px)',
-              transformStyle: 'preserve-3d',
-              '&::before': {
-                content: '""',
-                position: 'absolute',
-                inset: 0,
-                background: isScrolled 
-                  ? 'rgba(255, 255, 255, 0.1)'
-                  : 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(8px)',
-                borderRadius: '4px',
-                transform: 'translateZ(-10px)',
-              },
-              '&:hover': {
-                transform: 'perspective(1000px) translateY(-5px)',
-                '& .iron, & .edge': {
-                  transform: 'translateZ(20px)',
-                  textShadow: isScrolled
-                    ? '0 15px 25px rgba(0,0,0,0.3)'
-                    : '0 15px 25px rgba(255,255,255,0.3)',
-                },
-                '& .divider': {
-                  height: '80%',
-                  opacity: 1,
-                  transform: 'translateZ(25px)',
-                }
-              },
-
-              '& .divider': {
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%) translateZ(15px)',
-                width: '2px',
-                height: '0%',
-                background: isScrolled
-                  ? 'linear-gradient(to bottom, transparent, #1B365D, transparent)'
-                  : 'linear-gradient(to bottom, transparent, #fff, transparent)',
-                opacity: 0,
-                transition: 'all 0.4s ease-in-out',
-              },
-
-              '& span.iron': {
-                position: 'relative',
-                fontWeight: 900,
-                padding: '0 0.3em',
-                background: isScrolled
-                  ? 'linear-gradient(135deg, #1B365D 0%, #2C3E50 50%, #1B365D 100%)'
-                  : 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #ffffff 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-                transition: 'all 0.4s ease-in-out',
-                transform: 'translateZ(10px)',
-                textShadow: isScrolled
-                  ? '0 5px 15px rgba(0,0,0,0.2)'
-                  : '0 5px 15px rgba(255,255,255,0.2)',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: '-4px',
-                  left: '0',
-                  width: '100%',
-                  height: '2px',
-                  background: isScrolled
-                    ? 'linear-gradient(90deg, transparent, #1B365D, transparent)'
-                    : 'linear-gradient(90deg, transparent, #ffffff, transparent)',
-                  opacity: 0.5,
-                }
-              },
-
-              '& span.edge': {
-                position: 'relative',
-                fontWeight: 800,
-                padding: '0 0.3em',
-                background: isScrolled
-                  ? 'linear-gradient(135deg, #2C3E50 0%, #1B365D 50%, #2C3E50 100%)'
-                  : 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #ffffff 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-                transition: 'all 0.4s ease-in-out',
-                transform: 'translateZ(10px)',
-                textShadow: isScrolled
-                  ? '0 5px 15px rgba(0,0,0,0.2)'
-                  : '0 5px 15px rgba(255,255,255,0.2)',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  top: '-4px',
-                  left: '0',
-                  width: '100%',
-                  height: '2px',
-                  background: isScrolled
-                    ? 'linear-gradient(90deg, transparent, #2C3E50, transparent)'
-                    : 'linear-gradient(90deg, transparent, #ffffff, transparent)',
-                  opacity: 0.5,
-                }
-              }
-            }}
+          {/* Logo */}
+          <motion.div
+            variants={logoVariants}
+            style={{ display: 'flex' }}
           >
-            <span className="iron">Iron</span>
-            <div className="divider" />
-            <span className="edge">Forge</span>
-          </Typography>
+            <Typography
+              variant="h5"
+              component={Link}
+              to="/"
+              sx={{
+                textDecoration: 'none',
+                fontWeight: 800,
+                fontSize: { xs: '1.5rem', md: '2rem' },
+                position: 'relative',
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '0.2em 0.4em',
+                background: 'transparent',
+                borderRadius: '8px',
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                transform: 'perspective(1000px)',
+                transformStyle: 'preserve-3d',
+                '&:hover': {
+                  transform: 'perspective(1000px) scale(1.05)',
+                  '& .iron, & .forge': {
+                    letterSpacing: '1px',
+                  },
+                  '& .iron': {
+                    background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    transform: 'translateZ(15px)',
+                  },
+                  '& .forge': {
+                    background: 'linear-gradient(135deg, #8E5FFE 0%, #526DFE 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    transform: 'translateZ(15px)',
+                  },
+                  '& .logo-icon': {
+                    transform: 'translateZ(20px) rotateY(360deg)',
+                    opacity: 1,
+                  }
+                },
+              }}
+            >
+              {/* Logo Icon */}
+              <Box 
+                className="logo-icon"
+                sx={{
+                  position: 'relative',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '6px',
+                  background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                  marginRight: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 6px 15px rgba(82, 109, 254, 0.25)',
+                  transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                  transform: 'translateZ(10px)',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    width: '10px',
+                    height: '10px',
+                    background: 'white',
+                    borderRadius: '2px',
+                    transformOrigin: 'center',
+                    transform: 'rotate(45deg)',
+                  },
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    width: '18px',
+                    height: '3px',
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    borderRadius: '1px',
+                    top: '18px',
+                  }
+                }}
+              />
+              
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                <span 
+                  className="iron"
+                  style={{
+                    position: 'relative',
+                    fontWeight: 900,
+                    color: 'white',
+                    letterSpacing: '0px',
+                    transition: 'all 0.4s ease',
+                    transform: 'translateZ(5px)',
+                  }}
+                >
+                  IRON
+                </span>
+                <span 
+                  className="forge"
+                  style={{
+                    position: 'relative',
+                    fontWeight: 800,
+                    color: 'white',
+                    letterSpacing: '0px',
+                    fontSize: '85%',
+                    opacity: 0.95,
+                    transition: 'all 0.4s ease',
+                    transform: 'translateZ(5px)',
+                  }}
+                >
+                  FORGE
+                </span>
+              </Box>
+            </Typography>
+          </motion.div>
 
+          {/* Mobile Menu Toggle */}
           {isMobile ? (
             <IconButton
               onClick={handleDrawerToggle}
               sx={{ 
-                color: isScrolled ? 'text.primary' : 'white'
+                color: 'white',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                }
               }}
             >
-              <MenuIcon />
+              {mobileOpen ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
           ) : (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              {navigationItems.map((item) => (
-                <Box
+            /* Desktop Navigation */
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+              {navigationItems.map((item, index) => (
+                <motion.div
                   key={item.label}
-                  sx={{
-                    position: 'relative',
-                    '&:hover .MuiBox-root': {
-                      opacity: 1,
-                      visibility: 'visible',
-                      transform: 'translateY(0)',
-                    },
+                  custom={index}
+                  variants={navItemVariants}
+                  style={{
+                    position: 'relative'
                   }}
                 >
-                  <Button
-                    component={Link}
-                    to={item.path}
-                    endIcon={item.dropdownItems && <KeyboardArrowDownIcon />}
+                  <Box
                     sx={{
-                      color: isScrolled ? 'text.primary' : 'white',
-                      fontSize: '0.85rem',
-                      fontWeight: 500,
-                      letterSpacing: '0.5px',
-                      padding: '8px 16px',
                       position: 'relative',
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        bottom: '6px',
-                        left: '50%',
-                        transform: location.pathname === item.path 
-                          ? 'translateX(-50%)' 
-                          : 'translateX(-50%) scaleX(0)',
-                        height: '2px',
-                        width: '20px',
-                        backgroundColor: isScrolled ? 'primary.main' : 'white',
-                        transition: 'transform 0.3s ease-in-out'
+                      '&:hover .dropdown-menu': {
+                        opacity: 1,
+                        visibility: 'visible',
+                        transform: 'translateY(0)',
                       },
-                      '&:hover': {
-                        backgroundColor: 'transparent',
-                        '&::after': {
-                          transform: 'translateX(-50%) scaleX(1)'
-                        }
-                      }
                     }}
                   >
-                    {item.label}
-                  </Button>
-                  {item.dropdownItems && (
-                    <Box
-                      className="MuiBox-root"
+                    <Button
+                      component={Link}
+                      to={item.path}
+                      endIcon={item.dropdownItems && <KeyboardArrowDownIcon sx={{ fontSize: '1rem', transition: 'transform 0.3s ease' }} />}
                       sx={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: '0',
-                        transform: 'translateY(10px)',
-                        backgroundColor: 'white',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                        padding: '8px 0',
-                        opacity: 0,
-                        visibility: 'hidden',
-                        transition: 'all 0.3s ease-in-out',
-                        zIndex: 1000,
-                        minWidth: '200px',
-                        '&::before': {
+                        color: 'white',
+                        fontSize: '0.9rem',
+                        fontWeight: 500,
+                        letterSpacing: '0.5px',
+                        padding: '8px 16px',
+                        position: 'relative',
+                        textTransform: 'none',
+                        transition: 'color 0.3s ease',
+                        overflow: 'hidden',
+                        '&::after': {
                           content: '""',
                           position: 'absolute',
-                          top: '-6px',
-                          left: '20%',
-                          transform: 'translateX(-50%) rotate(45deg)',
-                          width: '12px',
-                          height: '12px',
-                          backgroundColor: 'white',
+                          bottom: '8px',
+                          left: '16px',
+                          right: '16px',
+                          height: '2px',
+                          backgroundColor: 'primary.main',
+                          background: 'linear-gradient(90deg, #526DFE, #8E5FFE)',
+                          transformOrigin: 'right',
+                          transform: location.pathname === item.path 
+                            ? 'scaleX(1)' 
+                            : 'scaleX(0)',
+                          transition: 'transform 0.3s ease',
+                        },
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          '&::after': {
+                            transformOrigin: 'left',
+                            transform: 'scaleX(1)'
+                          }
                         }
                       }}
                     >
-                      {item.dropdownItems?.map((dropdownItem) => (
-                        <Button
-                          key={dropdownItem.label}
-                          component={Link}
-                          to={dropdownItem.path}
-                          fullWidth
-                          sx={{
-                            color: 'text.primary',
-                            padding: '8px 24px',
-                            justifyContent: 'flex-start',
-                            textAlign: 'left',
-                            '&:hover': {
-                              backgroundColor: 'rgba(0,0,0,0.04)',
-                              color: 'primary.main'
-                            }
-                          }}
-                        >
-                          {dropdownItem.label}
-                        </Button>
-                      ))}
-                    </Box>
-                  )}
-                </Box>
+                      {item.label}
+                    </Button>
+                    
+                    {/* Dropdown Menu */}
+                    {item.dropdownItems && (
+                      <Box
+                        className="dropdown-menu"
+                        sx={{
+                          position: 'absolute',
+                          top: '100%',
+                          left: '50%',
+                          transform: 'translateX(-50%) translateY(10px)',
+                          minWidth: '260px',
+                          background: 'rgba(13, 13, 29, 0.95)',
+                          backdropFilter: 'blur(15px)',
+                          borderRadius: '12px',
+                          boxShadow: '0 15px 35px rgba(0, 0, 0, 0.25)',
+                          padding: '8px',
+                          opacity: 0,
+                          visibility: 'hidden',
+                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                          zIndex: 10,
+                          border: '1px solid rgba(255, 255, 255, 0.05)',
+                          '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: '-6px',
+                            left: '50%',
+                            transform: 'translateX(-50%) rotate(45deg)',
+                            width: '12px',
+                            height: '12px',
+                            background: 'rgba(13, 13, 29, 0.95)',
+                            borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+                            borderLeft: '1px solid rgba(255, 255, 255, 0.05)',
+                          }
+                        }}
+                      >
+                        {item.dropdownItems.map((dropdownItem, idx) => (
+                          <Button
+                            key={idx}
+                            component={Link}
+                            to={dropdownItem.path}
+                            fullWidth
+                            sx={{
+                              justifyContent: 'flex-start',
+                              color: 'white',
+                              fontSize: '0.85rem',
+                              textAlign: 'left',
+                              padding: '10px 16px',
+                              borderRadius: '8px',
+                              textTransform: 'none',
+                              transition: 'all 0.2s ease',
+                              opacity: 0.85,
+                              '&:hover': {
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                paddingLeft: '20px',
+                                opacity: 1,
+                              }
+                            }}
+                          >
+                            {dropdownItem.label}
+                          </Button>
+                        ))}
+                      </Box>
+                    )}
+                  </Box>
+                </motion.div>
               ))}
-              <Button
-                variant="contained"
-                component={Link}
-                to="/contact"
-                sx={{
-                  ml: 2,
-                  px: 3,
-                  py: 1,
-                  borderRadius: '50px',
-                  textTransform: 'none',
-                  fontSize: '0.9rem',
-                  fontWeight: 600,
-                  backgroundColor: isScrolled ? 'primary.main' : 'white',
-                  color: isScrolled ? 'white' : 'primary.main',
-                  '&:hover': {
-                    backgroundColor: isScrolled ? 'primary.dark' : 'rgba(255,255,255,0.9)',
-                    transform: 'translateY(-1px)',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                  }
-                }}
+              
+              {/* Call to Action Button */}
+              <motion.div
+                variants={navItemVariants}
+                custom={navigationItems.length}
               >
-                Get Started
-              </Button>
+                <Button
+                  component={Link}
+                  to="/contact"
+                  variant="contained"
+                  sx={{
+                    background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                    color: 'white',
+                    borderRadius: '50px',
+                    padding: '8px 20px',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    ml: 2,
+                    boxShadow: '0 8px 20px rgba(82, 109, 254, 0.2)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      boxShadow: '0 10px 25px rgba(82, 109, 254, 0.3)',
+                      transform: 'translateY(-3px)',
+                      background: 'linear-gradient(135deg, #6281FF 0%, #9D75FF 100%)',
+                    }
+                  }}
+                >
+                  Get Started
+                </Button>
+              </motion.div>
             </Box>
           )}
+        </Toolbar>
+      </Container>
 
-          <Drawer
-            anchor="right"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{ keepMounted: true }}
+      {/* Mobile Drawer */}
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: '85%',
+            maxWidth: '360px',
+            background: 'rgba(13, 13, 29, 0.97)',
+            backdropFilter: 'blur(15px)',
+            border: 'none',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.25)',
+            padding: '20px 0',
+          },
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 3, py: 2 }}>
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            onClick={handleDrawerToggle}
             sx={{
-              '& .MuiDrawer-paper': { 
-                width: '100%', 
-                maxWidth: '300px',
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(10px)'
-              }
+              textDecoration: 'none',
+              fontWeight: 800,
+              fontSize: '1.5rem',
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
             }}
           >
-            <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
-              <IconButton onClick={handleDrawerToggle}>
-                <CloseIcon />
-              </IconButton>
-            </Box>
-            <List>
-              {navigationItems.map((item) => (
-                <ListItem key={item.label} disablePadding>
-                  <Button
-                    fullWidth
-                    component={Link}
-                    to={item.path}
-                    onClick={handleDrawerToggle}
-                    sx={{
-                      py: 2,
-                      px: 4,
-                      justifyContent: 'flex-start',
-                      color: location.pathname === item.path ? 'primary.main' : 'text.primary',
-                      borderLeft: location.pathname === item.path ? '3px solid' : 'none',
-                      borderColor: 'primary.main',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                        color: 'primary.main'
+            <Box 
+              sx={{
+                width: '24px',
+                height: '24px',
+                borderRadius: '6px',
+                background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 6px 15px rgba(82, 109, 254, 0.25)',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  width: '8px',
+                  height: '8px',
+                  background: 'white',
+                  borderRadius: '2px',
+                  transformOrigin: 'center',
+                  transform: 'rotate(45deg)',
+                }
+              }}
+            />
+            <span style={{ background: 'linear-gradient(135deg, #FFFFFF 30%, #D1D5DB 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              IRONFORGE
+            </span>
+          </Typography>
+          
+          <IconButton
+            onClick={handleDrawerToggle}
+            sx={{ color: 'white' }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        
+        <List sx={{ mt: 2 }}>
+          {navigationItems.map((item, index) => (
+            <Box key={index}>
+              <ListItem 
+                disablePadding
+                sx={{ display: 'block', my: 1 }}
+              >
+                <Button
+                  fullWidth
+                  component={item.dropdownItems ? 'button' : Link}
+                  to={!item.dropdownItems ? item.path : undefined}
+                  onClick={item.dropdownItems ? () => handleSubmenuToggle(index) : handleDrawerToggle}
+                  endIcon={item.dropdownItems && (openSubmenu === index ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />)}
+                  sx={{
+                    justifyContent: 'flex-start',
+                    py: 1.5,
+                    px: 3,
+                    width: '100%',
+                    color: 'white',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    borderRadius: 0,
+                    position: 'relative',
+                    textTransform: 'none',
+                    overflow: 'hidden',
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      bottom: '15px',
+                      left: '20px',
+                      width: '20px',
+                      height: '2px',
+                      background: 'linear-gradient(90deg, #526DFE, #8E5FFE)',
+                      transform: location.pathname === item.path 
+                        ? 'scaleX(1)' 
+                        : 'scaleX(0)',
+                      transformOrigin: 'left',
+                      transition: 'transform 0.3s ease',
+                    },
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      '&::after': {
+                        transform: 'scaleX(1)',
                       }
-                    }}
-                  >
-                    {item.label}
-                  </Button>
-                  {item.dropdownItems && (
-                    <List sx={{ pl: 4 }}>
-                      {item.dropdownItems.map((dropdownItem) => (
-                        <ListItem key={dropdownItem.label} disablePadding>
+                    }
+                  }}
+                >
+                  {item.label}
+                </Button>
+                
+                {item.dropdownItems && (
+                  <Collapse in={openSubmenu === index} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                      {item.dropdownItems.map((dropdownItem, idx) => (
+                        <ListItem key={idx} disablePadding>
                           <Button
                             fullWidth
                             component={Link}
                             to={dropdownItem.path}
                             onClick={handleDrawerToggle}
                             sx={{
-                              py: 1.5,
-                              px: 4,
+                              pl: 5,
+                              py: 1.2,
                               justifyContent: 'flex-start',
-                              color: 'text.secondary',
+                              color: 'rgba(255, 255, 255, 0.8)',
+                              fontSize: '0.9rem',
+                              textAlign: 'left',
+                              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+                              borderRadius: 0,
+                              ml: 3,
+                              textTransform: 'none',
+                              transition: 'all 0.2s ease',
                               '&:hover': {
-                                backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                                color: 'primary.main'
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                color: 'white',
+                                borderLeft: '1px solid rgba(82, 109, 254, 0.5)',
                               }
                             }}
                           >
@@ -392,31 +561,40 @@ const Navbar = () => {
                         </ListItem>
                       ))}
                     </List>
-                  )}
-                </ListItem>
-              ))}
-              <ListItem sx={{ mt: 2, px: 2 }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  component={Link}
-                  to="/contact"
-                  onClick={handleDrawerToggle}
-                  sx={{
-                    py: 1.5,
-                    borderRadius: '50px',
-                    textTransform: 'none',
-                    fontSize: '0.9rem',
-                    fontWeight: 600
-                  }}
-                >
-                  Get Started
-                </Button>
+                  </Collapse>
+                )}
               </ListItem>
-            </List>
-          </Drawer>
-        </Toolbar>
-      </Container>
+            </Box>
+          ))}
+          
+          {/* Mobile CTA Button */}
+          <ListItem sx={{ mt: 3, px: 3 }}>
+            <Button
+              component={Link}
+              to="/contact"
+              variant="contained"
+              fullWidth
+              onClick={handleDrawerToggle}
+              sx={{
+                background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                color: 'white',
+                borderRadius: '50px',
+                py: 1.2,
+                fontSize: '0.95rem',
+                fontWeight: 600,
+                textTransform: 'none',
+                boxShadow: '0 8px 20px rgba(82, 109, 254, 0.2)',
+                '&:hover': {
+                  boxShadow: '0 10px 30px rgba(82, 109, 254, 0.3)',
+                  background: 'linear-gradient(135deg, #6281FF 0%, #9D75FF 100%)',
+                }
+              }}
+            >
+              Get Started
+            </Button>
+          </ListItem>
+        </List>
+      </Drawer>
     </AppBar>
   );
 };

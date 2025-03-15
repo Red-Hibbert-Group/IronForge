@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Card, CardContent, Icon } from '@mui/material';
+import { Box, Container, Typography, Card, CardContent, Grid, Button } from '@mui/material';
 import { 
   CloudQueue, 
   Security, 
@@ -8,66 +8,56 @@ import {
   Support,
   BusinessCenter,
   Transform,
-  School
+  School,
+  ChevronRight
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 const ServicesOverview = () => {
   const services = [
     {
-      title: 'Oracle EPM Implementation',
-      description: 'End-to-end implementation of Oracle EPM solutions with expertise in Financials, SCM, PLM, HCM, and CX.',
+      title: 'OneStream Implementation',
+      description: 'End-to-end implementation of OneStream solutions for financial consolidation, planning, and reporting.',
       icon: CloudQueue,
-      gradient: 'linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%)'
+      gradient: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+      link: '/services/implementation'
     },
     {
       title: 'Business Transformation',
       description: 'Complete digital transformation services including process optimization and change management.',
       icon: Transform,
-      gradient: 'linear-gradient(135deg, #0061ff 0%, #60efff 100%)'
+      gradient: 'linear-gradient(135deg, #5E55EB 0%, #9C6BFF 100%)',
+      link: '/services/transformation'
     },
     {
       title: 'Consulting & Advisory',
-      description: 'Strategic alignment, KPI definition, and roadmap planning for your Oracle implementations.',
+      description: 'Strategic alignment, KPI definition, and roadmap planning for your OneStream implementations.',
       icon: BusinessCenter,
-      gradient: 'linear-gradient(135deg, #7F00FF 0%, #E100FF 100%)'
+      gradient: 'linear-gradient(135deg, #4B64FE 0%, #6C87FF 100%)',
+      link: '/services/consulting'
     },
     {
-      title: 'Cloud Migration',
-      description: 'Seamless migration services from on-premise to Oracle Cloud Infrastructure with minimal disruption.',
+      title: 'Financial Consolidation',
+      description: 'Streamline and automate your financial close process with powerful consolidation capabilities.',
       icon: Speed,
-      gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
+      gradient: 'linear-gradient(135deg, #536DFE 0%, #8E7BFF 100%)',
+      link: '/services/consolidation'
     },
     {
       title: 'Support & Training',
-      description: '24/7 incident resolution, root cause analysis, and comprehensive training via Learning Management Systems.',
+      description: '24/7 incident resolution, root cause analysis, and comprehensive training programs.',
       icon: Support,
-      gradient: 'linear-gradient(135deg, #F6D365 0%, #FDA085 100%)'
+      gradient: 'linear-gradient(135deg, #6B77FF 0%, #9E87FF 100%)',
+      link: '/services/support'
     },
     {
       title: 'Performance Management',
       description: 'Advanced monitoring and optimization of business performance across finance and operations.',
       icon: Assessment,
-      gradient: 'linear-gradient(135deg, #6B73FF 0%, #000DFF 100%)'
-    },
-    {
-      title: 'Security & Compliance',
-      description: 'Ensure your Oracle implementations are secure and compliant with industry standards.',
-      icon: Security,
-      gradient: 'linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%)'
-    },
-    {
-      title: 'Training Academy',
-      description: 'Comprehensive training programs through Trinamix Academy for continuous learning and development.',
-      icon: School,
-      gradient: 'linear-gradient(135deg, #FF6B6B 0%, #FF000F 100%)'
-    },
-    {
-      title: 'Change Management',
-      description: 'Strategic change management services to ensure smooth adoption of new systems and processes.',
-      icon: Psychology,
-      gradient: 'linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%)'
+      gradient: 'linear-gradient(135deg, #596FFE 0%, #8D90FF 100%)',
+      link: '/services/performance'
     }
   ];
 
@@ -80,7 +70,7 @@ const ServicesOverview = () => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   };
@@ -88,128 +78,250 @@ const ServicesOverview = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0,
-      y: 50,
-      scale: 0.9
+      y: 40,
+      rotateY: 15,
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
+      rotateY: 0,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 10
+        damping: 12
+      }
+    }
+  };
+
+  const iconVariants = {
+    hidden: {
+      scale: 0.5,
+      opacity: 0
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        delay: 0.3
       }
     }
   };
 
   return (
-    <Box 
-      sx={{ 
-        py: 12,
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.05) 100%)',
-        position: 'relative',
-        overflow: 'hidden'
-      }}
-    >
-      <Container maxWidth="xl" sx={{ position: 'relative' }}>
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: '1fr',
-                sm: '1fr 1fr',
-                md: '1fr 1fr 1fr',
-              },
-              gap: 4,
-              position: 'relative',
-              zIndex: 1
-            }}
-          >
-            {services.map((service, index) => (
-              <motion.div key={index} variants={cardVariants}>
+    <Box sx={{ position: 'relative', zIndex: 2 }}>
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        <Grid container spacing={4}>
+          {services.map((service, index) => (
+            <Grid item xs={12} md={6} lg={4} key={index}>
+              <motion.div variants={cardVariants} style={{ height: '100%' }}>
                 <Card
                   sx={{
                     height: '100%',
-                    background: service.gradient,
-                    borderRadius: 4,
+                    background: 'rgba(20, 20, 35, 0.8)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: '20px',
                     position: 'relative',
                     overflow: 'hidden',
-                    '&::before': {
-                      content: '""',
+                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 15px 40px rgba(0, 0, 0, 0.15)',
+                    '&:hover': {
+                      transform: 'translateY(-16px) scale(1.02)',
+                      boxShadow: '0 30px 60px rgba(0, 0, 0, 0.25)',
+                      '& .service-icon-container': {
+                        transform: 'scale(1.1)',
+                      },
+                      '& .service-gradient': {
+                        opacity: 1,
+                      },
+                      '& .service-btn': {
+                        opacity: 1,
+                        transform: 'translateY(0)',
+                      },
+                      '& .service-title': {
+                        backgroundPosition: 'left bottom',
+                      }
+                    },
+                  }}
+                >
+                  {/* Background gradient */}
+                  <Box
+                    className="service-gradient"
+                    sx={{
                       position: 'absolute',
                       top: 0,
                       left: 0,
-                      width: '100%',
-                      height: '100%',
-                      background: 'rgba(255, 255, 255, 0.1)',
-                      transform: 'translateX(-100%) rotate(45deg)',
-                      transition: 'transform 0.6s',
-                    },
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      '&::before': {
-                        transform: 'translateX(100%) rotate(45deg)',
-                      },
-                      '& .service-icon-overview': {
-                        transform: 'rotateY(360deg)',
-                      }
-                    },
-                    transition: 'transform 0.3s ease-out',
-                  }}
-                >
+                      right: 0,
+                      bottom: 0,
+                      background: `${service.gradient}`,
+                      opacity: 0.05,
+                      transition: 'opacity 0.5s ease',
+                      zIndex: 0,
+                    }}
+                  />
+                  
+                  {/* Corner accent */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      width: '150px',
+                      height: '150px',
+                      background: service.gradient,
+                      top: '-75px',
+                      right: '-75px',
+                      borderRadius: '50%',
+                      opacity: 0.15,
+                      zIndex: 0,
+                    }}
+                  />
+                  
                   <CardContent
                     sx={{
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
-                      color: 'white',
+                      position: 'relative',
+                      zIndex: 1,
                       p: 4,
                     }}
                   >
-                    <Icon
-                      component={service.icon}
-                      className="service-icon-overview"
-                      sx={{
-                        fontSize: 60,
-                        mb: 3,
-                        transition: 'transform 0.6s ease',
-                        filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))',
-                      }}
-                    />
+                    {/* Icon container with gradient background */}
+                    <motion.div variants={iconVariants} className="service-icon-container" style={{ transition: 'transform 0.5s ease' }}>
+                      <Box
+                        sx={{
+                          width: '70px',
+                          height: '70px',
+                          borderRadius: '16px',
+                          background: service.gradient,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+                          mb: 3,
+                        }}
+                      >
+                        <Box
+                          component={service.icon}
+                          sx={{
+                            fontSize: '32px',
+                            color: 'white',
+                            filter: 'drop-shadow(0 2px 5px rgba(0, 0, 0, 0.15))',
+                          }}
+                        />
+                      </Box>
+                    </motion.div>
+                    
                     <Typography
                       variant="h5"
                       component="h3"
+                      className="service-title"
                       sx={{
                         fontWeight: 700,
+                        color: 'white',
                         mb: 2,
-                        textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                        position: 'relative',
+                        display: 'inline-block',
+                        backgroundImage: `linear-gradient(transparent 80%, rgba(255,255,255,0.1) 80%)`,
+                        backgroundSize: '0% 100%',
+                        backgroundPosition: 'right bottom',
+                        backgroundRepeat: 'no-repeat',
+                        transition: 'background-position 0.6s ease',
                       }}
                     >
                       {service.title}
                     </Typography>
+                    
                     <Typography
-                      variant="body1"
+                      variant="body2"
                       sx={{
+                        color: 'rgba(255, 255, 255, 0.7)',
                         lineHeight: 1.7,
-                        opacity: 0.9,
+                        fontSize: '0.95rem',
+                        mb: 4,
                       }}
                     >
                       {service.description}
                     </Typography>
+                    
+                    <Box sx={{ mt: 'auto' }}>
+                      <Button
+                        component={Link}
+                        to={service.link}
+                        className="service-btn"
+                        endIcon={<ChevronRight />}
+                        sx={{
+                          color: 'white',
+                          background: service.gradient,
+                          px: 2.5,
+                          py: 1,
+                          borderRadius: '50px',
+                          fontSize: '0.85rem',
+                          opacity: 0.85,
+                          transform: 'translateY(10px)',
+                          transition: 'all 0.4s ease',
+                          textTransform: 'none',
+                          fontWeight: 600,
+                          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.15)',
+                          '&:hover': {
+                            background: service.gradient,
+                            boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
+                          }
+                        }}
+                      >
+                        Learn more
+                      </Button>
+                    </Box>
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
-          </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </motion.div>
+      
+      {/* View All Services Button */}
+      <Box sx={{ mt: 8, textAlign: 'center' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <Button
+            component={Link}
+            to="/services"
+            variant="outlined"
+            size="large"
+            endIcon={<ChevronRight />}
+            sx={{
+              borderColor: 'rgba(255, 255, 255, 0.3)',
+              color: 'white',
+              borderWidth: 2,
+              borderRadius: '50px',
+              py: 1.5,
+              px: 4,
+              fontSize: '1rem',
+              fontWeight: 600,
+              textTransform: 'none',
+              '&:hover': {
+                borderColor: '#526DFE',
+                backgroundColor: 'rgba(82, 109, 254, 0.1)',
+                transform: 'translateY(-5px)'
+              },
+              transition: 'all 0.3s ease'
+            }}
+          >
+            View All Services
+          </Button>
         </motion.div>
-      </Container>
+      </Box>
     </Box>
   );
 };
