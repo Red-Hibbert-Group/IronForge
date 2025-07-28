@@ -19,7 +19,7 @@ const DynamicFooter = () => {
       { name: 'About Us', path: '/about' },
       { name: 'Careers', path: '#' },
       { name: 'Contact Us', path: '/contact' },
-      { name: 'Blog', path: '#' }
+      { name: 'Blog', path: '/blog' }
     ],
     services: [
       { name: 'Financial Close & Consolidation', path: '/services#financial-close-consolidation' },

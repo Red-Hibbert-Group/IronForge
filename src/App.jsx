@@ -5,6 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Implementation from './pages/Implementation';
 import Resources from './pages/Resources';
+import Blog from './pages/Blog';
 import { theme } from './theme/theme';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/implementation" element={<Implementation />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </Router>
   );
