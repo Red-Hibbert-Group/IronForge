@@ -96,10 +96,11 @@ const Resources = () => {
           </motion.div>
 
           {/* Resource Cards */}
-          <Grid container spacing={4} sx={{ mb: 10 }}>
+          <Grid container spacing={4} alignItems="stretch" sx={{ mb: 10 }}>
             {resources.map((resource, index) => (
               <Grid item xs={12} md={6} lg={4} key={index}>
                 <motion.div
+                  style={{ height: '100%', display: 'flex' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -107,6 +108,7 @@ const Resources = () => {
                   <Card
                     sx={{
                       height: '100%',
+                      width: '100%',
                       background: 'rgba(255, 255, 255, 0.9)',
                       backdropFilter: 'blur(10px)',
                       border: '1px solid rgba(255, 255, 255, 0.3)',

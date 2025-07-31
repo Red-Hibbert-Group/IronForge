@@ -537,12 +537,13 @@ const About = () => {
               </motion.div>
             </Box>
             
-            <Grid container spacing={4}>
+            <Grid container spacing={4} alignItems="stretch">
               {aboutData.oneStreamSolutions.solutions.map((solution, index) => {
                 const IconComponent = iconMap[solution.icon];
                 return (
                   <Grid item xs={12} sm={6} md={4} key={index}>
                     <motion.div
+                      style={{ height: '100%' }}
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, amount: 0.2 }}
@@ -736,12 +737,13 @@ const About = () => {
             </motion.div>
           </Box>
           
-          <Grid container spacing={4}>
+          <Grid container spacing={4} alignItems="stretch">
             {aboutData.expertise.strengths.map((item, index) => {
               const IconComponent = iconMap[item.icon];
               return (
                 <Grid item xs={12} sm={6} md={3} key={index}>
                   <motion.div
+                    style={{ height: '100%' }}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
@@ -908,10 +910,11 @@ const About = () => {
               </motion.div>
             </Box>
             
-            <Grid container spacing={4}>
+            <Grid container spacing={4} alignItems="stretch">
               {aboutData.whyChooseUs.reasons.map((item, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index}>
                   <motion.div
+                    style={{ height: '100%' }}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}

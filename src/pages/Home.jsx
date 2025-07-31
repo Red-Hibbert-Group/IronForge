@@ -233,10 +233,11 @@ const Home = () => {
           }}
         >
           <Container maxWidth="xl">
-            <Grid container spacing={3}>
+            <Grid container spacing={3} alignItems="stretch">
               {featureBoxes.map((box, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={index > 2 ? 6 : 4} key={index}>
                   <motion.div
+                    style={{ height: '100%', display: 'flex' }}
                     custom={index}
                     initial="offscreen"
                     whileInView="onscreen"
@@ -247,6 +248,7 @@ const Home = () => {
                       sx={{
                         p: 4,
                         height: '100%',
+                        width: '100%',
                         borderRadius: '16px',
                         backgroundColor: 'white',
                         boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
@@ -619,7 +621,7 @@ const Home = () => {
               </Box>
               
               {/* Stats Grid */}
-              <Grid container spacing={4} sx={{ mb: 10 }}>
+              <Grid container spacing={4} alignItems="stretch" sx={{ mb: 10 }}>
                 {[
                   { value: '96%', label: 'Client Satisfaction', description: 'Our clients rate us 4.8/5 in implementation quality' },
                   { value: '40%', label: 'Reduction in Close Cycle', description: 'Clients see significant improvements in financial close times' },
@@ -628,6 +630,7 @@ const Home = () => {
                 ].map((stat, index) => (
                   <Grid item xs={12} sm={6} md={3} key={index}>
                     <motion.div
+                      style={{ height: '100%', display: 'flex' }}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -636,6 +639,7 @@ const Home = () => {
                       <Box
                         sx={{
                           height: '100%',
+                          width: '100%',
                           p: 4,
                           borderRadius: '16px',
                           position: 'relative',

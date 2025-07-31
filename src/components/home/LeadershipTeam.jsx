@@ -40,10 +40,11 @@ const LeadershipTeam = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={4}>
+      <Grid container spacing={4} alignItems="stretch">
         {leaders.map((leader) => (
           <Grid item xs={12} md={4} key={leader.name}>
-            <Card sx={{ height: '100%' }}>
+            <Box sx={{ height: '100%', display: 'flex' }}>
+              <Card sx={{ height: '100%', width: '100%' }}>
               <CardMedia
                 component="img"
                 height="300"
@@ -71,6 +72,7 @@ const LeadershipTeam = () => {
                 </Box>
               </CardContent>
             </Card>
+            </Box>
           </Grid>
         ))}
       </Grid>

@@ -25,6 +25,7 @@ const iconMap = {
 };
 
 const ExpandableCard = styled(motion.div)(({ theme, expanded, serviceColor }) => ({
+  height: '100%',
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   borderRadius: theme.spacing(4),
@@ -392,7 +393,7 @@ const Services = () => {
                     <Typography variant="h6" sx={{ color: theme.palette.primary.main, mb: 3 }}>
                       {servicesData.whyChooseSection.title}
                     </Typography>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} alignItems="stretch">
                       {servicesData.whyChooseSection.features.map((item, index) => {
                         const IconComponent = iconMap[item.icon];
                         const colors = [
@@ -405,12 +406,13 @@ const Services = () => {
                         
                         return (
                         <Grid item xs={6} key={index}>
-                          <Box sx={{ height: '100%' }}>
+                          <Box sx={{ height: '100%', display: 'flex' }}>
                             <Box
                               sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 height: '100%',
+                                width: '100%',
                                 p: 2,
                                 borderRadius: 2,
                                 background: `${item.color}08`,
@@ -456,11 +458,12 @@ const Services = () => {
             initial="hidden"
             animate="visible"
           >
-            <Grid container spacing={4}>
+            <Grid container spacing={4} alignItems="stretch">
               {services.map((service, index) => (
                 <Grid item xs={12} md={6} lg={4} key={index}>
-                  <motion.div variants={itemVariants}>
+                  <motion.div variants={itemVariants} style={{ height: '100%', display: 'flex' }}>
                     <ExpandableCard
+                      style={{ width: '100%' }}
                       onClick={() => handleCardClick(index)}
                       expanded={expandedCard === index}
                       serviceColor={service.color}

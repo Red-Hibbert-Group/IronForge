@@ -98,10 +98,11 @@ const Implementation = () => {
           </motion.div>
 
           {/* Implementation Cards */}
-          <Grid container spacing={4} sx={{ mb: 10 }}>
+          <Grid container spacing={4} alignItems="stretch" sx={{ mb: 10 }}>
             {implementations.map((impl, index) => (
               <Grid item xs={12} md={6} key={index}>
                 <motion.div
+                  style={{ height: '100%', display: 'flex' }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -109,6 +110,7 @@ const Implementation = () => {
                   <Card
                     sx={{
                       height: '100%',
+                      width: '100%',
                       background: 'rgba(255, 255, 255, 0.9)',
                       backdropFilter: 'blur(10px)',
                       border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -242,10 +244,11 @@ const Implementation = () => {
               {implementationData.phases.subtitle}
             </Typography>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={4} alignItems="stretch">
               {phases.map((phase, index) => (
                 <Grid item xs={12} md={6} key={index}>
                   <motion.div
+                    style={{ height: '100%', display: 'flex' }}
                     initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
@@ -253,6 +256,7 @@ const Implementation = () => {
                     <Card
                       sx={{
                         height: '100%',
+                        width: '100%',
                         background: 'rgba(255, 255, 255, 0.9)',
                         backdropFilter: 'blur(10px)',
                         border: '1px solid rgba(255, 255, 255, 0.3)',

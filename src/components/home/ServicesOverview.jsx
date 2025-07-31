@@ -117,13 +117,14 @@ const ServicesOverview = () => {
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <Grid container spacing={4}>
+        <Grid container spacing={4} alignItems="stretch">
           {services.map((service, index) => (
             <Grid item xs={12} md={6} lg={4} key={index}>
-              <motion.div variants={cardVariants} style={{ height: '100%' }}>
+              <motion.div variants={cardVariants} style={{ height: '100%', display: 'flex' }}>
                 <Card
                   sx={{
                     height: '100%',
+                    width: '100%',
                     background: 'rgba(20, 20, 35, 0.8)',
                     backdropFilter: 'blur(20px)',
                     borderRadius: '20px',
