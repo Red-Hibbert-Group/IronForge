@@ -4,6 +4,20 @@ import Navbar from '../components/Navbar';
 import DynamicFooter from '../components/home/DynamicFooter';
 import { motion } from 'framer-motion';
 
+// Import data
+import contactData from '../data/contactData.json';
+
+// Icon mapping for dynamic icon rendering
+const iconMap = {
+  Email: Email,
+  Phone: Phone,
+  LocationOn: LocationOn,
+  LinkedIn: LinkedIn,
+  Twitter: Twitter,
+  Facebook: Facebook,
+  Send: Send
+};
+
 const Contact = () => {
   const theme = useTheme();
   
@@ -11,33 +25,6 @@ const Contact = () => {
     event.preventDefault();
     // Add form submission logic here
   };
-
-  const contactInfo = [
-    {
-      icon: Email,
-      title: 'Email',
-      content: 'contact@onestream-solutions.com',
-      color: theme.palette.primary.main
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      content: '+1 (555) 123-4567',
-      color: theme.palette.accent.success
-    },
-    {
-      icon: LocationOn,
-      title: 'Location',
-      content: '123 Business Avenue, Tech Hub, NY 10001',
-      color: theme.palette.secondary.main
-    }
-  ];
-
-  const socialLinks = [
-    { icon: LinkedIn, color: '#0077b5', label: 'LinkedIn' },
-    { icon: Twitter, color: '#1da1f2', label: 'Twitter' },
-    { icon: Facebook, color: '#1877f2', label: 'Facebook' }
-  ];
 
   return (
     <>
@@ -109,7 +96,7 @@ const Contact = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Get in Touch
+              {contactData.hero.title}
             </Typography>
             <Typography 
               variant="h5" 
@@ -121,7 +108,7 @@ const Contact = () => {
                 mb: 8
               }}
             >
-              Connect with our OneStream implementation experts
+              {contactData.hero.subtitle}
             </Typography>
           </motion.div>
 
@@ -135,78 +122,91 @@ const Contact = () => {
               >
                 <Box sx={{ mb: 6 }}>
                   <Typography variant="h4" sx={{ color: theme.palette.text.primary, mb: 4 }}>
-                    Contact Information
+                    {contactData.form.title}
                   </Typography>
-                  {contactInfo.map((info, index) => (
-                    <Box 
-                      key={index}
-                      sx={{ 
-                        display: 'flex',
-                        alignItems: 'center',
-                        mb: 4,
-                        p: 3,
-                        borderRadius: 2,
-                        background: 'rgba(255,255,255,0.8)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255,255,255,0.3)',
-                        transition: 'transform 0.3s ease',
-                        '&:hover': {
-                          transform: 'translateX(10px)',
-                          boxShadow: `0 10px 30px ${info.color}20`,
-                        }
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          bgcolor: `${info.color}10`,
-                          p: 2,
+                  {contactData.contactInfo.map((info, index) => {
+                    const IconComponent = iconMap[info.icon];
+                    const colorMap = {
+                      Email: theme.palette.primary.main,
+                      Phone: theme.palette.accent.success,
+                      LocationOn: theme.palette.secondary.main
+                    };
+                    const color = colorMap[info.icon];
+                    
+                    return (
+                      <Box 
+                        key={index}
+                        sx={{ 
+                          display: 'flex',
+                          alignItems: 'center',
+                          mb: 4,
+                          p: 3,
                           borderRadius: 2,
-                          mr: 3
+                          background: 'rgba(255,255,255,0.8)',
+                          backdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255,255,255,0.3)',
+                          transition: 'transform 0.3s ease',
+                          '&:hover': {
+                            transform: 'translateX(10px)',
+                            boxShadow: `0 10px 30px ${color}20`,
+                          }
                         }}
                       >
-                        <info.icon sx={{ fontSize: 30, color: info.color }} />
+                        <Box
+                          sx={{
+                            bgcolor: `${color}10`,
+                            p: 2,
+                            borderRadius: 2,
+                            mr: 3
+                          }}
+                        >
+                          <IconComponent sx={{ fontSize: 30, color: color }} />
+                        </Box>
+                        <Box>
+                          <Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 0.5 }}>
+                            {info.title}
+                          </Typography>
+                          <Typography sx={{ color: theme.palette.text.secondary }}>
+                            {info.content}
+                          </Typography>
+                        </Box>
                       </Box>
-                      <Box>
-                        <Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 0.5 }}>
-                          {info.title}
-                        </Typography>
-                        <Typography sx={{ color: theme.palette.text.secondary }}>
-                          {info.content}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  ))}
+                    );
+                  })}
                 </Box>
 
                 {/* Social Links */}
                 <Box>
                   <Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 3 }}>
-                    Follow Us
+                    {contactData.socialSection.title}
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 2 }}>
-                    {socialLinks.map((social, index) => (
-                      <motion.div
-                        key={index}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Button
-                          variant="contained"
-                          sx={{
-                            minWidth: 'auto',
-                            p: 2,
-                            bgcolor: social.color,
-                            borderRadius: '50%',
-                            '&:hover': {
-                              bgcolor: `${social.color}dd`,
-                              transform: 'translateY(-3px)',
-                            }
-                          }}
+                    {contactData.socialLinks.map((social, index) => {
+                      const IconComponent = iconMap[social.icon];
+                      return (
+                        <motion.div
+                          key={index}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <social.icon />
-                        </Button>
-                      </motion.div>
-                    ))}
+                          <Button
+                            variant="contained"
+                            sx={{
+                              minWidth: 'auto',
+                              p: 2,
+                              bgcolor: social.color,
+                              borderRadius: '50%',
+                              '&:hover': {
+                                bgcolor: `${social.color}dd`,
+                                transform: 'translateY(-3px)',
+                              }
+                            }}
+                          >
+                            <IconComponent />
+                          </Button>
+                        </motion.div>
+                      );
+                    })}
                   </Box>
                 </Box>
               </motion.div>
@@ -231,105 +231,35 @@ const Contact = () => {
                 >
                   <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          fullWidth
-                          label="First Name"
-                          required
-                          variant="outlined"
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: theme.palette.grey[300],
+                      {contactData.form.fields.map((field, index) => (
+                        <Grid item xs={12} sm={field.gridSize === 12 ? 12 : 6} key={index}>
+                          <TextField
+                            fullWidth
+                            label={field.label}
+                            required={field.required}
+                            type={field.type}
+                            variant="outlined"
+                            multiline={field.type === 'textarea'}
+                            rows={field.rows || undefined}
+                            sx={{
+                              '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                  borderColor: theme.palette.grey[300],
+                                },
+                                '&:hover fieldset': {
+                                  borderColor: theme.palette.primary.main,
+                                },
+                                '&.Mui-focused fieldset': {
+                                  borderColor: theme.palette.primary.main,
+                                },
                               },
-                              '&:hover fieldset': {
-                                borderColor: theme.palette.primary.main,
+                              '& .MuiInputLabel-root': {
+                                color: theme.palette.text.secondary,
                               },
-                              '&.Mui-focused fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: theme.palette.text.secondary,
-                            },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          fullWidth
-                          label="Last Name"
-                          required
-                          variant="outlined"
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: theme.palette.grey[300],
-                              },
-                              '&:hover fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: theme.palette.text.secondary,
-                            },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          fullWidth
-                          label="Email"
-                          required
-                          type="email"
-                          variant="outlined"
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: theme.palette.grey[300],
-                              },
-                              '&:hover fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: theme.palette.text.secondary,
-                            },
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          fullWidth
-                          label="Message"
-                          required
-                          multiline
-                          rows={4}
-                          variant="outlined"
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: theme.palette.grey[300],
-                              },
-                              '&:hover fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: theme.palette.primary.main,
-                              },
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: theme.palette.text.secondary,
-                            },
-                          }}
-                        />
-                      </Grid>
+                            }}
+                          />
+                        </Grid>
+                      ))}
                       <Grid item xs={12}>
                         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                           <Button
@@ -342,7 +272,7 @@ const Contact = () => {
                             }}
                             endIcon={<Send />}
                           >
-                            Send Message
+                            {contactData.form.submitButton}
                           </Button>
                         </motion.div>
                       </Grid>

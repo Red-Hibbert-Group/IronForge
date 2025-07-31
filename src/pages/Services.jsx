@@ -6,6 +6,24 @@ import DynamicFooter from '../components/home/DynamicFooter';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 
+// Import data
+import servicesData from '../data/servicesData.json';
+
+// Icon mapping for dynamic icon rendering
+const iconMap = {
+  Analytics: Analytics,
+  Assessment: Assessment,
+  AccountBalance: AccountBalance,
+  Timeline: Timeline,
+  Security: Security,
+  CheckCircle: CheckCircle,
+  Speed: Speed,
+  Rocket: Rocket,
+  Architecture: Architecture,
+  Support: Support,
+  TrendingUp: TrendingUp,
+};
+
 const ExpandableCard = styled(motion.div)(({ theme, expanded, serviceColor }) => ({
   background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
@@ -47,287 +65,32 @@ const Services = () => {
   const theme = useTheme();
   const [expandedCard, setExpandedCard] = useState(null);
 
-  const services = [
-    {
-      title: 'Enterprise Performance Management (EPM)',
-      icon: Analytics,
-      description: 'Transform your financial processes with state-of-the-art EPM solutions. Streamline operations, improve accuracy, and drive strategic decision-making through integrated planning, consolidation, and reporting.',
-      features: [
-        'Real-time financial insights',
-        'Automated workflows',
-        'Enhanced compliance',
-        'Improved decision-making',
-        'Predictive analytics',
-        'Multi-currency support'
-      ],
-      color: theme.palette.primary.main,
-      subServices: [
-        {
-          title: 'Financial Close & Consolidation (FCCS)',
-          description: 'Streamline your financial close process and consolidate financial statements across multiple entities with advanced automation and controls.',
-          features: [
-            'Automated consolidation',
-            'Multi-GAAP reporting',
-            'Intercompany matching',
-            'Journal entry management',
-            'Currency translation',
-            'Elimination rules engine'
-          ],
-          color: theme.palette.primary.dark,
-          benefits: [
-            'Reduce close cycle time by up to 50%',
-            'Improve accuracy and reduce errors',
-            'Enhanced visibility into close process',
-            'Standardized global processes'
-          ]
-        },
-        {
-          title: 'Planning & Budgeting (EPBCS)',
-          description: 'Advanced planning and forecasting solutions for future-focused financial modeling with built-in predictive capabilities.',
-          features: [
-            'Rolling forecasts',
-            'What-if analysis',
-            'Driver-based planning',
-            'Predictive planning',
-            'Workforce planning',
-            'Capital asset planning'
-          ],
-          color: theme.palette.primary.main,
-          benefits: [
-            'Reduce planning cycle time',
-            'Improve forecast accuracy',
-            'Better resource allocation',
-            'Strategic decision support'
-          ]
-        },
-        {
-          title: 'Account Reconciliation (ARCS)',
-          description: 'Automate and streamline your account reconciliation process with intelligent matching and risk-based reconciliation.',
-          features: [
-            'Automated matching',
-            'Risk-based reconciliation',
-            'Variance analysis',
-            'Compliance tracking',
-            'Transaction matching',
-            'Balance sheet reconciliation'
-          ],
-          color: theme.palette.primary.light,
-          benefits: [
-            'Reduce manual effort by 90%',
-            'Improve accuracy and control',
-            'Real-time visibility',
-            'Enhanced compliance'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Tax Reporting & Compliance (TRCS)',
-      icon: AccountBalance,
-      description: 'Comprehensive tax provision and reporting solution to streamline corporate tax operations and ensure compliance across multiple jurisdictions worldwide.',
-      features: [
-        'Global tax provision',
-        'Country-by-country reporting',
-        'Tax automation',
-        'Compliance management',
-        'ETR forecasting',
-        'Tax journal entries',
-        'Automated tax calculations',
-        'Real-time tax insights'
-      ],
-      color: theme.palette.accent.success,
-      subServices: [
-        {
-          title: 'Direct Tax Reporting',
-          description: 'Streamline the preparation of corporate income tax provisions and reporting with advanced automation.',
-          features: [
-            'Tax provision automation',
-            'Deferred tax management',
-            'Return-to-provision reconciliation',
-            'Tax basis balance sheet',
-            'Tax analytics dashboard',
-            'Multi-jurisdiction support'
-          ],
-          color: theme.palette.accent.success,
-          benefits: [
-            'Reduce tax preparation time by 60%',
-            'Improve accuracy and compliance',
-            'Real-time tax position visibility',
-            'Streamlined global tax operations'
-          ]
-        },
-        {
-          title: 'Indirect Tax Management',
-          description: 'Comprehensive solution for managing VAT, GST, and other indirect taxes across global operations.',
-          features: [
-            'VAT/GST calculations',
-            'Cross-border transactions',
-            'Digital tax reporting',
-            'Compliance monitoring',
-            'Tax rate management',
-            'Recovery analysis'
-          ],
-          color: theme.palette.accent.success,
-          benefits: [
-            'Automated tax determination',
-            'Reduced compliance risk',
-            'Improved cash flow management',
-            'Enhanced audit readiness'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Enterprise Cost Management',
-      icon: Assessment,
-      description: 'Sophisticated cost allocation and management solutions for better profitability analysis and strategic decision making.',
-      features: [
-        'Activity-based costing',
-        'Profitability reporting',
-        'Cost driver analysis',
-        'Resource allocation',
-        'Margin analysis',
-        'Cost simulation'
-      ],
-      color: theme.palette.secondary.main,
-      subServices: [
-        {
-          title: 'Cost Allocation Management',
-          description: 'Advanced cost allocation engine with multi-dimensional modeling capabilities.',
-          features: [
-            'Rule-based allocations',
-            'Cost pool management',
-            'Driver-based allocation',
-            'Scenario modeling'
-          ],
-          color: theme.palette.secondary.main
-        },
-        {
-          title: 'Profitability Analysis',
-          description: 'Detailed profitability analysis across multiple dimensions and hierarchies.',
-          features: [
-            'Customer profitability',
-            'Product profitability',
-            'Channel analysis',
-            'Margin optimization'
-          ],
-          color: theme.palette.secondary.light
-        }
-      ]
-    },
-    {
-      title: 'Risk Management & Compliance',
-      icon: Security,
-      description: 'Comprehensive risk management solution to identify, assess, and mitigate business risks while ensuring regulatory compliance.',
-      features: [
-        'Risk Analytics',
-        'Compliance Management',
-        'Audit Trails',
-        'Risk Monitoring',
-        'Regulatory Reporting',
-        'Control Framework',
-        'Risk Assessment',
-        'Incident Management'
-      ],
-      color: theme.palette.accent.error,
-      subServices: [
-        {
-          title: 'Enterprise Risk Management',
-          description: 'Holistic approach to identifying, analyzing, and managing risks across the organization.',
-          features: [
-            'Risk identification',
-            'Risk assessment matrix',
-            'Mitigation planning',
-            'Risk monitoring',
-            'KRI dashboard',
-            'Risk reporting'
-          ],
-          color: theme.palette.accent.error,
-          benefits: [
-            'Improved risk visibility',
-            'Proactive risk management',
-            'Better decision making',
-            'Enhanced stakeholder confidence'
-          ]
-        },
-        {
-          title: 'Compliance Management',
-          description: 'Streamline compliance processes and maintain regulatory adherence across jurisdictions.',
-          features: [
-            'Regulatory tracking',
-            'Compliance monitoring',
-            'Policy management',
-            'Training management',
-            'Audit management',
-            'Violation tracking'
-          ],
-          color: theme.palette.accent.error,
-          benefits: [
-            'Reduced compliance costs',
-            'Automated compliance tracking',
-            'Enhanced regulatory reporting',
-            'Improved audit readiness'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Narrative Reporting & Disclosure',
-      icon: Timeline,
-      description: 'Advanced solution for creating and managing board books, regulatory filings, and other narrative management reports with collaborative features.',
-      features: [
-        'Collaborative authoring',
-        'XBRL tagging',
-        'Document management',
-        'Workflow automation',
-        'Version control',
-        'Digital publishing',
-        'Regulatory compliance',
-        'Report automation'
-      ],
-      color: theme.palette.secondary.dark,
-      subServices: [
-        {
-          title: 'Financial Reporting',
-          description: 'Streamline the creation and management of financial reports and regulatory filings.',
-          features: [
-            'Report automation',
-            'XBRL integration',
-            'Collaborative review',
-            'Audit trail',
-            'Template management',
-            'Multi-format output'
-          ],
-          color: theme.palette.secondary.dark,
-          benefits: [
-            'Faster report generation',
-            'Improved accuracy',
-            'Enhanced collaboration',
-            'Regulatory compliance'
-          ]
-        },
-        {
-          title: 'Board Reporting',
-          description: 'Comprehensive solution for creating and managing board books and executive presentations.',
-          features: [
-            'Board book automation',
-            'Secure collaboration',
-            'Digital distribution',
-            'Mobile access',
-            'Version control',
-            'Commentary tracking'
-          ],
-          color: theme.palette.secondary.dark,
-          benefits: [
-            'Streamlined board communication',
-            'Enhanced security',
-            'Improved governance',
-            'Real-time updates'
-          ]
-        }
-      ]
-    }
-  ];
+  // Map JSON services to include theme colors and icons
+  const services = servicesData.services.map((service, serviceIndex) => {
+    const colorMap = {
+      0: theme.palette.primary.main,      // EPM
+      1: theme.palette.accent.success,    // Tax
+      2: theme.palette.secondary.main,    // Cost
+      3: theme.palette.accent.error,      // Risk
+      4: theme.palette.secondary.dark,    // Narrative
+    };
+    
+    return {
+      ...service,
+      icon: iconMap[service.icon],
+      color: colorMap[serviceIndex] || theme.palette.primary.main,
+      subServices: service.subServices?.map((subService, subIndex) => ({
+        ...subService,
+        color: serviceIndex === 0 ? 
+          (subIndex === 0 ? theme.palette.primary.dark : subIndex === 1 ? theme.palette.primary.main : theme.palette.primary.light) :
+          serviceIndex === 1 ? theme.palette.accent.success :
+          serviceIndex === 2 ? 
+            (subIndex === 0 ? theme.palette.secondary.main : theme.palette.secondary.light) :
+          serviceIndex === 3 ? theme.palette.accent.error :
+          theme.palette.secondary.dark
+             })) || []
+     };
+   });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -520,7 +283,7 @@ const Services = () => {
                     WebkitTextFillColor: 'transparent',
                   }}
                 >
-                  Transform Your Business
+                  {servicesData.hero.title}
                 </Typography>
                 <Typography
                   variant="h5"
@@ -530,7 +293,7 @@ const Services = () => {
                     lineHeight: 1.8
                   }}
                 >
-                  Elevate your enterprise with cutting-edge solutions designed for the future of business.
+                  {servicesData.hero.subtitle}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -541,68 +304,40 @@ const Services = () => {
                     maxWidth: '90%'
                   }}
                 >
-                  Our comprehensive suite of enterprise solutions empowers organizations to streamline operations,
-                  enhance decision-making, and drive sustainable growth. From advanced financial management to
-                  intelligent automation, we deliver the tools you need to stay ahead in today's dynamic business landscape.
+                  {servicesData.hero.description}
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 4 }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Box
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: `${theme.palette.primary.main}10`,
-                        border: `1px solid ${theme.palette.primary.main}30`,
-                      }}
-                    >
-                      <CheckCircle sx={{ color: theme.palette.primary.main, fontSize: 20 }} />
-                    </Box>
-                    <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
-                      Industry-leading solutions trusted by Fortune companies
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Box
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: `${theme.palette.accent.success}10`,
-                        border: `1px solid ${theme.palette.accent.success}30`,
-                      }}
-                    >
-                      <Security sx={{ color: theme.palette.accent.success, fontSize: 20 }} />
-                    </Box>
-                    <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
-                      Enterprise-grade security and compliance
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Box
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        background: `${theme.palette.secondary.main}10`,
-                        border: `1px solid ${theme.palette.secondary.main}30`,
-                      }}
-                    >
-                      <Speed sx={{ color: theme.palette.secondary.main, fontSize: 20 }} />
-                    </Box>
-                    <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
-                      24/7 expert support and rapid implementation
-                    </Typography>
-                  </Box>
+                  {servicesData.hero.benefits.map((benefit, index) => {
+                    const IconComponent = iconMap[benefit.icon];
+                    const colors = [
+                      theme.palette.primary.main,
+                      theme.palette.accent.success,
+                      theme.palette.secondary.main
+                    ];
+                    const color = colors[index] || theme.palette.primary.main;
+                    
+                    return (
+                      <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Box
+                          sx={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: `${color}10`,
+                            border: `1px solid ${color}30`,
+                          }}
+                        >
+                          {IconComponent && <IconComponent sx={{ color: color, fontSize: 20 }} />}
+                        </Box>
+                        <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
+                          {benefit.title}
+                        </Typography>
+                      </Box>
+                    );
+                  })}
                 </Box>
                 <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
                   <Button
@@ -610,14 +345,14 @@ const Services = () => {
                     size="large"
                     endIcon={<ArrowForward />}
                   >
-                    Get Started
+                    {servicesData.hero.primaryButton}
                   </Button>
                   <Button
                     variant="outlined"
                     size="large"
                     startIcon={<CalendarToday />}
                   >
-                    Schedule Demo
+                    {servicesData.hero.secondaryButton}
                   </Button>
                 </Box>
               </motion.div>
@@ -655,35 +390,20 @@ const Services = () => {
                     }}
                   >
                     <Typography variant="h6" sx={{ color: theme.palette.primary.main, mb: 3 }}>
-                      Why Choose Our Solutions?
+                      {servicesData.whyChooseSection.title}
                     </Typography>
                     <Grid container spacing={3}>
-                      {[
-                        {
-                          title: 'Rapid Implementation',
-                          description: 'Get up and running quickly with our streamlined deployment process',
-                          icon: Rocket,
-                          color: theme.palette.primary.main
-                        },
-                        {
-                          title: 'Scalable Architecture',
-                          description: 'Solutions that grow with your business needs',
-                          icon: Architecture,
-                          color: theme.palette.accent.success
-                        },
-                        {
-                          title: 'Expert Support',
-                          description: '24/7 dedicated support from industry experts',
-                          icon: Support,
-                          color: theme.palette.secondary.main
-                        },
-                        {
-                          title: 'ROI Focused',
-                          description: 'Proven track record of delivering measurable business value',
-                          icon: TrendingUp,
-                          color: theme.palette.secondary.dark
-                        }
-                      ].map((item, index) => (
+                      {servicesData.whyChooseSection.features.map((item, index) => {
+                        const IconComponent = iconMap[item.icon];
+                        const colors = [
+                          theme.palette.primary.main,
+                          theme.palette.accent.success,
+                          theme.palette.secondary.main,
+                          theme.palette.secondary.dark
+                        ];
+                        const color = colors[index] || theme.palette.primary.main;
+                        
+                        return (
                         <Grid item xs={6} key={index}>
                           <Box sx={{ height: '100%' }}>
                             <Box
@@ -711,7 +431,8 @@ const Services = () => {
                             </Box>
                           </Box>
                         </Grid>
-                      ))}
+                        );
+                      })}
                     </Grid>
                   </Box>
                 </Box>

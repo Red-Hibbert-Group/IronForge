@@ -1,0 +1,80 @@
+{
+  "header": {
+    "title": "Latest Insights & Updates",
+    "subtitle": "Stay informed about OneStream implementation best practices, industry trends, and expert insights",
+    "tags": [
+      {
+        "label": "Implementation",
+        "color": "primary"
+      },
+      {
+        "label": "Best Practices",
+        "color": "success"
+      },
+      {
+        "label": "Industry Trends",
+        "color": "secondary"
+      }
+    ]
+  },
+  "featuredArticle": {
+    "title": "Accelerating Financial Close: 5 Key Strategies for OneStream Implementation",
+    "excerpt": "Discover proven methodologies and best practices that leading organizations use to reduce their financial close cycle time by up to 60% through strategic OneStream XF implementation. Learn from real-world case studies and expert insights.",
+    "publishDate": "January 15, 2024",
+    "readTime": "15 min read",
+    "icon": "TrendingUp",
+    "tags": [
+      {
+        "label": "Implementation",
+        "icon": "Category"
+      },
+      {
+        "label": "Expert Insights",
+        "icon": "Person"
+      },
+      {
+        "label": "15 min read",
+        "icon": "CalendarToday"
+      }
+    ],
+    "buttonText": "Read Full Article"
+  },
+  "recentArticles": {
+    "title": "Recent Articles",
+    "articles": [
+      {
+        "title": "OneStream Data Integration Best Practices",
+        "excerpt": "Learn how to seamlessly integrate data from multiple sources into your OneStream environment with these proven strategies and techniques.",
+        "date": "January 10, 2024",
+        "readTime": "8 min read",
+        "category": "Integration",
+        "icon": "Build"
+      },
+      {
+        "title": "Advanced Financial Reporting with OneStream",
+        "excerpt": "Explore advanced reporting capabilities and learn how to create dynamic, interactive financial reports that drive business insights.",
+        "date": "January 5, 2024",
+        "readTime": "12 min read",
+        "category": "Reporting",
+        "icon": "TrendingUp"
+      },
+      {
+        "title": "OneStream Security Framework Implementation",
+        "excerpt": "Comprehensive guide to implementing robust security frameworks and access controls in your OneStream deployment.",
+        "date": "December 28, 2023",
+        "readTime": "10 min read",
+        "category": "Security",
+        "icon": "Psychology"
+      }
+    ]
+  },
+  "newsletter": {
+    "title": "Stay Updated",
+    "description": "Subscribe to our newsletter for the latest OneStream insights, implementation tips, and industry best practices delivered to your inbox.",
+    "buttonText": "Subscribe Now"
+  },
+  "backButton": {
+    "text": "Back to Home",
+    "icon": "ArrowBack"
+  }
+} 

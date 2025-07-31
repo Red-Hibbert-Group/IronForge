@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "title": "OneStream Implementation",
+    "subtitle": "Accelerate your financial transformation with our proven OneStream implementation methodology"
+  },
+  "implementations": [
+    {
+      "title": "OneStream Implementation",
+      "description": "End-to-end implementation of OneStream XF platform with best practices and industry standards.",
+      "icon": "CloudSync",
+      "features": [
+        "Platform Configuration",
+        "Data Integration",
+        "Workflow Design",
+        "Security Setup"
+      ]
+    },
+    {
+      "title": "Financial Close & Consolidation",
+      "description": "Streamline your financial close process with automated consolidation and reporting.",
+      "icon": "Timeline",
+      "features": [
+        "Automated Consolidation",
+        "Intercompany Matching",
+        "Currency Translation",
+        "Financial Reporting"
+      ]
+    },
+    {
+      "title": "Planning & Forecasting",
+      "description": "Advanced planning solutions for budgeting, forecasting, and strategic modeling.",
+      "icon": "Assessment",
+      "features": [
+        "Driver-Based Planning",
+        "Rolling Forecasts",
+        "Scenario Analysis",
+        "Predictive Analytics"
+      ]
+    },
+    {
+      "title": "Training & Support",
+      "description": "Comprehensive training programs and ongoing support for your team.",
+      "icon": "School",
+      "features": [
+        "User Training",
+        "Admin Training",
+        "Best Practices",
+        "Ongoing Support"
+      ]
+    }
+  ],
+  "phases": {
+    "title": "Implementation Phases",
+    "subtitle": "Our proven methodology ensures successful delivery with predictable timelines and outcomes",
+    "items": [
+      {
+        "phase": "Discovery & Planning",
+        "duration": "2-4 weeks",
+        "description": "Understand current state, define requirements, and create implementation roadmap.",
+        "activities": [
+          "Business requirements analysis",
+          "Technical assessment",
+          "Project planning",
+          "Resource allocation"
+        ]
+      },
+      {
+        "phase": "Design & Configuration",
+        "duration": "4-8 weeks",
+        "description": "Design solution architecture and configure the OneStream platform.",
+        "activities": [
+          "System architecture design",
+          "Platform configuration",
+          "Data model design",
+          "Security implementation"
+        ]
+      },
+      {
+        "phase": "Development & Testing",
+        "duration": "6-12 weeks",
+        "description": "Build custom components, integrate data, and conduct thorough testing.",
+        "activities": [
+          "Custom development",
+          "Data integration",
+          "System testing",
+          "User acceptance testing"
+        ]
+      },
+      {
+        "phase": "Deployment & Go-Live",
+        "duration": "2-4 weeks",
+        "description": "Deploy to production environment and support go-live activities.",
+        "activities": [
+          "Production deployment",
+          "Go-live support",
+          "Performance monitoring",
+          "Issue resolution"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Get Started?",
+    "description": "Contact our implementation experts to discuss your OneStream project requirements and timeline.",
+    "buttonText": "Schedule Consultation"
+  }
+} 

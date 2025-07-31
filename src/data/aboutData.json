@@ -1,0 +1,147 @@
+{
+  "hero": {
+    "subtitle": "About IronForge",
+    "title": "Redefining Financial Excellence",
+    "description": "Your Premier Partner in OneStream Implementation",
+    "primaryButton": "Get Started",
+    "secondaryButton": "Learn More"
+  },
+  "stats": [
+    { 
+      "value": "500+", 
+      "label": "Successful Implementations" 
+    },
+    { 
+      "value": "98%", 
+      "label": "Client Satisfaction Rate" 
+    },
+    { 
+      "value": "15+", 
+      "label": "Years of Excellence" 
+    },
+    { 
+      "value": "24/7", 
+      "label": "Global Support" 
+    }
+  ],
+  "oneStreamSolutions": {
+    "title": "OneStream Implementation Solutions",
+    "subtitle": "Comprehensive suite of OneStream XF platform implementations tailored to your business needs",
+    "solutions": [
+      {
+        "icon": "BarChart",
+        "title": "Corporate Performance Management (CPM)",
+        "description": "Unified CPM software that streamlines financial operations and enhances decision-making capabilities.",
+        "features": [
+          "Financial Close & Consolidation",
+          "Planning, Budgeting & Forecasting",
+          "Financial Data Quality Management",
+          "Financial Reporting & Analysis"
+        ]
+      },
+      {
+        "icon": "AccountBalance",
+        "title": "Financial Close & Consolidation",
+        "description": "Accelerate your financial close process with automated consolidation and reporting.",
+        "features": [
+          "Automated Currency Conversion",
+          "Intercompany Eliminations",
+          "Complex Ownership Structures",
+          "Journal Entry Management"
+        ]
+      },
+      {
+        "icon": "Assessment",
+        "title": "Planning & Forecasting",
+        "description": "Dynamic planning and forecasting solutions for better business insights.",
+        "features": [
+          "Driver-Based Planning",
+          "Rolling Forecasts",
+          "Scenario Analysis",
+          "Predictive Analytics"
+        ]
+      },
+      {
+        "icon": "AutoGraph",
+        "title": "Financial Data Analytics",
+        "description": "Transform financial data into actionable insights with advanced analytics.",
+        "features": [
+          "Custom Dashboards",
+          "KPI Monitoring",
+          "Trend Analysis",
+          "Performance Metrics"
+        ]
+      },
+      {
+        "icon": "IntegrationInstructions",
+        "title": "System Integration",
+        "description": "Seamless integration with existing enterprise systems and data sources.",
+        "features": [
+          "ERP Integration",
+          "Data Warehouse Connection",
+          "API Development",
+          "Custom Connectors"
+        ]
+      },
+      {
+        "icon": "DataUsage",
+        "title": "Data Quality Management",
+        "description": "Ensure data accuracy and reliability across your financial processes.",
+        "features": [
+          "Data Validation Rules",
+          "Audit Trail",
+          "Data Governance",
+          "Quality Controls"
+        ]
+      }
+    ]
+  },
+  "expertise": {
+    "title": "Our Core Strengths",
+    "subtitle": "Empowering businesses with cutting-edge financial solutions and expertise",
+    "strengths": [
+      {
+        "icon": "Timeline",
+        "title": "Financial Analytics",
+        "description": "Advanced analytics solutions that transform raw data into actionable insights."
+      },
+      {
+        "icon": "Security",
+        "title": "Secure Integration",
+        "description": "Enterprise-grade security with seamless system integration capabilities."
+      },
+      {
+        "icon": "Speed",
+        "title": "Performance Optimization",
+        "description": "Cutting-edge tools and methodologies for maximum system performance."
+      },
+      {
+        "icon": "Groups",
+        "title": "Expert Consultation",
+        "description": "Strategic guidance from certified OneStream professionals."
+      }
+    ]
+  },
+  "whyChooseUs": {
+    "title": "Why Organizations Choose Us",
+    "subtitle": "Delivering excellence through innovation, expertise, and unwavering commitment to client success",
+    "reasons": [
+      {
+        "title": "Industry-Leading Expertise",
+        "description": "Ranked #1 in OneStream implementation with a team of elite certified professionals and the highest success rate in complex enterprise deployments."
+      },
+      {
+        "title": "Innovation-Driven Solutions",
+        "description": "Pioneering cutting-edge approaches that combine OneStream's capabilities with our proprietary methodologies for unprecedented business outcomes."
+      },
+      {
+        "title": "Proven Enterprise Success",
+        "description": "Trusted by Fortune 500 companies with a 100% implementation success rate and documented ROI improvement for every client engagement."
+      },
+      {
+        "title": "Global Reach & Support",
+        "description": "Operating across continents with localized expertise and 24/7 premium support infrastructure for seamless service delivery."
+      }
+    ]
+  }
+} 

@@ -17,106 +17,37 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
 
+// Import data
+import implementationData from '../data/implementationData.json';
+
+// Icon mapping for dynamic icon rendering
+const iconMap = {
+  CloudSync: CloudSync,
+  Timeline: Timeline,
+  Assessment: Assessment,
+  School: School,
+};
+
 const Implementation = () => {
   const theme = useTheme();
   
-  const implementations = [
-    {
-      title: 'OneStream Implementation',
-      description: 'End-to-end implementation of OneStream XF platform with best practices and industry standards.',
-      icon: CloudSync,
-      color: theme.palette.primary.main,
-      features: [
-        'Platform Configuration',
-        'Data Integration',
-        'Workflow Design',
-        'Security Setup'
-      ]
-    },
-    {
-      title: 'Financial Close & Consolidation',
-      description: 'Streamline your financial close process with automated consolidation and reporting.',
-      icon: Timeline,
-      color: theme.palette.accent.success,
-      features: [
-        'Automated Consolidation',
-        'Intercompany Matching',
-        'Currency Translation',
-        'Financial Reporting'
-      ]
-    },
-    {
-      title: 'Planning & Forecasting',
-      description: 'Advanced planning solutions for budgeting, forecasting, and strategic modeling.',
-      icon: Assessment,
-      color: theme.palette.secondary.main,
-      features: [
-        'Driver-Based Planning',
-        'Rolling Forecasts',
-        'Scenario Analysis',
-        'Predictive Analytics'
-      ]
-    },
-    {
-      title: 'Training & Support',
-      description: 'Comprehensive training programs and ongoing support for your team.',
-      icon: School,
-      color: theme.palette.accent.warning,
-      features: [
-        'User Training',
-        'Admin Training',
-        'Best Practices',
-        'Ongoing Support'
-      ]
-    }
-  ];
+  // Map JSON implementations to include theme colors and icons
+  const implementations = implementationData.implementations.map((impl, index) => {
+    const colors = [
+      theme.palette.primary.main,
+      theme.palette.accent.success,
+      theme.palette.secondary.main,
+      theme.palette.accent.warning
+    ];
+    
+    return {
+      ...impl,
+      icon: iconMap[impl.icon],
+      color: colors[index] || theme.palette.primary.main
+    };
+  });
 
-  const phases = [
-    {
-      phase: 'Discovery & Planning',
-      duration: '2-4 weeks',
-      description: 'Understand current state, define requirements, and create implementation roadmap.',
-      activities: [
-        'Business requirements analysis',
-        'Technical assessment',
-        'Project planning',
-        'Resource allocation'
-      ]
-    },
-    {
-      phase: 'Design & Configuration',
-      duration: '4-8 weeks',
-      description: 'Design solution architecture and configure the OneStream platform.',
-      activities: [
-        'System architecture design',
-        'Platform configuration',
-        'Data model design',
-        'Security implementation'
-      ]
-    },
-    {
-      phase: 'Development & Testing',
-      duration: '6-12 weeks',
-      description: 'Build custom components, integrate data, and conduct thorough testing.',
-      activities: [
-        'Custom development',
-        'Data integration',
-        'System testing',
-        'User acceptance testing'
-      ]
-    },
-    {
-      phase: 'Deployment & Go-Live',
-      duration: '2-4 weeks',
-      description: 'Deploy to production environment and support go-live activities.',
-      activities: [
-        'Production deployment',
-        'Go-live support',
-        'Performance monitoring',
-        'Issue resolution'
-      ]
-    }
-  ];
+  const phases = implementationData.phases.items;
 
   return (
     <>
@@ -149,7 +80,7 @@ const Implementation = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              OneStream Implementation
+              {implementationData.hero.title}
             </Typography>
             <Typography
               variant="h5"
@@ -162,7 +93,7 @@ const Implementation = () => {
                 lineHeight: 1.6
               }}
             >
-              Accelerate your financial transformation with our proven OneStream implementation methodology
+              {implementationData.hero.subtitle}
             </Typography>
           </motion.div>
 
@@ -294,7 +225,7 @@ const Implementation = () => {
                 mb: 2
               }}
             >
-              Implementation Phases
+              {implementationData.phases.title}
             </Typography>
             <Typography
               variant="body1"
@@ -308,7 +239,7 @@ const Implementation = () => {
                 lineHeight: 1.6
               }}
             >
-              Our proven methodology ensures successful delivery with predictable timelines and outcomes
+              {implementationData.phases.subtitle}
             </Typography>
 
             <Grid container spacing={4}>
@@ -433,7 +364,7 @@ const Implementation = () => {
                   mb: 3
                 }}
               >
-                Ready to Get Started?
+                {implementationData.cta.title}
               </Typography>
               <Typography
                 variant="body1"
@@ -446,7 +377,7 @@ const Implementation = () => {
                   lineHeight: 1.6
                 }}
               >
-                Contact our implementation experts to discuss your OneStream project requirements and timeline.
+                {implementationData.cta.description}
               </Typography>
               <Button
                 variant="contained"
@@ -457,7 +388,7 @@ const Implementation = () => {
                   fontSize: '1.1rem'
                 }}
               >
-                Schedule Consultation
+                {implementationData.cta.buttonText}
               </Button>
             </motion.div>
           </Box>

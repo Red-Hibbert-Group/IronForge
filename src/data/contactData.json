@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "title": "Get in Touch",
+    "subtitle": "Connect with our OneStream implementation experts"
+  },
+  "contactInfo": [
+    {
+      "icon": "Email",
+      "title": "Email",
+      "content": "contact@onestream-solutions.com"
+    },
+    {
+      "icon": "Phone",
+      "title": "Phone",
+      "content": "+1 (555) 123-4567"
+    },
+    {
+      "icon": "LocationOn",
+      "title": "Location",
+      "content": "123 Business Avenue, Tech Hub, NY 10001"
+    }
+  ],
+  "socialLinks": [
+    { 
+      "icon": "LinkedIn", 
+      "color": "#0077b5", 
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/company/ironforge"
+    },
+    { 
+      "icon": "Twitter", 
+      "color": "#1da1f2", 
+      "label": "Twitter",
+      "url": "https://twitter.com/ironforge"
+    },
+    { 
+      "icon": "Facebook", 
+      "color": "#1877f2", 
+      "label": "Facebook",
+      "url": "https://facebook.com/ironforge"
+    }
+  ],
+  "form": {
+    "title": "Contact Information",
+    "fields": [
+      {
+        "name": "firstName",
+        "label": "First Name",
+        "type": "text",
+        "required": true,
+        "gridSize": 6
+      },
+      {
+        "name": "lastName",
+        "label": "Last Name",
+        "type": "text",
+        "required": true,
+        "gridSize": 6
+      },
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "required": true,
+        "gridSize": 12
+      },
+      {
+        "name": "message",
+        "label": "Message",
+        "type": "textarea",
+        "required": true,
+        "gridSize": 12,
+        "rows": 4
+      }
+    ],
+    "submitButton": "Send Message"
+  },
+  "socialSection": {
+    "title": "Follow Us"
+  }
+} 

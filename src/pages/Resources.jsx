@@ -13,83 +13,39 @@ import Navbar from '../components/Navbar';
 import DynamicFooter from '../components/home/DynamicFooter';
 import { motion } from 'framer-motion';
 
+// Import data
+import resourcesData from '../data/resourcesData.json';
+
+// Icon mapping for dynamic icon rendering
+const iconMap = {
+  Assignment: Assignment,
+  Book: Book,
+  VideoLibrary: VideoLibrary,
+  Forum: Forum,
+  School: School,
+  CloudDownload: CloudDownload,
+};
+
 const Resources = () => {
   const theme = useTheme();
   
-  const resources = [
-    {
-      title: 'OneStream Documentation',
-      description: 'Comprehensive guides and technical documentation for OneStream XF platform',
-      icon: Assignment,
-      color: theme.palette.primary.main,
-      items: [
-        'Implementation Guides',
-        'Technical Specifications',
-        'Best Practices',
-        'API Documentation'
-      ]
-    },
-    {
-      title: 'Whitepapers',
-      description: 'In-depth research and analysis on financial consolidation and reporting',
-      icon: Book,
-      color: theme.palette.accent.success,
-      items: [
-        'Financial Close Optimization',
-        'Planning & Forecasting',
-        'Data Integration Strategies',
-        'Performance Management'
-      ]
-    },
-    {
-      title: 'Video Tutorials',
-      description: 'Step-by-step video guides for OneStream implementation and usage',
-      icon: VideoLibrary,
-      color: theme.palette.secondary.main,
-      items: [
-        'Platform Overview',
-        'Configuration Tutorials',
-        'User Training Videos',
-        'Advanced Features'
-      ]
-    },
-    {
-      title: 'Community Forum',
-      description: 'Connect with other OneStream users and share knowledge',
-      icon: Forum,
-      color: theme.palette.accent.warning,
-      items: [
-        'Q&A Discussions',
-        'Best Practices Sharing',
-        'Technical Support',
-        'User Groups'
-      ]
-    },
-    {
-      title: 'Training Programs',
-      description: 'Professional certification and training courses',
-      icon: School,
-      color: theme.palette.secondary.dark,
-      items: [
-        'Administrator Certification',
-        'User Training',
-        'Developer Courses',
-        'Advanced Analytics'
-      ]
-    },
-    {
-      title: 'Downloads',
-      description: 'Software, templates, and tools for OneStream implementation',
-      icon: CloudDownload,
-      color: theme.palette.primary.dark,
-      items: [
-        'Software Downloads',
-        'Excel Templates',
-        'Configuration Tools',
-        'Sample Applications'
-      ]
-    }
-  ];
+  // Map JSON resources to include theme colors and icons
+  const resources = resourcesData.resources.map((resource, index) => {
+    const colors = [
+      theme.palette.primary.main,
+      theme.palette.accent.success,
+      theme.palette.secondary.main,
+      theme.palette.accent.warning,
+      theme.palette.secondary.dark,
+      theme.palette.primary.dark
+    ];
+    
+    return {
+      ...resource,
+      icon: iconMap[resource.icon],
+      color: colors[index] || theme.palette.primary.main
+    };
+  });
 
   return (
     <>
@@ -122,7 +78,7 @@ const Resources = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              Resources & Learning
+              {resourcesData.hero.title}
             </Typography>
             <Typography
               variant="h5"
@@ -135,7 +91,7 @@ const Resources = () => {
                 lineHeight: 1.6
               }}
             >
-              Access comprehensive resources, documentation, and training materials for OneStream XF
+              {resourcesData.hero.subtitle}
             </Typography>
           </motion.div>
 
@@ -289,7 +245,7 @@ const Resources = () => {
                   mb: 3
                 }}
               >
-                Need Additional Support?
+                {resourcesData.supportSection.title}
               </Typography>
               <Typography
                 variant="body1"
@@ -302,31 +258,23 @@ const Resources = () => {
                   lineHeight: 1.6
                 }}
               >
-                Our team of certified OneStream professionals is ready to provide personalized support and guidance for your specific requirements.
+                {resourcesData.supportSection.description}
               </Typography>
               <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Button
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    px: 4,
-                    py: 1.5,
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  Contact Support
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  sx={{
-                    px: 4,
-                    py: 1.5,
-                    fontSize: '1.1rem'
-                  }}
-                >
-                  Schedule Training
-                </Button>
+                {resourcesData.supportSection.buttons.map((button, index) => (
+                  <Button
+                    key={index}
+                    variant={button.variant}
+                    size="large"
+                    sx={{
+                      px: 4,
+                      py: 1.5,
+                      fontSize: '1.1rem'
+                    }}
+                  >
+                    {button.text}
+                  </Button>
+                ))}
               </Box>
             </Box>
           </motion.div>

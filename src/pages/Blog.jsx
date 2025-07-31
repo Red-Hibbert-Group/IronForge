@@ -1,8 +1,23 @@
+import React from 'react';
 import { Box, Container, Typography, Paper, Chip, Divider, Button, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { ArrowBack, CalendarToday, Person, Category, TrendingUp, Build, Psychology } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+
+// Import data
+import blogData from '../data/blogData.json';
+
+// Icon mapping for dynamic icon rendering
+const iconMap = {
+  ArrowBack: ArrowBack,
+  TrendingUp: TrendingUp,
+  CalendarToday: CalendarToday,
+  Person: Person,
+  Category: Category,
+  Build: Build,
+  Psychology: Psychology,
+};
 
 const Blog = () => {
   const theme = useTheme();
@@ -41,7 +56,7 @@ const Blog = () => {
                   }
                 }}
               >
-                Back to Home
+                {blogData.backButton.text}
               </Button>
             </Box>
 
@@ -67,7 +82,7 @@ const Blog = () => {
                   lineHeight: 1.2
                 }}
               >
-                Latest Insights & Updates
+                {blogData.header.title}
               </Typography>
               <Typography
                 variant="h6"
@@ -77,33 +92,29 @@ const Blog = () => {
                   lineHeight: 1.6
                 }}
               >
-                Stay informed about OneStream implementation best practices, industry trends, and expert insights
+                {blogData.header.subtitle}
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                <Chip 
-                  label="Implementation" 
-                  sx={{ 
-                    background: `${theme.palette.primary.main}15`,
-                    color: theme.palette.primary.main,
-                    fontWeight: 500
-                  }} 
-                />
-                <Chip 
-                  label="Best Practices" 
-                  sx={{ 
-                    background: `${theme.palette.accent.success}15`,
-                    color: theme.palette.accent.success,
-                    fontWeight: 500
-                  }} 
-                />
-                <Chip 
-                  label="Industry Trends" 
-                  sx={{ 
-                    background: `${theme.palette.secondary.main}15`,
-                    color: theme.palette.secondary.main,
-                    fontWeight: 500
-                  }} 
-                />
+                {blogData.header.tags.map((tag, index) => {
+                  const colors = {
+                    primary: theme.palette.primary.main,
+                    success: theme.palette.accent.success,
+                    secondary: theme.palette.secondary.main
+                  };
+                  const color = colors[tag.color] || theme.palette.primary.main;
+                  
+                  return (
+                    <Chip 
+                      key={index}
+                      label={tag.label} 
+                      sx={{ 
+                        background: `${color}15`,
+                        color: color,
+                        fontWeight: 500
+                      }} 
+                    />
+                  );
+                })}
               </Box>
             </Paper>
 
@@ -148,7 +159,9 @@ const Blog = () => {
                       color: 'white'
                     }}
                   >
-                    <TrendingUp sx={{ fontSize: 24 }} />
+                    {iconMap[blogData.featuredArticle.icon] && 
+                      React.createElement(iconMap[blogData.featuredArticle.icon], { sx: { fontSize: 24 } })
+                    }
                   </Box>
                   <Box>
                     <Typography variant="overline" sx={{ 
@@ -159,7 +172,7 @@ const Blog = () => {
                       FEATURED ARTICLE
                     </Typography>
                     <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
-                      Published on January 15, 2024
+                      Published on {blogData.featuredArticle.publishDate}
                     </Typography>
                   </Box>
                 </Box>
@@ -174,7 +187,7 @@ const Blog = () => {
                     lineHeight: 1.3
                   }}
                 >
-                  Accelerating Financial Close: 5 Key Strategies for OneStream Implementation
+                  {blogData.featuredArticle.title}
                 </Typography>
                 
                 <Typography
@@ -186,37 +199,32 @@ const Blog = () => {
                     fontSize: '1.1rem'
                   }}
                 >
-                  Discover proven methodologies and best practices that leading organizations use to reduce their financial close cycle time by up to 60% through strategic OneStream XF implementation. Learn from real-world case studies and expert insights.
+                  {blogData.featuredArticle.excerpt}
                 </Typography>
 
                 <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap' }}>
-                  <Chip 
-                    icon={<Category />}
-                    label="Implementation" 
-                    variant="outlined"
-                    sx={{ 
-                      borderColor: theme.palette.primary.main,
-                      color: theme.palette.primary.main
-                    }} 
-                  />
-                  <Chip 
-                    icon={<Person />}
-                    label="Expert Insights" 
-                    variant="outlined"
-                    sx={{ 
-                      borderColor: theme.palette.accent.success,
-                      color: theme.palette.accent.success
-                    }} 
-                  />
-                  <Chip 
-                    icon={<CalendarToday />}
-                    label="15 min read" 
-                    variant="outlined"
-                    sx={{ 
-                      borderColor: theme.palette.text.secondary,
-                      color: theme.palette.text.secondary
-                    }} 
-                  />
+                  {blogData.featuredArticle.tags.map((tag, index) => {
+                    const IconComponent = iconMap[tag.icon];
+                    const colors = [
+                      theme.palette.primary.main,
+                      theme.palette.accent.success,
+                      theme.palette.text.secondary
+                    ];
+                    const color = colors[index] || theme.palette.primary.main;
+                    
+                    return (
+                      <Chip 
+                        key={index}
+                        icon={IconComponent && <IconComponent />}
+                        label={tag.label} 
+                        variant="outlined"
+                        sx={{ 
+                          borderColor: color,
+                          color: color
+                        }} 
+                      />
+                    );
+                  })}
                 </Box>
 
                 <Button
@@ -228,7 +236,7 @@ const Blog = () => {
                     fontWeight: 600
                   }}
                 >
-                  Read Full Article
+                  {blogData.featuredArticle.buttonText}
                 </Button>
               </Paper>
             </motion.div>
@@ -243,38 +251,19 @@ const Blog = () => {
                 fontSize: { xs: '1.5rem', md: '2rem' }
               }}
             >
-              Recent Articles
+              {blogData.recentArticles.title}
             </Typography>
 
-            {[
-              {
-                title: "OneStream Data Integration Best Practices",
-                excerpt: "Learn how to seamlessly integrate data from multiple sources into your OneStream environment with these proven strategies and techniques.",
-                date: "January 10, 2024",
-                readTime: "8 min read",
-                category: "Integration",
-                icon: Build,
-                color: theme.palette.accent.success
-              },
-              {
-                title: "Advanced Financial Reporting with OneStream",
-                excerpt: "Explore advanced reporting capabilities and learn how to create dynamic, interactive financial reports that drive business insights.",
-                date: "January 5, 2024",
-                readTime: "12 min read",
-                category: "Reporting",
-                icon: TrendingUp,
-                color: theme.palette.secondary.main
-              },
-              {
-                title: "OneStream Security Framework Implementation",
-                excerpt: "Comprehensive guide to implementing robust security frameworks and access controls in your OneStream deployment.",
-                date: "December 28, 2023",
-                readTime: "10 min read",
-                category: "Security",
-                icon: Psychology,
-                color: theme.palette.accent.warning
-              }
-            ].map((article, index) => (
+            {blogData.recentArticles.articles.map((article, index) => {
+              const IconComponent = iconMap[article.icon];
+              const colors = [
+                theme.palette.accent.success,
+                theme.palette.secondary.main,
+                theme.palette.accent.warning
+              ];
+              const color = colors[index] || theme.palette.primary.main;
+              
+              return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -317,7 +306,7 @@ const Blog = () => {
                         flexShrink: 0
                       }}
                     >
-                      <article.icon sx={{ fontSize: 28, color: article.color }} />
+                      {IconComponent && <IconComponent sx={{ fontSize: 28, color: color }} />}
                     </Box>
                     
                     <Box sx={{ flex: 1 }}>
@@ -326,8 +315,8 @@ const Blog = () => {
                           label={article.category}
                           size="small"
                           sx={{ 
-                            background: `${article.color}15`,
-                            color: article.color,
+                            background: `${color}15`,
+                            color: color,
                             fontWeight: 500,
                             fontSize: '0.75rem'
                           }} 
@@ -363,7 +352,8 @@ const Blog = () => {
                   </Box>
                 </Paper>
               </motion.div>
-            ))}
+              );
+            })}
 
             {/* Newsletter Signup */}
             <motion.div
@@ -391,7 +381,7 @@ const Blog = () => {
                     mb: 2
                   }}
                 >
-                  Stay Updated
+                  {blogData.newsletter.title}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -403,7 +393,7 @@ const Blog = () => {
                     lineHeight: 1.6
                   }}
                 >
-                  Subscribe to our newsletter for the latest OneStream insights, implementation tips, and industry best practices delivered to your inbox.
+                  {blogData.newsletter.description}
                 </Typography>
                 <Button
                   variant="contained"
@@ -415,7 +405,7 @@ const Blog = () => {
                     fontWeight: 600
                   }}
                 >
-                  Subscribe Now
+                  {blogData.newsletter.buttonText}
                 </Button>
               </Paper>
             </motion.div>

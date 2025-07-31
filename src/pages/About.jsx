@@ -16,6 +16,23 @@ import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 import DataUsageIcon from '@mui/icons-material/DataUsage';
 
+// Import data
+import aboutData from '../data/aboutData.json';
+
+// Icon mapping for dynamic icon rendering
+const iconMap = {
+  Timeline: TimelineIcon,
+  Security: SecurityIcon,
+  Speed: SpeedIcon,
+  Groups: GroupsIcon,
+  BarChart: BarChartIcon,
+  AccountBalance: AccountBalanceIcon,
+  Assessment: AssessmentIcon,
+  AutoGraph: AutoGraphIcon,
+  IntegrationInstructions: IntegrationInstructionsIcon,
+  DataUsage: DataUsageIcon,
+};
+
 const About = () => {
   const theme = useTheme();     
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -250,7 +267,7 @@ const About = () => {
                         WebkitTextFillColor: 'transparent',
                       }}
                     >
-                      About IronForge
+                      {aboutData.hero.subtitle}
                     </Typography>
                   </motion.div>
                   
@@ -268,7 +285,7 @@ const About = () => {
                         letterSpacing: '-0.02em'
                       }}
                     >
-                      Redefining Financial Excellence
+                      {aboutData.hero.title}
                     </Typography>
                   </motion.div>
                   
@@ -284,7 +301,7 @@ const About = () => {
                         mb: 4
                       }}
                     >
-                      Your Premier Partner in OneStream Implementation
+                      {aboutData.hero.description}
                     </Typography>
                   </motion.div>
 
@@ -300,7 +317,7 @@ const About = () => {
                           textTransform: 'none',
                         }}
                       >
-                        Get Started
+                        {aboutData.hero.primaryButton}
                       </Button>
                       <Button
                         variant="outlined"
@@ -312,7 +329,7 @@ const About = () => {
                           textTransform: 'none',
                         }}
                       >
-                        Learn More
+                        {aboutData.hero.secondaryButton}
                       </Button>
                     </Box>
                   </motion.div>
@@ -387,7 +404,7 @@ const About = () => {
         {/* Stats Section with Enhanced Design */}
         <Container maxWidth="lg" sx={{ py: 12, position: 'relative', zIndex: 2 }}>
           <Grid container spacing={4}>
-            {stats.map((stat, index) => (
+            {aboutData.stats.map((stat, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <motion.div
                   initial="hidden"
@@ -497,7 +514,7 @@ const About = () => {
                     letterSpacing: '-0.02em'
                   }}
                 >
-                  OneStream Implementation Solutions
+                  {aboutData.oneStreamSolutions.title}
                 </Typography>
               </motion.div>
               
@@ -515,157 +532,162 @@ const About = () => {
                     lineHeight: 1.6,
                   }}
                 >
-                  Comprehensive suite of OneStream XF platform implementations tailored to your business needs
+                  {aboutData.oneStreamSolutions.subtitle}
                 </Typography>
               </motion.div>
             </Box>
             
             <Grid container spacing={4}>
-              {oneStreamSolutions.map((solution, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          duration: 0.6,
-                          ease: [0.6, -0.05, 0.01, 0.99],
-                          delay: index * 0.1
-                        }
-                      }
-                    }}
-                  >
-                    <Card
-                      sx={{
-                        height: '100%',
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        backdropFilter: 'blur(20px)',
-                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                        border: '1px solid rgba(255, 255, 255, 0.3)',
-                        borderRadius: '24px',
-                        overflow: 'hidden',
-                        boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
-                        position: 'relative',
-                        '&:hover': {
-                          transform: 'translateY(-10px)',
-                          boxShadow: `0 20px 40px ${theme.palette.primary.main}20`,
-                          border: `1px solid ${theme.palette.primary.main}30`,
-                          '& .solution-icon': {
-                            transform: 'scale(1.1) rotate(5deg)',
-                            boxShadow: `0 12px 24px ${theme.palette.primary.main}40`,
-                          }
-                        },
-                        '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          height: '100%',
-                          background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
-                          opacity: 0,
-                          transition: 'opacity 0.4s ease',
-                        },
-                        '&:hover::before': {
+              {aboutData.oneStreamSolutions.solutions.map((solution, index) => {
+                const IconComponent = iconMap[solution.icon];
+                return (
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <motion.div
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.2 }}
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: {
                           opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.6,
+                            ease: [0.6, -0.05, 0.01, 0.99],
+                            delay: index * 0.1
+                          }
                         }
                       }}
                     >
-                      <CardContent sx={{ position: 'relative', p: 4 }}>
-                        <Box
-                          className="solution-icon"
-                          sx={{ 
-                            mb: 3,
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '70px',
-                            height: '70px',
-                            borderRadius: '20px',
-                            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                            boxShadow: `0 8px 20px ${theme.palette.primary.main}30`,
-                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                            transform: 'rotate(-5deg)',
-                          }}
-                        >
-                          {React.cloneElement(solution.icon, { 
-                            sx: { 
-                              fontSize: 35,
-                              color: 'white',
-                              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
-                            } 
-                          })}
-                        </Box>
-                        <Typography
-                          variant="h5"
-                          sx={{
-                            mb: 2,
-                            fontWeight: 700,
-                            color: theme.palette.text.primary,
-                            fontSize: { xs: '1.3rem', md: '1.5rem' },
-                            letterSpacing: '-0.01em'
-                          }}
-                        >
-                          {solution.title}
-                        </Typography>
-                        <Typography 
-                          variant="body1" 
-                          sx={{ 
-                            mb: 3,
-                            color: theme.palette.text.secondary,
-                            fontSize: '1rem',
-                            lineHeight: 1.6
-                          }}
-                        >
-                          {solution.description}
-                        </Typography>
-                        <Box 
-                          component="ul" 
-                          sx={{ 
-                            pl: 0,
-                            m: 0,
-                            listStyle: 'none',
-                          }}
-                        >
-                          {solution.features.map((feature, idx) => (
-                            <Box
-                              component="li"
-                              key={idx}
-                              sx={{ 
-                                display: 'flex',
-                                alignItems: 'center',
-                                mb: 1.5,
-                                color: theme.palette.text.primary,
-                                fontSize: '0.95rem',
-                                '&:last-child': {
-                                  mb: 0
-                                }
-                              }}
-                            >
-                              <Box
-                                sx={{
-                                  width: '6px',
-                                  height: '6px',
-                                  borderRadius: '50%',
-                                  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                                  mr: 2,
-                                  flexShrink: 0,
-                                }}
+                      <Card
+                        sx={{
+                          height: '100%',
+                          background: 'rgba(255, 255, 255, 0.9)',
+                          backdropFilter: 'blur(20px)',
+                          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                          border: '1px solid rgba(255, 255, 255, 0.3)',
+                          borderRadius: '24px',
+                          overflow: 'hidden',
+                          boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
+                          position: 'relative',
+                          '&:hover': {
+                            transform: 'translateY(-10px)',
+                            boxShadow: `0 20px 40px ${theme.palette.primary.main}20`,
+                            border: `1px solid ${theme.palette.primary.main}30`,
+                            '& .solution-icon': {
+                              transform: 'scale(1.1) rotate(5deg)',
+                              boxShadow: `0 12px 24px ${theme.palette.primary.main}40`,
+                            }
+                          },
+                          '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            height: '100%',
+                            background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
+                            opacity: 0,
+                            transition: 'opacity 0.4s ease',
+                          },
+                          '&:hover::before': {
+                            opacity: 1,
+                          }
+                        }}
+                      >
+                        <CardContent sx={{ position: 'relative', p: 4 }}>
+                          <Box
+                            className="solution-icon"
+                            sx={{ 
+                              mb: 3,
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              width: '70px',
+                              height: '70px',
+                              borderRadius: '20px',
+                              background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                              boxShadow: `0 8px 20px ${theme.palette.primary.main}30`,
+                              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                              transform: 'rotate(-5deg)',
+                            }}
+                          >
+                            {IconComponent && (
+                              <IconComponent 
+                                sx={{ 
+                                  fontSize: 35,
+                                  color: 'white',
+                                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
+                                }} 
                               />
-                              {feature}
-                            </Box>
-                          ))}
-                        </Box>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </Grid>
-              ))}
+                            )}
+                          </Box>
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              mb: 2,
+                              fontWeight: 700,
+                              color: theme.palette.text.primary,
+                              fontSize: { xs: '1.3rem', md: '1.5rem' },
+                              letterSpacing: '-0.01em'
+                            }}
+                          >
+                            {solution.title}
+                          </Typography>
+                          <Typography 
+                            variant="body1" 
+                            sx={{ 
+                              mb: 3,
+                              color: theme.palette.text.secondary,
+                              fontSize: '1rem',
+                              lineHeight: 1.6
+                            }}
+                          >
+                            {solution.description}
+                          </Typography>
+                          <Box 
+                            component="ul" 
+                            sx={{ 
+                              pl: 0,
+                              m: 0,
+                              listStyle: 'none',
+                            }}
+                          >
+                            {solution.features.map((feature, idx) => (
+                              <Box
+                                component="li"
+                                key={idx}
+                                sx={{ 
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  mb: 1.5,
+                                  color: theme.palette.text.primary,
+                                  fontSize: '0.95rem',
+                                  '&:last-child': {
+                                    mb: 0
+                                  }
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    width: '6px',
+                                    height: '6px',
+                                    borderRadius: '50%',
+                                    background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                                    mr: 2,
+                                    flexShrink: 0,
+                                  }}
+                                />
+                                {feature}
+                              </Box>
+                            ))}
+                          </Box>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </Grid>
+                );
+              })}
             </Grid>
           </Container>
         </Box>
@@ -694,7 +716,7 @@ const About = () => {
                   mb: 2
                 }}
               >
-                Our Core Strengths
+                {aboutData.expertise.title}
               </Typography>
               <Typography
                 variant="h5"
@@ -709,120 +731,125 @@ const About = () => {
                   mb: 8
                 }}
               >
-                Empowering businesses with cutting-edge financial solutions and expertise
+                {aboutData.expertise.subtitle}
               </Typography>
             </motion.div>
           </Box>
           
           <Grid container spacing={4}>
-            {expertise.map((item, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.6,
-                        ease: [0.6, -0.05, 0.01, 0.99],
-                        delay: index * 0.1
-                      }
-                    }
-                  }}
-                >
-                  <Card
-                    sx={{
-                      height: '100%',
-                      background: 'rgba(255, 255, 255, 0.9)',
-                      backdropFilter: 'blur(20px)',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      borderRadius: '24px',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-                      overflow: 'hidden',
-                      position: 'relative',
-                      '&:hover': {
-                        transform: 'translateY(-10px)',
-                        boxShadow: `0 20px 40px ${theme.palette.primary.main}15`,
-                        border: `1px solid ${theme.palette.primary.main}30`,
-                        '& .strength-icon': {
-                          transform: 'scale(1.1) rotate(10deg)',
-                          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-                        }
-                      },
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: '100%',
-                        background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
-                        opacity: 0,
-                        transition: 'opacity 0.4s ease',
-                      },
-                      '&:hover::before': {
+            {aboutData.expertise.strengths.map((item, index) => {
+              const IconComponent = iconMap[item.icon];
+              return (
+                <Grid item xs={12} sm={6} md={3} key={index}>
+                  <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: {
                         opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.6,
+                          ease: [0.6, -0.05, 0.01, 0.99],
+                          delay: index * 0.1
+                        }
                       }
                     }}
                   >
-                    <CardContent sx={{ position: 'relative', zIndex: 1, p: 4 }}>
-                      <Box 
-                        className="strength-icon"
-                        sx={{ 
-                          mb: 3,
-                          width: '70px',
-                          height: '70px',
-                          borderRadius: '20px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          background: `rgba(${theme.palette.primary.main}40, 0.1)`,
-                          backdropFilter: 'blur(5px)',
-                          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.05)',
-                          transform: 'rotate(-5deg)',
-                        }}
-                      >
-                        {React.cloneElement(item.icon, { 
-                          sx: { 
-                            fontSize: 35,
-                            color: theme.palette.primary.main,
-                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
-                          } 
-                        })}
-                      </Box>
-                      <Typography
-                        variant="h5"
-                        sx={{
-                          mb: 2,
-                          fontWeight: 700,
-                          color: theme.palette.text.primary,
-                          fontSize: { xs: '1.3rem', md: '1.5rem' },
-                          letterSpacing: '-0.01em'
-                        }}
-                      >
-                        {item.title}
-                      </Typography>
-                      <Typography 
-                        variant="body1" 
-                        sx={{ 
-                          color: theme.palette.text.secondary,
-                          fontSize: '1rem',
-                          lineHeight: 1.6
-                        }}
-                      >
-                        {item.description}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
+                    <Card
+                      sx={{
+                        height: '100%',
+                        background: 'rgba(255, 255, 255, 0.9)',
+                        backdropFilter: 'blur(20px)',
+                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                        borderRadius: '24px',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                        overflow: 'hidden',
+                        position: 'relative',
+                        '&:hover': {
+                          transform: 'translateY(-10px)',
+                          boxShadow: `0 20px 40px ${theme.palette.primary.main}15`,
+                          border: `1px solid ${theme.palette.primary.main}30`,
+                          '& .strength-icon': {
+                            transform: 'scale(1.1) rotate(10deg)',
+                            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                          }
+                        },
+                        '&::before': {
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: '100%',
+                          background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
+                          opacity: 0,
+                          transition: 'opacity 0.4s ease',
+                        },
+                        '&:hover::before': {
+                          opacity: 1,
+                        }
+                      }}
+                    >
+                      <CardContent sx={{ position: 'relative', zIndex: 1, p: 4 }}>
+                        <Box 
+                          className="strength-icon"
+                          sx={{ 
+                            mb: 3,
+                            width: '70px',
+                            height: '70px',
+                            borderRadius: '20px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: `rgba(${theme.palette.primary.main}40, 0.1)`,
+                            backdropFilter: 'blur(5px)',
+                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                            boxShadow: '0 10px 20px rgba(0, 0, 0, 0.05)',
+                            transform: 'rotate(-5deg)',
+                          }}
+                        >
+                          {IconComponent && (
+                            <IconComponent 
+                              sx={{ 
+                                fontSize: 35,
+                                color: theme.palette.primary.main,
+                                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                              }} 
+                            />
+                          )}
+                        </Box>
+                        <Typography
+                          variant="h5"
+                          sx={{
+                            mb: 2,
+                            fontWeight: 700,
+                            color: theme.palette.text.primary,
+                            fontSize: { xs: '1.3rem', md: '1.5rem' },
+                            letterSpacing: '-0.01em'
+                          }}
+                        >
+                          {item.title}
+                        </Typography>
+                        <Typography 
+                          variant="body1" 
+                          sx={{ 
+                            color: theme.palette.text.secondary,
+                            fontSize: '1rem',
+                            lineHeight: 1.6
+                          }}
+                        >
+                          {item.description}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </Grid>
+              );
+            })}
           </Grid>
         </Container>
 
@@ -861,7 +888,7 @@ const About = () => {
                     }
                   }}
                 >
-                  Why <span>Organizations</span> Choose Us
+                  {aboutData.whyChooseUs.title}
                 </Typography>
                 <Typography
                   variant="h5"
@@ -876,13 +903,13 @@ const About = () => {
                     mb: 8
                   }}
                 >
-                  Delivering excellence through innovation, expertise, and unwavering commitment to client success
+                  {aboutData.whyChooseUs.subtitle}
                 </Typography>
               </motion.div>
             </Box>
             
             <Grid container spacing={4}>
-              {whyChooseUs.map((item, index) => (
+              {aboutData.whyChooseUs.reasons.map((item, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index}>
                   <motion.div
                     initial="hidden"
@@ -985,123 +1012,5 @@ const About = () => {
     </>
   );
 };
-
-const stats = [
-  { value: '500+', label: 'Successful Implementations' },
-  { value: '98%', label: 'Client Satisfaction Rate' },
-  { value: '15+', label: 'Years of Excellence' },
-  { value: '24/7', label: 'Global Support' }
-];
-
-const expertise = [
-  {
-    icon: <TimelineIcon sx={{ fontSize: 40, color: 'white' }} />,
-    title: 'Financial Analytics',
-    description: 'Advanced analytics solutions that transform raw data into actionable insights.'
-  },
-  {
-    icon: <SecurityIcon sx={{ fontSize: 40, color: 'white' }} />,
-    title: 'Secure Integration',
-    description: 'Enterprise-grade security with seamless system integration capabilities.'
-  },
-  {
-    icon: <SpeedIcon sx={{ fontSize: 40, color: 'white' }} />,
-    title: 'Performance Optimization',
-    description: 'Cutting-edge tools and methodologies for maximum system performance.'
-  },
-  {
-    icon: <GroupsIcon sx={{ fontSize: 40, color: 'white' }} />,
-    title: 'Expert Consultation',
-    description: 'Strategic guidance from certified OneStream professionals.'
-  }
-];
-
-const whyChooseUs = [
-  {
-    title: "Industry-Leading Expertise",
-    description: "Ranked #1 in OneStream implementation with a team of elite certified professionals and the highest success rate in complex enterprise deployments."
-  },
-  {
-    title: "Innovation-Driven Solutions",
-    description: "Pioneering cutting-edge approaches that combine OneStream's capabilities with our proprietary methodologies for unprecedented business outcomes."
-  },
-  {
-    title: "Proven Enterprise Success",
-    description: "Trusted by Fortune 500 companies with a 100% implementation success rate and documented ROI improvement for every client engagement."
-  },
-  {
-    title: "Global Reach & Support",
-    description: "Operating across continents with localized expertise and 24/7 premium support infrastructure for seamless service delivery."
-  }
-];
-
-const oneStreamSolutions = [
-  {
-    icon: <BarChartIcon sx={{ fontSize: 35, color: 'white' }} />,
-    title: 'Corporate Performance Management (CPM)',
-    description: 'Unified CPM software that streamlines financial operations and enhances decision-making capabilities.',
-    features: [
-      'Financial Close & Consolidation',
-      'Planning, Budgeting & Forecasting',
-      'Financial Data Quality Management',
-      'Financial Reporting & Analysis'
-    ]
-  },
-  {
-    icon: <AccountBalanceIcon sx={{ fontSize: 35, color: 'white' }} />,
-    title: 'Financial Close & Consolidation',
-    description: 'Accelerate your financial close process with automated consolidation and reporting.',
-    features: [
-      'Automated Currency Conversion',
-      'Intercompany Eliminations',
-      'Complex Ownership Structures',
-      'Journal Entry Management'
-    ]
-  },
-  {
-    icon: <AssessmentIcon sx={{ fontSize: 35, color: 'white' }} />,
-    title: 'Planning & Forecasting',
-    description: 'Dynamic planning and forecasting solutions for better business insights.',
-    features: [
-      'Driver-Based Planning',
-      'Rolling Forecasts',
-      'Scenario Analysis',
-      'Predictive Analytics'
-    ]
-  },
-  {
-    icon: <AutoGraphIcon sx={{ fontSize: 35, color: 'white' }} />,
-    title: 'Financial Data Analytics',
-    description: 'Transform financial data into actionable insights with advanced analytics.',
-    features: [
-      'Custom Dashboards',
-      'KPI Monitoring',
-      'Trend Analysis',
-      'Performance Metrics'
-    ]
-  },
-  {
-    icon: <IntegrationInstructionsIcon sx={{ fontSize: 35, color: 'white' }} />,
-    title: 'System Integration',
-    description: 'Seamless integration with existing enterprise systems and data sources.',
-    features: [
-      'ERP Integration',
-      'Data Warehouse Connection',
-      'API Development',
-      'Custom Connectors'
-    ]
-  },
-  {
-    icon: <DataUsageIcon sx={{ fontSize: 35, color: 'white' }} />,
-    title: 'Data Quality Management',
-    description: 'Ensure data accuracy and reliability across your financial processes.',
-    features: [
-      'Data Validation Rules',
-      'Audit Trail',
-      'Data Governance',
-      'Quality Controls'
-    ]
-  }
-];
 
 export default About; 
