@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import Implementation from './pages/Implementation';
 import Resources from './pages/Resources';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import { theme } from './theme/theme';
 
 // ScrollToTop component to handle scroll restoration
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/implementation" element={<Implementation />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
       </Router>
     </ThemeProvider>

@@ -1,0 +1,331 @@
+{
+  "onestream-custom-dev-mvp-to-millions": {
+    "title": "OneStream Custom Dev: From MVP to Millions",
+    "author": "IRON FORGE",
+    "publishDate": "January 20, 2024",
+    "readTime": "20 min read",
+    "category": "Custom Development",
+    "icon": "Code",
+    "tags": [
+      {
+        "label": "Custom Development",
+        "icon": "Category"
+      },
+      {
+        "label": "By IRON FORGE",
+        "icon": "Person"
+      },
+      {
+        "label": "20 min read",
+        "icon": "CalendarToday"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "In the world of enterprise finance, OneStream has quickly become the go-to platform for managing planning, reporting, and consolidation. But what truly unlocks OneStream's full potential isn't just using its out-of-the-box features — it's building on top of it. That's where custom development comes in."
+      },
+      {
+        "type": "paragraph",
+        "text": "At IRON FORGE, we specialize in helping companies go from a Minimum Viable Product (MVP) — a small proof-of-concept custom app inside OneStream — to a fully scaled solution that drives efficiency, insight, and in some cases, millions in business value."
+      },
+      {
+        "type": "section",
+        "title": "🧱 Starting Small: The MVP Phase",
+        "icon": "EmojiObjects",
+        "color": "success",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "One of our recent clients — a global logistics company — approached us with a basic need:"
+          },
+          {
+            "type": "quote",
+            "text": "Can you help us create a simple dashboard to track regional spending in real-time?"
+          },
+          {
+            "type": "paragraph",
+            "text": "They were tired of waiting for end-of-month reports and manually combining Excel sheets. We built them an MVP inside OneStream — a lightweight dashboard that pulled data directly from their source systems and visualized regional expenses with basic filtering."
+          },
+          {
+            "type": "paragraph",
+            "text": "The MVP went live in just three weeks. It wasn't fancy, but it worked. And that was the beginning."
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "title": "📈 Scaling into a Full System",
+        "icon": "TrendingUp",
+        "color": "warning",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "After using the MVP for two months, the client came back with bigger ideas:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Could we add budget vs. actual comparisons?",
+              "What about drill-down views for each cost center?",
+              "Could it connect to their SAP system to pull HR data too?"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "That's where IRON FORGE's OneStream custom dev expertise kicked in. We architected a modular, scalable extension to their existing solution:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Designed a custom calculation engine for variance tracking",
+              "Built a workflow for monthly budget submissions by regional teams",
+              "Integrated with SAP for real-time headcount tracking"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Over six months, what started as a dashboard MVP turned into a comprehensive financial cockpit, saving the company hundreds of analyst hours each month and improving their forecasting accuracy by over 30%."
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "title": "🛠️ Why Custom Dev Matters",
+        "icon": "Build",
+        "color": "secondary",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "OneStream is powerful, but every company is unique. Standard features only go so far. Our team at IRON FORGE dives deep into the OneStream extensibility framework — using Business Rules, Extensible Documents, and the XF Marketplace — to create custom solutions that match your exact needs."
+          },
+          {
+            "type": "paragraph",
+            "text": "Whether it's building a tax provisioning app, automating financial workflows, or integrating third-party systems, we build with a long-term view: scalable, maintainable, and fully aligned with OneStream best practices."
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "title": "📣 Let's Build Your Success Story",
+        "icon": "Rocket",
+        "color": "success",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Whether you're starting with a single dashboard or dreaming of a full finance transformation, custom development in OneStream is the way forward."
+          },
+          {
+            "type": "paragraph",
+            "text": "Start small. Learn fast. Scale confidently. That's how IRON FORGE takes you from MVP… to millions."
+          },
+          {
+            "type": "paragraph",
+            "text": "Reach out to our team today to see how we can help.",
+            "style": "bold"
+          }
+        ]
+      }
+    ]
+  },
+  "accelerating-financial-close": {
+    "title": "Accelerating Financial Close: 5 Key Strategies for OneStream Implementation",
+    "author": "IRON FORGE",
+    "publishDate": "January 15, 2024",
+    "readTime": "15 min read",
+    "category": "Implementation",
+    "icon": "TrendingUp",
+    "tags": [
+      {
+        "label": "Implementation",
+        "icon": "Category"
+      },
+      {
+        "label": "Expert Insights",
+        "icon": "Person"
+      },
+      {
+        "label": "15 min read",
+        "icon": "CalendarToday"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "This is a placeholder for the Accelerating Financial Close article. The content would be structured similarly to the OneStream Custom Dev article above."
+      }
+    ]
+  },
+  "onestream-data-integration-best-practices": {
+    "title": "OneStream Data Integration Best Practices",
+    "author": "IRON FORGE",
+    "publishDate": "January 10, 2024",
+    "readTime": "8 min read",
+    "category": "Integration",
+    "icon": "Build",
+    "tags": [
+      {
+        "label": "Integration",
+        "icon": "Category"
+      },
+      {
+        "label": "Best Practices",
+        "icon": "Person"
+      },
+      {
+        "label": "8 min read",
+        "icon": "CalendarToday"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Data integration is the backbone of any successful OneStream implementation. Learn how to seamlessly integrate data from multiple sources into your OneStream environment with these proven strategies and techniques."
+      },
+      {
+        "type": "section",
+        "title": "🔗 Understanding Data Sources",
+        "icon": "Build",
+        "color": "primary",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Before diving into integration strategies, it's crucial to understand the various data sources that typically feed into OneStream environments."
+          },
+          {
+            "type": "list",
+            "items": [
+              "ERP systems (SAP, Oracle, NetSuite)",
+              "General Ledger systems",
+              "Subsidiary ledgers and sub-systems",
+              "External data sources and APIs",
+              "Manual data entry and adjustments"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "section",
+        "title": "⚙️ Integration Best Practices",
+        "icon": "TrendingUp",
+        "color": "success",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Follow these proven practices to ensure smooth and reliable data integration."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Implement data validation and cleansing procedures",
+              "Use staging tables for data transformation",
+              "Establish clear data mapping documentation",
+              "Set up automated error handling and notifications",
+              "Regular testing and validation of integration processes"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "advanced-financial-reporting-onestream": {
+    "title": "Advanced Financial Reporting with OneStream",
+    "author": "IRON FORGE",
+    "publishDate": "January 5, 2024",
+    "readTime": "12 min read",
+    "category": "Reporting",
+    "icon": "TrendingUp",
+    "tags": [
+      {
+        "label": "Reporting",
+        "icon": "Category"
+      },
+      {
+        "label": "Advanced Features",
+        "icon": "Person"
+      },
+      {
+        "label": "12 min read",
+        "icon": "CalendarToday"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Explore advanced reporting capabilities and learn how to create dynamic, interactive financial reports that drive business insights and support strategic decision-making."
+      },
+      {
+        "type": "section",
+        "title": "📊 Dynamic Report Design",
+        "icon": "TrendingUp",
+        "color": "primary",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "OneStream's advanced reporting features enable you to create sophisticated financial reports that adapt to your business needs."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Interactive dashboards with drill-down capabilities",
+              "Real-time data visualization and charts",
+              "Custom report templates and formatting",
+              "Multi-dimensional analysis and slicing",
+              "Automated report distribution and scheduling"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "onestream-security-framework-implementation": {
+    "title": "OneStream Security Framework Implementation",
+    "author": "IRON FORGE",
+    "publishDate": "December 28, 2023",
+    "readTime": "10 min read",
+    "category": "Security",
+    "icon": "Psychology",
+    "tags": [
+      {
+        "label": "Security",
+        "icon": "Category"
+      },
+      {
+        "label": "Framework",
+        "icon": "Person"
+      },
+      {
+        "label": "10 min read",
+        "icon": "CalendarToday"
+      }
+    ],
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Comprehensive guide to implementing robust security frameworks and access controls in your OneStream deployment to protect sensitive financial data and ensure compliance."
+      },
+      {
+        "type": "section",
+        "title": "🔒 Security Architecture",
+        "icon": "Psychology",
+        "color": "warning",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "A well-designed security framework is essential for protecting sensitive financial information and maintaining regulatory compliance."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Role-based access control (RBAC) implementation",
+              "Data encryption and secure transmission protocols",
+              "Audit trails and compliance monitoring",
+              "Multi-factor authentication integration",
+              "Regular security assessments and updates"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+} 

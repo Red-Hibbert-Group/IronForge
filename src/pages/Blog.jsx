@@ -228,6 +228,8 @@ const Blog = () => {
                 </Box>
 
                 <Button
+                  component={Link}
+                  to={`/blog/${blogData.featuredArticle.slug}`}
                   variant="contained"
                   sx={{
                     px: 4,
@@ -271,16 +273,21 @@ const Blog = () => {
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
               >
                 <Paper
+                  component={Link}
+                  to={`/blog/${article.slug}`}
                   elevation={0}
                   sx={{
                     p: 4,
                     mb: 3,
+                    height: '200px',
                     background: 'rgba(255, 255, 255, 0.9)',
                     backdropFilter: 'blur(10px)',
                     borderRadius: '16px',
                     border: '1px solid rgba(255, 255, 255, 0.3)',
                     transition: 'all 0.3s ease',
                     cursor: 'pointer',
+                    textDecoration: 'none',
+                    display: 'flex',
                     '&:hover': {
                       transform: 'translateY(-5px)',
                       boxShadow: `0 15px 35px ${article.color}15`,
@@ -291,7 +298,7 @@ const Blog = () => {
                     }
                   }}
                 >
-                  <Box sx={{ display: 'flex', gap: 3 }}>
+                  <Box sx={{ display: 'flex', gap: 3, width: '100%' }}>
                     <Box
                       className="article-icon"
                       sx={{
@@ -309,45 +316,52 @@ const Blog = () => {
                       {IconComponent && <IconComponent sx={{ fontSize: 28, color: color }} />}
                     </Box>
                     
-                    <Box sx={{ flex: 1 }}>
-                      <Box sx={{ display: 'flex', gap: 2, mb: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-                        <Chip 
-                          label={article.category}
-                          size="small"
-                          sx={{ 
-                            background: `${color}15`,
-                            color: color,
-                            fontWeight: 500,
-                            fontSize: '0.75rem'
-                          }} 
-                        />
-                        <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
-                          {article.date} • {article.readTime}
+                    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <Box>
+                        <Box sx={{ display: 'flex', gap: 2, mb: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+                          <Chip 
+                            label={article.category}
+                            size="small"
+                            sx={{ 
+                              background: `${color}15`,
+                              color: color,
+                              fontWeight: 500,
+                              fontSize: '0.75rem'
+                            }} 
+                          />
+                          <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
+                            {article.date} • {article.readTime}
+                          </Typography>
+                        </Box>
+                        
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontWeight: 600,
+                            color: theme.palette.text.primary,
+                            mb: 2,
+                            fontSize: '1.25rem',
+                            lineHeight: 1.4
+                          }}
+                        >
+                          {article.title}
+                        </Typography>
+                        
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: theme.palette.text.secondary,
+                            lineHeight: 1.6,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
+                          }}
+                        >
+                          {article.excerpt}
                         </Typography>
                       </Box>
-                      
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          fontWeight: 600,
-                          color: theme.palette.text.primary,
-                          mb: 2,
-                          fontSize: '1.25rem',
-                          lineHeight: 1.4
-                        }}
-                      >
-                        {article.title}
-                      </Typography>
-                      
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: theme.palette.text.secondary,
-                          lineHeight: 1.6
-                        }}
-                      >
-                        {article.excerpt}
-                      </Typography>
                     </Box>
                   </Box>
                 </Paper>

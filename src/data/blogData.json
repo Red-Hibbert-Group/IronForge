@@ -18,26 +18,27 @@
     ]
   },
   "featuredArticle": {
-    "title": "Accelerating Financial Close: 5 Key Strategies for OneStream Implementation",
-    "excerpt": "Discover proven methodologies and best practices that leading organizations use to reduce their financial close cycle time by up to 60% through strategic OneStream XF implementation. Learn from real-world case studies and expert insights.",
-    "publishDate": "January 15, 2024",
-    "readTime": "15 min read",
-    "icon": "TrendingUp",
+    "title": "OneStream Custom Dev: From MVP to Millions",
+    "excerpt": "Discover how IRON FORGE helps companies transform from simple MVP dashboards to comprehensive financial solutions that drive millions in business value through strategic OneStream custom development.",
+    "publishDate": "January 20, 2024",
+    "readTime": "20 min read",
+    "icon": "Code",
     "tags": [
       {
-        "label": "Implementation",
+        "label": "Custom Development",
         "icon": "Category"
       },
       {
-        "label": "Expert Insights",
+        "label": "By IRON FORGE",
         "icon": "Person"
       },
       {
-        "label": "15 min read",
+        "label": "20 min read",
         "icon": "CalendarToday"
       }
     ],
-    "buttonText": "Read Full Article"
+    "buttonText": "Read Full Article",
+    "slug": "onestream-custom-dev-mvp-to-millions"
   },
   "recentArticles": {
     "title": "Recent Articles",
@@ -48,7 +49,8 @@
         "date": "January 10, 2024",
         "readTime": "8 min read",
         "category": "Integration",
-        "icon": "Build"
+        "icon": "Build",
+        "slug": "onestream-data-integration-best-practices"
       },
       {
         "title": "Advanced Financial Reporting with OneStream",
@@ -56,7 +58,8 @@
         "date": "January 5, 2024",
         "readTime": "12 min read",
         "category": "Reporting",
-        "icon": "TrendingUp"
+        "icon": "TrendingUp",
+        "slug": "advanced-financial-reporting-onestream"
       },
       {
         "title": "OneStream Security Framework Implementation",
@@ -64,7 +67,8 @@
         "date": "December 28, 2023",
         "readTime": "10 min read",
         "category": "Security",
-        "icon": "Psychology"
+        "icon": "Psychology",
+        "slug": "onestream-security-framework-implementation"
       }
     ]
   },
