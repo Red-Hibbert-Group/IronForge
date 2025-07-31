@@ -777,7 +777,6 @@ const About = () => {
                           border: `1px solid ${theme.palette.primary.main}30`,
                           '& .strength-icon': {
                             transform: 'scale(1.1) rotate(10deg)',
-                            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                           }
                         },
                         '&::before': {

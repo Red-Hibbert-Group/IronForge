@@ -298,22 +298,23 @@ const ServicesOverview = () => {
           <Button
             component={Link}
             to="/services"
-            variant="outlined"
+            variant="contained"
             size="large"
             endIcon={<ChevronRight />}
             sx={{
-              borderColor: 'rgba(255, 255, 255, 0.3)',
+              background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
               color: 'white',
-              borderWidth: 2,
+              border: 'none',
               borderRadius: '50px',
               py: 1.5,
               px: 4,
               fontSize: '1rem',
               fontWeight: 600,
               textTransform: 'none',
+              boxShadow: '0 8px 25px rgba(82, 109, 254, 0.3)',
               '&:hover': {
-                borderColor: '#526DFE',
-                backgroundColor: 'rgba(82, 109, 254, 0.1)',
+                background: 'linear-gradient(135deg, #6281FF 0%, #9D75FF 100%)',
+                boxShadow: '0 12px 35px rgba(82, 109, 254, 0.4)',
                 transform: 'translateY(-5px)'
               },
               transition: 'all 0.3s ease'

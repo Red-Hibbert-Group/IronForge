@@ -319,24 +319,24 @@ const Services = () => {
                     
                     return (
                       <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Box
-                          sx={{
-                            width: 40,
-                            height: 40,
-                            borderRadius: '50%',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
+                    <Box
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                             background: `${color}10`,
                             border: `1px solid ${color}30`,
-                          }}
-                        >
+                      }}
+                    >
                           {IconComponent && <IconComponent sx={{ color: color, fontSize: 20 }} />}
-                        </Box>
+                    </Box>
                         <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
                           {benefit.title}
-                        </Typography>
-                      </Box>
+                    </Typography>
+                  </Box>
                     );
                   })}
                 </Box>
