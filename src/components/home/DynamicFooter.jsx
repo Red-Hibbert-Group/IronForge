@@ -47,57 +47,80 @@ const DynamicFooter = () => {
         position: 'relative',
         willChange: 'transform',
         transformOrigin: 'center bottom',
-        background: 'linear-gradient(to bottom, #f8f9fa, #e9ecef)',
-        boxShadow: 'inset 0 5px 15px rgba(0,0,0,0.05)',
-        borderTop: '1px solid',
-        borderColor: 'divider',
+        background: 'linear-gradient(135deg, #0a0a18 0%, #14142a 50%, #1a1a2e 100%)',
         overflow: 'hidden',
-        pt: { xs: 6, md: 10 },
+        pt: { xs: 6, md: 8 },
         pb: 4,
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 20% 80%, rgba(82, 109, 254, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(142, 95, 254, 0.1) 0%, transparent 50%)',
+          pointerEvents: 'none',
+        }
       }}
     >
-      {/* Decorative subtle wave pattern at the top */}
+      {/* Modern geometric patterns */}
       <Box
         sx={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
-          height: '100px',
-          opacity: 0.05,
-          background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1440 320\'%3E%3Cpath fill=\'%230077B6\' fill-opacity=\'1\' d=\'M0,128L48,138.7C96,149,192,171,288,186.7C384,203,480,213,576,197.3C672,181,768,139,864,133.3C960,128,1056,160,1152,181.3C1248,203,1344,213,1392,218.7L1440,224L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z\'%3E%3C/path%3E%3C/svg%3E")',
-          backgroundSize: 'cover',
+          height: '100%',
+          opacity: 0.03,
+          background: `
+            linear-gradient(45deg, transparent 40%, rgba(82, 109, 254, 0.1) 50%, transparent 60%),
+            linear-gradient(-45deg, transparent 40%, rgba(142, 95, 254, 0.1) 50%, transparent 60%)
+          `,
+          backgroundSize: '60px 60px',
         }}
       />
 
       <Container maxWidth="lg">
-        <Grid container spacing={{ xs: 4, md: 6 }}>
+        <Grid container spacing={{ xs: 3, md: 4 }}>
           {/* Main CTA Section */}
-          <Grid item xs={12} md={5}>
-            <Paper 
-              elevation={0}
+          <Grid item xs={12} md={4}>
+            <Box 
               sx={{ 
-                p: 4, 
-                borderRadius: 3,
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)', 
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+                p: { xs: 3, md: 4 }, 
+                borderRadius: '20px',
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)', 
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 32px rgba(82, 109, 254, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '4px',
+                  background: 'linear-gradient(90deg, #526DFE 0%, #8E5FFE 100%)',
+                  borderRadius: '20px 20px 0 0',
+                }
               }}
             >
               <Typography
                 variant="h2"
                 sx={{
-                  fontSize: { xs: '2rem', md: '2.75rem' },
+                  fontSize: { xs: '1.5rem', md: '2rem' },
                   fontWeight: 800,
                   mb: 2,
-                  background: 'linear-gradient(45deg, #0077B6 30%, #00B4D8 90%)',
+                  background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   letterSpacing: '-0.02em',
+                  lineHeight: 1.2,
                 }}
               >
                 Let's work together
@@ -105,10 +128,12 @@ const DynamicFooter = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: '1rem', md: '1.2rem' },
+                  fontSize: { xs: '0.9rem', md: '1rem' },
                   color: 'text.secondary',
-                  mb: 4,
-                  maxWidth: '90%',
+                  mb: 3,
+                  maxWidth: '100%',
+                  lineHeight: 1.5,
+                  fontWeight: 400,
                 }}
               >
                 Start your journey with us and transform your business operations with our expert solutions
@@ -118,98 +143,124 @@ const DynamicFooter = () => {
                 component={Link}
                 to="/contact"
                 sx={{
-                  py: 1.75,
+                  py: 1.5,
                   px: 4,
-                  borderRadius: 2,
+                  borderRadius: '50px',
                   textTransform: 'none',
-                  fontSize: '1.1rem',
+                  fontSize: '1rem',
                   fontWeight: 600,
-                  background: 'linear-gradient(45deg, #0077B6 30%, #00B4D8 90%)',
-                  boxShadow: '0 4px 20px rgba(0, 119, 182, 0.25)',
-                  transition: 'all 0.3s ease',
+                  background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                  boxShadow: '0 8px 25px rgba(82, 109, 254, 0.3)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   '&:hover': {
-                    boxShadow: '0 6px 25px rgba(0, 119, 182, 0.35)',
-                    transform: 'translateY(-2px)',
+                    boxShadow: '0 12px 35px rgba(82, 109, 254, 0.4)',
+                    transform: 'translateY(-3px)',
+                    background: 'linear-gradient(135deg, #6281FF 0%, #9D75FF 100%)',
                   },
                   alignSelf: 'flex-start',
+                  mb: 3,
                 }}
               >
                 Get Started
               </Button>
               
               {/* Contact Information */}
-              <Stack spacing={2} sx={{ mt: 6 }}>
+              <Stack spacing={2} sx={{ mt: 3 }}>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <IconButton 
-                    size="small" 
-                    sx={{ 
-                      backgroundColor: 'rgba(0, 119, 182, 0.1)', 
-                      color: '#0077B6',
-                      '&:hover': { backgroundColor: 'rgba(0, 119, 182, 0.2)' },
+                  <Box
+                    sx={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: '8px',
+                      background: 'linear-gradient(135deg, rgba(82, 109, 254, 0.1) 0%, rgba(142, 95, 254, 0.1) 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: '1px solid rgba(82, 109, 254, 0.2)',
                     }}
                   >
-                    <LocationOnIcon fontSize="small" />
-                  </IconButton>
-                  <Typography variant="body2" color="text.secondary">
+                    <LocationOnIcon sx={{ fontSize: 16, color: '#526DFE' }} />
+                  </Box>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500, fontSize: '0.85rem' }}>
                     123 Business Avenue, Tech City, TC 10111
                   </Typography>
                 </Stack>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <IconButton 
-                    size="small" 
-                    sx={{ 
-                      backgroundColor: 'rgba(0, 119, 182, 0.1)', 
-                      color: '#0077B6',
-                      '&:hover': { backgroundColor: 'rgba(0, 119, 182, 0.2)' },
+                  <Box
+                    sx={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: '8px',
+                      background: 'linear-gradient(135deg, rgba(82, 109, 254, 0.1) 0%, rgba(142, 95, 254, 0.1) 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: '1px solid rgba(82, 109, 254, 0.2)',
                     }}
                   >
-                    <EmailIcon fontSize="small" />
-                  </IconButton>
-                  <Typography variant="body2" color="text.secondary">
+                    <EmailIcon sx={{ fontSize: 16, color: '#526DFE' }} />
+                  </Box>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500, fontSize: '0.85rem' }}>
                     contact@ironforge.com
                   </Typography>
                 </Stack>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <IconButton 
-                    size="small" 
-                    sx={{ 
-                      backgroundColor: 'rgba(0, 119, 182, 0.1)', 
-                      color: '#0077B6',
-                      '&:hover': { backgroundColor: 'rgba(0, 119, 182, 0.2)' },
+                  <Box
+                    sx={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: '8px',
+                      background: 'linear-gradient(135deg, rgba(82, 109, 254, 0.1) 0%, rgba(142, 95, 254, 0.1) 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: '1px solid rgba(82, 109, 254, 0.2)',
                     }}
                   >
-                    <PhoneIcon fontSize="small" />
-                  </IconButton>
-                  <Typography variant="body2" color="text.secondary">
+                    <PhoneIcon sx={{ fontSize: 16, color: '#526DFE' }} />
+                  </Box>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500, fontSize: '0.85rem' }}>
                     +1 (555) 123-4567
                   </Typography>
                 </Stack>
               </Stack>
-            </Paper>
+            </Box>
           </Grid>
 
           {/* Links Section */}
-          <Grid item container xs={12} md={7} spacing={3} alignItems="stretch">
+          <Grid item container xs={12} md={8} spacing={3} alignItems="stretch">
             <Grid item xs={12} sm={4}>
-              <Box sx={{ height: '100%' }}>
+              <Box sx={{ 
+                height: '100%',
+                p: 3,
+                borderRadius: '16px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
                 <Typography 
                   variant="h6" 
                   sx={{ 
                     mb: 3, 
                     fontWeight: 700,
+                    fontSize: '1rem',
+                    color: 'white',
                     position: 'relative',
-                    background: 'linear-gradient(45deg, #0077B6 30%, #00B4D8 90%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    '&:after': {
+                    '&::after': {
                       content: '""',
                       position: 'absolute',
-                      bottom: -8,
+                      bottom: -6,
                       left: 0,
-                      width: 40,
-                      height: 3,
-                      borderRadius: 1.5,
-                      bgcolor: '#0077B6',
+                      width: 25,
+                      height: 2,
+                      borderRadius: 1,
+                      background: 'linear-gradient(90deg, #526DFE 0%, #8E5FFE 100%)',
                     }
                   }}
                 >
@@ -224,18 +275,21 @@ const DynamicFooter = () => {
                       onClick={link.path === '#' ? (e) => e.preventDefault() : undefined}
                       sx={{
                         justifyContent: 'flex-start',
-                        color: 'text.secondary',
-                        fontSize: '0.95rem',
-                        px: 1,
-                        py: 0.5,
-                        borderRadius: 1,
-                        transition: 'all 0.2s ease',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        fontSize: '0.85rem',
+                        px: 1.5,
+                        py: 0.75,
+                        borderRadius: '6px',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        fontWeight: 400,
                         '&:hover': { 
-                          color: '#0077B6',
-                          backgroundColor: 'rgba(0, 119, 182, 0.08)',
+                          color: 'white',
+                          backgroundColor: 'rgba(82, 109, 254, 0.15)',
                           transform: 'translateX(4px)',
+                          boxShadow: '0 4px 12px rgba(82, 109, 254, 0.2)',
                         },
                         cursor: 'pointer',
+                        textTransform: 'none',
                       }}
                     >
                       {link.name}
@@ -246,25 +300,37 @@ const DynamicFooter = () => {
             </Grid>
 
             <Grid item xs={12} sm={4}>
-              <Box sx={{ height: '100%' }}>
+              <Box sx={{ 
+                height: '100%',
+                p: 3,
+                borderRadius: '16px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
                 <Typography 
                   variant="h6" 
                   sx={{ 
                     mb: 3, 
                     fontWeight: 700,
+                    fontSize: '1rem',
+                    color: 'white',
                     position: 'relative',
-                    background: 'linear-gradient(45deg, #0077B6 30%, #00B4D8 90%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    '&:after': {
+                    '&::after': {
                       content: '""',
                       position: 'absolute',
-                      bottom: -8,
+                      bottom: -6,
                       left: 0,
-                      width: 40,
-                      height: 3,
-                      borderRadius: 1.5,
-                      bgcolor: '#0077B6',
+                      width: 25,
+                      height: 2,
+                      borderRadius: 1,
+                      background: 'linear-gradient(90deg, #526DFE 0%, #8E5FFE 100%)',
                     }
                   }}
                 >
@@ -278,20 +344,23 @@ const DynamicFooter = () => {
                       to={link.path}
                       sx={{
                         justifyContent: 'flex-start',
-                        color: 'text.secondary',
-                        fontSize: '0.95rem',
-                        px: 1,
-                        py: 0.5,
-                        borderRadius: 1,
-                        transition: 'all 0.2s ease',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        fontSize: '0.8rem',
+                        px: 1.5,
+                        py: 0.75,
+                        borderRadius: '6px',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        fontWeight: 400,
                         '&:hover': { 
-                          color: '#0077B6',
-                          backgroundColor: 'rgba(0, 119, 182, 0.08)',
+                          color: 'white',
+                          backgroundColor: 'rgba(82, 109, 254, 0.15)',
                           transform: 'translateX(4px)',
+                          boxShadow: '0 4px 12px rgba(82, 109, 254, 0.2)',
                         },
                         textAlign: 'left',
                         lineHeight: 1.2,
                         minHeight: 'auto',
+                        textTransform: 'none',
                       }}
                     >
                       {link.name}
@@ -302,25 +371,37 @@ const DynamicFooter = () => {
             </Grid>
 
             <Grid item xs={12} sm={4}>
-              <Box sx={{ height: '100%' }}>
+              <Box sx={{ 
+                height: '100%',
+                p: 3,
+                borderRadius: '16px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transform: 'translateY(-2px)',
+                }
+              }}>
                 <Typography 
                   variant="h6" 
                   sx={{ 
                     mb: 3, 
                     fontWeight: 700,
+                    fontSize: '1rem',
+                    color: 'white',
                     position: 'relative',
-                    background: 'linear-gradient(45deg, #0077B6 30%, #00B4D8 90%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    '&:after': {
+                    '&::after': {
                       content: '""',
                       position: 'absolute',
-                      bottom: -8,
+                      bottom: -6,
                       left: 0,
-                      width: 40,
-                      height: 3,
-                      borderRadius: 1.5,
-                      bgcolor: '#0077B6',
+                      width: 25,
+                      height: 2,
+                      borderRadius: 1,
+                      background: 'linear-gradient(90deg, #526DFE 0%, #8E5FFE 100%)',
                     }
                   }}
                 >
@@ -334,20 +415,23 @@ const DynamicFooter = () => {
                       to={link.path}
                       sx={{
                         justifyContent: 'flex-start',
-                        color: 'text.secondary',
-                        fontSize: '0.95rem',
-                        px: 1,
-                        py: 0.5,
-                        borderRadius: 1,
-                        transition: 'all 0.2s ease',
+                        color: 'rgba(255, 255, 255, 0.7)',
+                        fontSize: '0.8rem',
+                        px: 1.5,
+                        py: 0.75,
+                        borderRadius: '6px',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        fontWeight: 400,
                         '&:hover': { 
-                          color: '#0077B6',
-                          backgroundColor: 'rgba(0, 119, 182, 0.08)',
+                          color: 'white',
+                          backgroundColor: 'rgba(82, 109, 254, 0.15)',
                           transform: 'translateX(4px)',
+                          boxShadow: '0 4px 12px rgba(82, 109, 254, 0.2)',
                         },
                         textAlign: 'left',
                         lineHeight: 1.2,
                         minHeight: 'auto',
+                        textTransform: 'none',
                       }}
                     >
                       {link.name}
@@ -360,111 +444,130 @@ const DynamicFooter = () => {
         </Grid>
 
         {/* Bottom Section */}
-        <Divider sx={{ mt: 8, mb: 4, borderColor: 'rgba(0, 0, 0, 0.08)' }} />
-        
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', sm: 'row' },
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: 3,
+            mt: 6,
+            pt: 4,
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
           }}
         >
-          <Typography 
-            variant="body2" 
-            sx={{ 
-              color: 'text.secondary',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 0.5,
-            }}
-          >
-            © {new Date().getFullYear()} 
-            <Box 
-              component="span" 
-              sx={{ 
-                fontWeight: 700, 
-                background: 'linear-gradient(45deg, #0077B6 30%, #00B4D8 90%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                mx: 0.5,
-              }}
-            >
-              IronForge
-            </Box> 
-            All rights reserved.
-          </Typography>
-          
-          <Stack 
-            direction="row" 
-            spacing={1.5}
+          <Box
             sx={{
-              '& .MuiIconButton-root': {
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-3px)',
-                }
-              }
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 4,
             }}
           >
-            <IconButton 
-              size="small" 
+            <Typography 
+              variant="body2" 
               sx={{ 
-                color: '#0077B6',
-                backgroundColor: 'rgba(0, 119, 182, 0.1)',
-                '&:hover': { 
-                  backgroundColor: '#0077B6',
-                  color: 'white',
-                  boxShadow: '0 4px 12px rgba(0, 119, 182, 0.3)',
-                },
+                color: 'rgba(255, 255, 255, 0.7)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
+                fontSize: '0.9rem',
               }}
             >
-              <LinkedInIcon fontSize="small" />
-            </IconButton>
-            <IconButton 
-              size="small" 
-              sx={{ 
-                color: '#0077B6',
-                backgroundColor: 'rgba(0, 119, 182, 0.1)',
-                '&:hover': { 
-                  backgroundColor: '#0077B6',
-                  color: 'white',
-                  boxShadow: '0 4px 12px rgba(0, 119, 182, 0.3)',
-                },
+              © {new Date().getFullYear()} 
+              <Box 
+                component="span" 
+                sx={{ 
+                  fontWeight: 700, 
+                  background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  mx: 0.5,
+                }}
+              >
+                IronForge
+              </Box> 
+              All rights reserved.
+            </Typography>
+            
+            <Stack 
+              direction="row" 
+              spacing={2}
+              sx={{
+                '& .MuiIconButton-root': {
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    transform: 'translateY(-4px) scale(1.1)',
+                  }
+                }
               }}
             >
-              <TwitterIcon fontSize="small" />
-            </IconButton>
-            <IconButton 
-              size="small" 
-              sx={{ 
-                color: '#0077B6',
-                backgroundColor: 'rgba(0, 119, 182, 0.1)',
-                '&:hover': { 
-                  backgroundColor: '#0077B6',
-                  color: 'white',
-                  boxShadow: '0 4px 12px rgba(0, 119, 182, 0.3)',
-                },
-              }}
-            >
-              <FacebookIcon fontSize="small" />
-            </IconButton>
-            <IconButton 
-              size="small" 
-              sx={{ 
-                color: '#0077B6',
-                backgroundColor: 'rgba(0, 119, 182, 0.1)',
-                '&:hover': { 
-                  backgroundColor: '#0077B6',
-                  color: 'white',
-                  boxShadow: '0 4px 12px rgba(0, 119, 182, 0.3)',
-                },
-              }}
-            >
-              <InstagramIcon fontSize="small" />
-            </IconButton>
-          </Stack>
+              <IconButton 
+                size="medium" 
+                sx={{ 
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(82, 109, 254, 0.2)',
+                    color: 'white',
+                    boxShadow: '0 8px 25px rgba(82, 109, 254, 0.3)',
+                    border: '1px solid rgba(82, 109, 254, 0.3)',
+                  },
+                }}
+              >
+                <LinkedInIcon fontSize="small" />
+              </IconButton>
+              <IconButton 
+                size="medium" 
+                sx={{ 
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(82, 109, 254, 0.2)',
+                    color: 'white',
+                    boxShadow: '0 8px 25px rgba(82, 109, 254, 0.3)',
+                    border: '1px solid rgba(82, 109, 254, 0.3)',
+                  },
+                }}
+              >
+                <TwitterIcon fontSize="small" />
+              </IconButton>
+              <IconButton 
+                size="medium" 
+                sx={{ 
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(82, 109, 254, 0.2)',
+                    color: 'white',
+                    boxShadow: '0 8px 25px rgba(82, 109, 254, 0.3)',
+                    border: '1px solid rgba(82, 109, 254, 0.3)',
+                  },
+                }}
+              >
+                <FacebookIcon fontSize="small" />
+              </IconButton>
+              <IconButton 
+                size="medium" 
+                sx={{ 
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': { 
+                    backgroundColor: 'rgba(82, 109, 254, 0.2)',
+                    color: 'white',
+                    boxShadow: '0 8px 25px rgba(82, 109, 254, 0.3)',
+                    border: '1px solid rgba(82, 109, 254, 0.3)',
+                  },
+                }}
+              >
+                <InstagramIcon fontSize="small" />
+              </IconButton>
+            </Stack>
+          </Box>
         </Box>
       </Container>
     </Box>
