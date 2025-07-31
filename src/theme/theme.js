@@ -258,6 +258,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: 'none',
+          borderRadius: 0,
         },
       },
     },

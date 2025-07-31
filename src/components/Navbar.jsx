@@ -194,7 +194,7 @@ const Navbar = () => {
                 }}
               />
               
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginTop: '-4px' }}>
                 <span 
                   className="iron"
                   style={{
@@ -204,6 +204,7 @@ const Navbar = () => {
                     letterSpacing: '0px',
                     transition: 'all 0.4s ease',
                     transform: 'translateZ(5px)',
+                    lineHeight: '1',
                   }}
                 >
                   IRON
@@ -219,6 +220,8 @@ const Navbar = () => {
                     opacity: 0.95,
                     transition: 'all 0.4s ease',
                     transform: 'translateZ(5px)',
+                    lineHeight: '1',
+                    marginTop: '-2px',
                   }}
                 >
                   FORGE
