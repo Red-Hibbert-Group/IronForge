@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography, Card, Button, Chip, IconButton } from '@mui/material';
+import { Box, Container, Grid, Typography, Card, Button, Chip, IconButton, useTheme } from '@mui/material';
 import { Analytics, Assessment, AccountBalance, Timeline, Security, ArrowForward, PlayArrow, ExpandMore, ChevronRight, CheckCircle, Speed, CalendarToday, Rocket, Architecture, Support, TrendingUp } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
@@ -7,11 +7,11 @@ import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 
 const ExpandableCard = styled(motion.div)(({ theme, expanded, serviceColor }) => ({
-  background: 'rgba(255, 255, 255, 0.05)',
+  background: 'rgba(255, 255, 255, 0.9)',
   backdropFilter: 'blur(10px)',
   borderRadius: theme.spacing(4),
   padding: theme.spacing(4),
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
   position: 'relative',
   overflow: 'hidden',
   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -19,7 +19,7 @@ const ExpandableCard = styled(motion.div)(({ theme, expanded, serviceColor }) =>
   transform: expanded ? 'scale(1.02)' : 'scale(1)',
   boxShadow: expanded 
     ? `0 20px 40px ${serviceColor}20`
-    : '0 8px 16px rgba(0, 0, 0, 0.1)',
+    : '0 8px 16px rgba(0, 0, 0, 0.08)',
   '&:hover': {
     transform: expanded ? 'scale(1.02)' : 'translateY(-10px)',
     '&::before': {
@@ -33,7 +33,7 @@ const ExpandableCard = styled(motion.div)(({ theme, expanded, serviceColor }) =>
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)',
+    background: 'linear-gradient(45deg, transparent, rgba(82, 109, 254, 0.1), transparent)',
     transition: 'transform 0.5s ease-in-out',
   }
 }));
@@ -44,6 +44,7 @@ const DetailSection = styled(motion.div)(({ theme }) => ({
 }));
 
 const Services = () => {
+  const theme = useTheme();
   const [expandedCard, setExpandedCard] = useState(null);
 
   const services = [
@@ -59,7 +60,7 @@ const Services = () => {
         'Predictive analytics',
         'Multi-currency support'
       ],
-      color: '#2196f3',
+      color: theme.palette.primary.main,
       subServices: [
         {
           title: 'Financial Close & Consolidation (FCCS)',
@@ -72,7 +73,7 @@ const Services = () => {
             'Currency translation',
             'Elimination rules engine'
           ],
-          color: '#1565c0',
+          color: theme.palette.primary.dark,
           benefits: [
             'Reduce close cycle time by up to 50%',
             'Improve accuracy and reduce errors',
@@ -91,7 +92,7 @@ const Services = () => {
             'Workforce planning',
             'Capital asset planning'
           ],
-          color: '#0d47a1',
+          color: theme.palette.primary.main,
           benefits: [
             'Reduce planning cycle time',
             'Improve forecast accuracy',
@@ -110,7 +111,7 @@ const Services = () => {
             'Transaction matching',
             'Balance sheet reconciliation'
           ],
-          color: '#2979ff',
+          color: theme.palette.primary.light,
           benefits: [
             'Reduce manual effort by 90%',
             'Improve accuracy and control',
@@ -134,7 +135,7 @@ const Services = () => {
         'Automated tax calculations',
         'Real-time tax insights'
       ],
-      color: '#4caf50',
+      color: theme.palette.accent.success,
       subServices: [
         {
           title: 'Direct Tax Reporting',
@@ -147,7 +148,7 @@ const Services = () => {
             'Tax analytics dashboard',
             'Multi-jurisdiction support'
           ],
-          color: '#2e7d32',
+          color: theme.palette.accent.success,
           benefits: [
             'Reduce tax preparation time by 60%',
             'Improve accuracy and compliance',
@@ -166,7 +167,7 @@ const Services = () => {
             'Tax rate management',
             'Recovery analysis'
           ],
-          color: '#388e3c',
+          color: theme.palette.accent.success,
           benefits: [
             'Automated tax determination',
             'Reduced compliance risk',
@@ -188,7 +189,7 @@ const Services = () => {
         'Margin analysis',
         'Cost simulation'
       ],
-      color: '#ff4081',
+      color: theme.palette.secondary.main,
       subServices: [
         {
           title: 'Cost Allocation Management',
@@ -199,7 +200,7 @@ const Services = () => {
             'Driver-based allocation',
             'Scenario modeling'
           ],
-          color: '#c2185b'
+          color: theme.palette.secondary.main
         },
         {
           title: 'Profitability Analysis',
@@ -210,7 +211,7 @@ const Services = () => {
             'Channel analysis',
             'Margin optimization'
           ],
-          color: '#e91e63'
+          color: theme.palette.secondary.light
         }
       ]
     },
@@ -228,7 +229,7 @@ const Services = () => {
         'Risk Assessment',
         'Incident Management'
       ],
-      color: '#f44336',
+      color: theme.palette.accent.error,
       subServices: [
         {
           title: 'Enterprise Risk Management',
@@ -241,7 +242,7 @@ const Services = () => {
             'KRI dashboard',
             'Risk reporting'
           ],
-          color: '#d32f2f',
+          color: theme.palette.accent.error,
           benefits: [
             'Improved risk visibility',
             'Proactive risk management',
@@ -260,7 +261,7 @@ const Services = () => {
             'Audit management',
             'Violation tracking'
           ],
-          color: '#c62828',
+          color: theme.palette.accent.error,
           benefits: [
             'Reduced compliance costs',
             'Automated compliance tracking',
@@ -284,7 +285,7 @@ const Services = () => {
         'Regulatory compliance',
         'Report automation'
       ],
-      color: '#9c27b0',
+      color: theme.palette.secondary.dark,
       subServices: [
         {
           title: 'Financial Reporting',
@@ -297,7 +298,7 @@ const Services = () => {
             'Template management',
             'Multi-format output'
           ],
-          color: '#7b1fa2',
+          color: theme.palette.secondary.dark,
           benefits: [
             'Faster report generation',
             'Improved accuracy',
@@ -316,7 +317,7 @@ const Services = () => {
             'Version control',
             'Commentary tracking'
           ],
-          color: '#6a1b9a',
+          color: theme.palette.secondary.dark,
           benefits: [
             'Streamlined board communication',
             'Enhanced security',
@@ -474,7 +475,7 @@ const Services = () => {
       <Box
         sx={{
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #0a192f 0%, #112240 100%)',
+          background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -487,13 +488,13 @@ const Services = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            opacity: 0.1,
-            background: 'radial-gradient(circle at center, #ffffff 0%, transparent 70%)',
+            opacity: 0.05,
+            background: `radial-gradient(circle at center, ${theme.palette.primary.main} 0%, transparent 70%)`,
             animation: 'pulse 4s ease-in-out infinite',
             '@keyframes pulse': {
-              '0%': { opacity: 0.1 },
-              '50%': { opacity: 0.2 },
-              '100%': { opacity: 0.1 },
+              '0%': { opacity: 0.05 },
+              '50%': { opacity: 0.1 },
+              '100%': { opacity: 0.05 },
             }
           }}
         />
@@ -511,9 +512,9 @@ const Services = () => {
                   sx={{
                     fontSize: { xs: '2.5rem', md: '4rem' },
                     fontWeight: 800,
-                    color: 'white',
+                    color: theme.palette.text.primary,
                     mb: 3,
-                    background: 'linear-gradient(45deg, #fff, #64B5F6)',
+                    background: `linear-gradient(45deg, ${theme.palette.text.primary}, ${theme.palette.primary.main})`,
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -524,7 +525,7 @@ const Services = () => {
                 <Typography
                   variant="h5"
                   sx={{
-                    color: 'rgba(255,255,255,0.8)',
+                    color: theme.palette.text.secondary,
                     mb: 4,
                     lineHeight: 1.8
                   }}
@@ -534,7 +535,7 @@ const Services = () => {
                 <Typography
                   variant="body1"
                   sx={{
-                    color: 'rgba(255,255,255,0.7)',
+                    color: theme.palette.text.secondary,
                     mb: 4,
                     lineHeight: 1.6,
                     maxWidth: '90%'
@@ -554,13 +555,13 @@ const Services = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'rgba(33, 150, 243, 0.1)',
-                        border: '1px solid rgba(33, 150, 243, 0.3)',
+                        background: `${theme.palette.primary.main}10`,
+                        border: `1px solid ${theme.palette.primary.main}30`,
                       }}
                     >
-                      <CheckCircle sx={{ color: '#2196f3', fontSize: 20 }} />
+                      <CheckCircle sx={{ color: theme.palette.primary.main, fontSize: 20 }} />
                     </Box>
-                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                    <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
                       Industry-leading solutions trusted by Fortune companies
                     </Typography>
                   </Box>
@@ -573,13 +574,13 @@ const Services = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'rgba(76, 175, 80, 0.1)',
-                        border: '1px solid rgba(76, 175, 80, 0.3)',
+                        background: `${theme.palette.accent.success}10`,
+                        border: `1px solid ${theme.palette.accent.success}30`,
                       }}
                     >
-                      <Security sx={{ color: '#4caf50', fontSize: 20 }} />
+                      <Security sx={{ color: theme.palette.accent.success, fontSize: 20 }} />
                     </Box>
-                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                    <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
                       Enterprise-grade security and compliance
                     </Typography>
                   </Box>
@@ -592,13 +593,13 @@ const Services = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'rgba(255, 64, 129, 0.1)',
-                        border: '1px solid rgba(255, 64, 129, 0.3)',
+                        background: `${theme.palette.secondary.main}10`,
+                        border: `1px solid ${theme.palette.secondary.main}30`,
                       }}
                     >
-                      <Speed sx={{ color: '#ff4081', fontSize: 20 }} />
+                      <Speed sx={{ color: theme.palette.secondary.main, fontSize: 20 }} />
                     </Box>
-                    <Typography variant="body1" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+                    <Typography variant="body1" sx={{ color: theme.palette.text.primary }}>
                       24/7 expert support and rapid implementation
                     </Typography>
                   </Box>
@@ -608,17 +609,6 @@ const Services = () => {
                     variant="contained"
                     size="large"
                     endIcon={<ArrowForward />}
-                    sx={{
-                      borderRadius: '30px',
-                      py: 2,
-                      px: 4,
-                      background: 'linear-gradient(45deg, #2196f3, #64B5F6)',
-                      boxShadow: '0 8px 20px rgba(33, 150, 243, 0.3)',
-                      '&:hover': {
-                        transform: 'translateY(-2px)',
-                        boxShadow: '0 12px 28px rgba(33, 150, 243, 0.4)',
-                      }
-                    }}
                   >
                     Get Started
                   </Button>
@@ -626,17 +616,6 @@ const Services = () => {
                     variant="outlined"
                     size="large"
                     startIcon={<CalendarToday />}
-                    sx={{
-                      borderRadius: '30px',
-                      py: 2,
-                      px: 4,
-                      borderColor: 'rgba(255,255,255,0.3)',
-                      color: 'white',
-                      '&:hover': {
-                        borderColor: 'rgba(255,255,255,0.5)',
-                        background: 'rgba(255,255,255,0.05)',
-                      }
-                    }}
                   >
                     Schedule Demo
                   </Button>
@@ -659,7 +638,7 @@ const Services = () => {
                       right: -20,
                       width: '100%',
                       height: '100%',
-                      border: '2px solid rgba(33, 150, 243, 0.2)',
+                      border: `2px solid ${theme.palette.primary.main}20`,
                       borderRadius: 4,
                       zIndex: 0,
                     }
@@ -668,14 +647,14 @@ const Services = () => {
                   <Box
                     sx={{
                       position: 'relative',
-                      background: 'rgba(255,255,255,0.05)',
+                      background: 'rgba(255,255,255,0.8)',
                       borderRadius: 4,
                       p: 4,
                       backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255,255,255,0.1)',
+                      border: '1px solid rgba(255,255,255,0.3)',
                     }}
                   >
-                    <Typography variant="h6" sx={{ color: '#64B5F6', mb: 3 }}>
+                    <Typography variant="h6" sx={{ color: theme.palette.primary.main, mb: 3 }}>
                       Why Choose Our Solutions?
                     </Typography>
                     <Grid container spacing={3}>
@@ -684,25 +663,25 @@ const Services = () => {
                           title: 'Rapid Implementation',
                           description: 'Get up and running quickly with our streamlined deployment process',
                           icon: Rocket,
-                          color: '#2196f3'
+                          color: theme.palette.primary.main
                         },
                         {
                           title: 'Scalable Architecture',
                           description: 'Solutions that grow with your business needs',
                           icon: Architecture,
-                          color: '#4caf50'
+                          color: theme.palette.accent.success
                         },
                         {
                           title: 'Expert Support',
                           description: '24/7 dedicated support from industry experts',
                           icon: Support,
-                          color: '#ff4081'
+                          color: theme.palette.secondary.main
                         },
                         {
                           title: 'ROI Focused',
                           description: 'Proven track record of delivering measurable business value',
                           icon: TrendingUp,
-                          color: '#9c27b0'
+                          color: theme.palette.secondary.dark
                         }
                       ].map((item, index) => (
                         <Grid item xs={6} key={index}>
@@ -723,10 +702,10 @@ const Services = () => {
                               }}
                             >
                               <item.icon sx={{ color: item.color, fontSize: 32, mb: 2 }} />
-                              <Typography variant="subtitle1" sx={{ color: 'white', mb: 1 }}>
+                              <Typography variant="subtitle1" sx={{ color: theme.palette.text.primary, mb: 1 }}>
                                 {item.title}
                               </Typography>
-                              <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                              <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
                                 {item.description}
                               </Typography>
                             </Box>
@@ -782,7 +761,7 @@ const Services = () => {
                               mr: 2,
                             }}
                           />
-                          <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                          <Typography variant="h5" sx={{ fontWeight: 700, color: theme.palette.text.primary }}>
                             {service.title}
                           </Typography>
                         </Box>

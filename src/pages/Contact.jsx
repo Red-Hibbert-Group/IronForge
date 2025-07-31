@@ -1,10 +1,12 @@
-import { Box, Container, Grid, Typography, TextField, Button, Paper } from '@mui/material';
+import { Box, Container, Grid, Typography, TextField, Button, Paper, useTheme } from '@mui/material';
 import { Email, Phone, LocationOn, Send, LinkedIn, Twitter, Facebook } from '@mui/icons-material';
 import Navbar from '../components/Navbar';
 import DynamicFooter from '../components/home/DynamicFooter';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
+  const theme = useTheme();
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     // Add form submission logic here
@@ -15,19 +17,19 @@ const Contact = () => {
       icon: Email,
       title: 'Email',
       content: 'contact@onestream-solutions.com',
-      color: '#2196f3'
+      color: theme.palette.primary.main
     },
     {
       icon: Phone,
       title: 'Phone',
       content: '+1 (555) 123-4567',
-      color: '#4caf50'
+      color: theme.palette.accent.success
     },
     {
       icon: LocationOn,
       title: 'Location',
       content: '123 Business Avenue, Tech Hub, NY 10001',
-      color: '#ff9800'
+      color: theme.palette.secondary.main
     }
   ];
 
@@ -43,7 +45,7 @@ const Contact = () => {
       <Box 
         sx={{ 
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #0a192f 0%, #112240 100%)',
+          background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%)',
           pt: 12,
           pb: 8,
           position: 'relative',
@@ -59,7 +61,7 @@ const Contact = () => {
             top: 0,
             left: 0,
             zIndex: 0,
-            opacity: 0.1
+            opacity: 0.05
           }}
         >
           {[...Array(5)].map((_, i) => (
@@ -80,7 +82,7 @@ const Contact = () => {
                 width: '300px',
                 height: '300px',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)',
+                background: `radial-gradient(circle, ${theme.palette.primary.main}20 0%, transparent 70%)`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
@@ -99,9 +101,12 @@ const Contact = () => {
               sx={{
                 fontSize: { xs: '2.5rem', md: '4rem' },
                 fontWeight: 800,
-                color: 'white',
+                color: theme.palette.text.primary,
                 textAlign: 'center',
-                mb: 2
+                mb: 2,
+                background: `linear-gradient(45deg, ${theme.palette.text.primary}, ${theme.palette.primary.main})`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
               }}
             >
               Get in Touch
@@ -109,7 +114,7 @@ const Contact = () => {
             <Typography 
               variant="h5" 
               sx={{
-                color: 'rgba(255,255,255,0.7)',
+                color: theme.palette.text.secondary,
                 textAlign: 'center',
                 maxWidth: '800px',
                 mx: 'auto',
@@ -129,7 +134,7 @@ const Contact = () => {
                 transition={{ delay: 0.2 }}
               >
                 <Box sx={{ mb: 6 }}>
-                  <Typography variant="h4" sx={{ color: 'white', mb: 4 }}>
+                  <Typography variant="h4" sx={{ color: theme.palette.text.primary, mb: 4 }}>
                     Contact Information
                   </Typography>
                   {contactInfo.map((info, index) => (
@@ -141,17 +146,19 @@ const Contact = () => {
                         mb: 4,
                         p: 3,
                         borderRadius: 2,
-                        background: 'rgba(255,255,255,0.05)',
+                        background: 'rgba(255,255,255,0.8)',
                         backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(255,255,255,0.3)',
                         transition: 'transform 0.3s ease',
                         '&:hover': {
-                          transform: 'translateX(10px)'
+                          transform: 'translateX(10px)',
+                          boxShadow: `0 10px 30px ${info.color}20`,
                         }
                       }}
                     >
                       <Box
                         sx={{
-                          bgcolor: `${info.color}20`,
+                          bgcolor: `${info.color}10`,
                           p: 2,
                           borderRadius: 2,
                           mr: 3
@@ -160,10 +167,10 @@ const Contact = () => {
                         <info.icon sx={{ fontSize: 30, color: info.color }} />
                       </Box>
                       <Box>
-                        <Typography variant="h6" sx={{ color: 'white', mb: 0.5 }}>
+                        <Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 0.5 }}>
                           {info.title}
                         </Typography>
-                        <Typography sx={{ color: 'rgba(255,255,255,0.7)' }}>
+                        <Typography sx={{ color: theme.palette.text.secondary }}>
                           {info.content}
                         </Typography>
                       </Box>
@@ -173,7 +180,7 @@ const Contact = () => {
 
                 {/* Social Links */}
                 <Box>
-                  <Typography variant="h6" sx={{ color: 'white', mb: 3 }}>
+                  <Typography variant="h6" sx={{ color: theme.palette.text.primary, mb: 3 }}>
                     Follow Us
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 2 }}>
@@ -189,8 +196,10 @@ const Contact = () => {
                             minWidth: 'auto',
                             p: 2,
                             bgcolor: social.color,
+                            borderRadius: '50%',
                             '&:hover': {
-                              bgcolor: `${social.color}dd`
+                              bgcolor: `${social.color}dd`,
+                              transform: 'translateY(-3px)',
                             }
                           }}
                         >
@@ -214,9 +223,10 @@ const Contact = () => {
                   elevation={0}
                   sx={{
                     p: 4,
-                    background: 'rgba(255,255,255,0.05)',
+                    background: 'rgba(255,255,255,0.9)',
                     backdropFilter: 'blur(10px)',
-                    borderRadius: 4
+                    borderRadius: 4,
+                    border: '1px solid rgba(255,255,255,0.3)',
                   }}
                 >
                   <form onSubmit={handleSubmit}>
@@ -229,16 +239,18 @@ const Contact = () => {
                           variant="outlined"
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              color: 'white',
                               '& fieldset': {
-                                borderColor: 'rgba(255,255,255,0.3)',
+                                borderColor: theme.palette.grey[300],
                               },
                               '&:hover fieldset': {
-                                borderColor: 'rgba(255,255,255,0.5)',
+                                borderColor: theme.palette.primary.main,
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: theme.palette.primary.main,
                               },
                             },
                             '& .MuiInputLabel-root': {
-                              color: 'rgba(255,255,255,0.7)',
+                              color: theme.palette.text.secondary,
                             },
                           }}
                         />
@@ -251,16 +263,18 @@ const Contact = () => {
                           variant="outlined"
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              color: 'white',
                               '& fieldset': {
-                                borderColor: 'rgba(255,255,255,0.3)',
+                                borderColor: theme.palette.grey[300],
                               },
                               '&:hover fieldset': {
-                                borderColor: 'rgba(255,255,255,0.5)',
+                                borderColor: theme.palette.primary.main,
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: theme.palette.primary.main,
                               },
                             },
                             '& .MuiInputLabel-root': {
-                              color: 'rgba(255,255,255,0.7)',
+                              color: theme.palette.text.secondary,
                             },
                           }}
                         />
@@ -274,16 +288,18 @@ const Contact = () => {
                           variant="outlined"
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              color: 'white',
                               '& fieldset': {
-                                borderColor: 'rgba(255,255,255,0.3)',
+                                borderColor: theme.palette.grey[300],
                               },
                               '&:hover fieldset': {
-                                borderColor: 'rgba(255,255,255,0.5)',
+                                borderColor: theme.palette.primary.main,
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: theme.palette.primary.main,
                               },
                             },
                             '& .MuiInputLabel-root': {
-                              color: 'rgba(255,255,255,0.7)',
+                              color: theme.palette.text.secondary,
                             },
                           }}
                         />
@@ -298,16 +314,18 @@ const Contact = () => {
                           variant="outlined"
                           sx={{
                             '& .MuiOutlinedInput-root': {
-                              color: 'white',
                               '& fieldset': {
-                                borderColor: 'rgba(255,255,255,0.3)',
+                                borderColor: theme.palette.grey[300],
                               },
                               '&:hover fieldset': {
-                                borderColor: 'rgba(255,255,255,0.5)',
+                                borderColor: theme.palette.primary.main,
+                              },
+                              '&.Mui-focused fieldset': {
+                                borderColor: theme.palette.primary.main,
                               },
                             },
                             '& .MuiInputLabel-root': {
-                              color: 'rgba(255,255,255,0.7)',
+                              color: theme.palette.text.secondary,
                             },
                           }}
                         />
@@ -321,10 +339,6 @@ const Contact = () => {
                             fullWidth
                             sx={{
                               py: 2,
-                              bgcolor: '#2196f3',
-                              '&:hover': {
-                                bgcolor: '#1976d2'
-                              }
                             }}
                             endIcon={<Send />}
                           >

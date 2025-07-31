@@ -94,13 +94,13 @@ const About = () => {
       <Navbar />
       <Box 
         sx={{
-          background: 'linear-gradient(135deg, #0a0a18 0%, #14142a 100%)',
+          background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%)',
           position: 'relative',
           overflow: 'hidden',
           minHeight: '100vh',
         }}
       >
-        {/* 3D Particles Background - Across entire page */}
+        {/* Light particles background for consistency with Home */}
         <Box
           sx={{
             position: 'absolute',
@@ -112,17 +112,17 @@ const About = () => {
             zIndex: 0,
           }}
         >
-          {/* Create particle effect - limited to 15 for better performance */}
-          {[...Array(15)].map((_, index) => (
+          {/* Create subtle particle effect */}
+          {[...Array(8)].map((_, index) => (
             <motion.div
               key={index}
               animate={{
-                y: [Math.random() * 100, Math.random() * 100 + 300],
-                x: [Math.random() * 100, Math.random() * 100 + 300],
-                opacity: [0, 0.7, 0],
+                y: [Math.random() * 100, Math.random() * 100 + 200],
+                x: [Math.random() * 100, Math.random() * 100 + 200],
+                opacity: [0, 0.3, 0],
               }}
               transition={{
-                duration: 15 + Math.random() * 15,
+                duration: 15 + Math.random() * 10,
                 repeat: Infinity,
                 delay: Math.random() * 5,
               }}
@@ -130,18 +130,18 @@ const About = () => {
                 position: 'absolute',
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                width: `${Math.random() * 10 + 2}px`,
-                height: `${Math.random() * 10 + 2}px`,
+                width: `${Math.random() * 6 + 2}px`,
+                height: `${Math.random() * 6 + 2}px`,
                 borderRadius: '50%',
-                background: `rgba(82, 109, 254, ${Math.random() * 0.5})`,
-                boxShadow: '0 0 10px rgba(82, 109, 254, 0.8)',
+                background: `rgba(82, 109, 254, ${Math.random() * 0.3 + 0.1})`,
+                boxShadow: '0 0 10px rgba(82, 109, 254, 0.3)',
                 zIndex: 1,
               }}
             />
           ))}
         </Box>
         
-        {/* Gradient overlay */}
+        {/* Subtle gradient overlay */}
         <Box
           sx={{
             position: 'absolute',
@@ -154,20 +154,20 @@ const About = () => {
           }}
         />
         
-        {/* Animated floating elements - reduced to 3 for performance */}
+        {/* Animated floating elements */}
         {[...Array(3)].map((_, index) => (
           <motion.div
             key={index}
             animate={floatingAnimation}
             style={{
               position: 'absolute',
-              width: `${Math.random() * 200 + 50}px`,
-              height: `${Math.random() * 200 + 50}px`,
+              width: `${Math.random() * 150 + 50}px`,
+              height: `${Math.random() * 150 + 50}px`,
               borderRadius: '50%',
-              background: `radial-gradient(circle, rgba(82, 109, 254, ${Math.random() * 0.1}) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(82, 109, 254, ${Math.random() * 0.08 + 0.02}) 0%, transparent 70%)`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              filter: 'blur(50px)',
+              filter: 'blur(40px)',
               zIndex: 1,
             }}
           />
@@ -185,7 +185,7 @@ const About = () => {
             width: { xs: '400px', md: '800px' },
             height: { xs: '400px', md: '800px' },
             borderRadius: '50%',
-            border: '1px dashed rgba(82, 109, 254, 0.2)',
+            border: '1px dashed rgba(82, 109, 254, 0.1)',
             top: { xs: '-200px', md: '-400px' },
             right: { xs: '-200px', md: '-400px' },
             zIndex: 1
@@ -203,7 +203,7 @@ const About = () => {
             width: { xs: '300px', md: '600px' },
             height: { xs: '300px', md: '600px' },
             borderRadius: '50%',
-            border: '1px dashed rgba(142, 95, 254, 0.2)',
+            border: '1px dashed rgba(142, 95, 254, 0.1)',
             bottom: { xs: '-150px', md: '-300px' },
             left: { xs: '-150px', md: '-300px' },
             zIndex: 1
@@ -238,14 +238,14 @@ const About = () => {
                     <Typography
                       variant="overline"
                       sx={{
-                        color: '#526DFE',
+                        color: theme.palette.primary.main,
                         fontWeight: 600,
                         letterSpacing: '0.15em',
                         fontSize: '1rem',
                         mb: 2,
                         display: 'block',
                         textTransform: 'uppercase',
-                        background: 'linear-gradient(45deg, #526DFE 30%, #8E5FFE 90%)',
+                        background: `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`,
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                       }}
@@ -261,7 +261,7 @@ const About = () => {
                         fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
                         fontWeight: 800,
                         mb: 3,
-                        background: 'linear-gradient(to right, #FFFFFF 20%, #A5B4FC)',
+                        background: `linear-gradient(to right, ${theme.palette.text.primary} 20%, ${theme.palette.primary.main})`,
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         lineHeight: 1.2,
@@ -276,7 +276,7 @@ const About = () => {
                     <Typography 
                       variant="h4"
                       sx={{
-                        color: 'rgba(255,255,255,0.8)',
+                        color: theme.palette.text.secondary,
                         maxWidth: '600px',
                         fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' },
                         fontWeight: 300,
@@ -293,19 +293,11 @@ const About = () => {
                       <Button
                         variant="contained"
                         sx={{
-                          background: 'linear-gradient(45deg, #526DFE 30%, #8E5FFE 90%)',
-                          color: 'white',
                           px: 4,
                           py: 1.5,
                           fontSize: '1rem',
                           fontWeight: 600,
-                          borderRadius: '12px',
                           textTransform: 'none',
-                          boxShadow: '0 8px 16px rgba(82, 109, 254, 0.2)',
-                          '&:hover': {
-                            transform: 'translateY(-2px)',
-                            boxShadow: '0 12px 20px rgba(82, 109, 254, 0.3)',
-                          }
                         }}
                       >
                         Get Started
@@ -313,18 +305,11 @@ const About = () => {
                       <Button
                         variant="outlined"
                         sx={{
-                          color: 'white',
-                          borderColor: 'rgba(255,255,255,0.3)',
                           px: 4,
                           py: 1.5,
                           fontSize: '1rem',
                           fontWeight: 600,
-                          borderRadius: '12px',
                           textTransform: 'none',
-                          '&:hover': {
-                            borderColor: '#526DFE',
-                            background: 'rgba(82, 109, 254, 0.1)',
-                          }
                         }}
                       >
                         Learn More
@@ -360,7 +345,7 @@ const About = () => {
                       width: '100%',
                       height: '100%',
                       borderRadius: '50%',
-                      border: '2px dashed rgba(82, 109, 254, 0.2)',
+                      border: `2px dashed ${theme.palette.primary.main}20`,
                     }}
                   />
                   <Box
@@ -374,7 +359,7 @@ const About = () => {
                       width: '80%',
                       height: '80%',
                       borderRadius: '50%',
-                      border: '2px dashed rgba(142, 95, 254, 0.2)',
+                      border: `2px dashed ${theme.palette.secondary.main}20`,
                     }}
                   />
                   {/* Hero Image or 3D Element would go here */}
@@ -382,7 +367,7 @@ const About = () => {
                     sx={{
                       width: '70%',
                       height: '70%',
-                      background: 'radial-gradient(circle, rgba(82, 109, 254, 0.2) 0%, transparent 70%)',
+                      background: `radial-gradient(circle, ${theme.palette.primary.main}20 0%, transparent 70%)`,
                       borderRadius: '50%',
                       filter: 'blur(40px)',
                       animation: 'pulse 3s infinite',
@@ -399,7 +384,7 @@ const About = () => {
           </Container>
         </Box>
 
-        {/* Stats Section with Enhanced 3D Effect */}
+        {/* Stats Section with Enhanced Design */}
         <Container maxWidth="lg" sx={{ py: 12, position: 'relative', zIndex: 2 }}>
           <Grid container spacing={4}>
             {stats.map((stat, index) => (
@@ -412,20 +397,20 @@ const About = () => {
                 >
                   <Card
                     sx={{
-                      background: 'rgba(255,255,255,0.03)',
+                      background: 'rgba(255, 255, 255, 0.9)',
                       backdropFilter: 'blur(10px)',
                       textAlign: 'center',
                       position: 'relative',
                       borderRadius: '24px',
-                      border: '1px solid rgba(82, 109, 254, 0.2)',
+                      border: `1px solid ${theme.palette.primary.main}20`,
                       transform: 'perspective(1000px) rotateX(5deg)',
                       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                       overflow: 'hidden',
                       '&:hover': {
                         transform: 'perspective(1000px) rotateX(0deg) translateY(-10px)',
-                        border: '1px solid rgba(82, 109, 254, 0.5)',
-                        boxShadow: '0 20px 40px rgba(82, 109, 254, 0.15)',
+                        border: `1px solid ${theme.palette.primary.main}50`,
+                        boxShadow: `0 20px 40px ${theme.palette.primary.main}15`,
                         '& .stat-value': {
                           transform: 'scale(1.1)',
                         }
@@ -437,7 +422,7 @@ const About = () => {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'linear-gradient(135deg, rgba(82, 109, 254, 0.1) 0%, transparent 100%)',
+                        background: `linear-gradient(135deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
                         opacity: 0,
                         transition: 'opacity 0.4s ease',
                       },
@@ -451,7 +436,7 @@ const About = () => {
                         className="stat-value"
                         variant="h3"
                         sx={{
-                          background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                           WebkitBackgroundClip: 'text',
                           WebkitTextFillColor: 'transparent',
                           fontWeight: 800,
@@ -465,7 +450,7 @@ const About = () => {
                       <Typography
                         variant="body1"
                         sx={{
-                          color: 'rgba(255,255,255,0.9)',
+                          color: theme.palette.text.primary,
                           fontWeight: 500,
                           fontSize: '1.1rem',
                           letterSpacing: '0.5px'
@@ -481,24 +466,14 @@ const About = () => {
           </Grid>
         </Container>
 
-        {/* OneStream Implementation Solutions with Enhanced UI */}
+        {/* OneStream Implementation Solutions */}
         <Box sx={{ 
           position: 'relative',
           py: 16,
           zIndex: 2,
+          background: 'rgba(255, 255, 255, 0.5)',
+          backdropFilter: 'blur(10px)',
         }}>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'linear-gradient(to bottom, rgba(8, 8, 20, 0.9), rgba(20, 20, 42, 0.9))',
-              backdropFilter: 'blur(20px)',
-              zIndex: -1
-            }}
-          />
           
           <Container maxWidth="lg">
             <Box
@@ -516,7 +491,7 @@ const About = () => {
                     mb: 2,
                     fontWeight: 800,
                     fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
-                    background: 'linear-gradient(45deg, #FFFFFF 30%, #A5B4FC 90%)',
+                    background: `linear-gradient(45deg, ${theme.palette.text.primary} 30%, ${theme.palette.primary.main} 90%)`,
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     letterSpacing: '-0.02em'
@@ -532,7 +507,7 @@ const About = () => {
                   sx={{
                     textAlign: 'center',
                     mb: 8,
-                    color: 'rgba(255,255,255,0.8)',
+                    color: theme.palette.text.secondary,
                     maxWidth: '800px',
                     mx: 'auto',
                     fontWeight: 300,
@@ -568,21 +543,21 @@ const About = () => {
                     <Card
                       sx={{
                         height: '100%',
-                        background: 'rgba(255, 255, 255, 0.02)',
+                        background: 'rgba(255, 255, 255, 0.9)',
                         backdropFilter: 'blur(20px)',
                         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
                         borderRadius: '24px',
                         overflow: 'hidden',
-                        boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
+                        boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
                         position: 'relative',
                         '&:hover': {
                           transform: 'translateY(-10px)',
-                          boxShadow: '0 20px 40px rgba(82, 109, 254, 0.2)',
-                          border: '1px solid rgba(82, 109, 254, 0.3)',
+                          boxShadow: `0 20px 40px ${theme.palette.primary.main}20`,
+                          border: `1px solid ${theme.palette.primary.main}30`,
                           '& .solution-icon': {
                             transform: 'scale(1.1) rotate(5deg)',
-                            boxShadow: '0 12px 24px rgba(82, 109, 254, 0.4)',
+                            boxShadow: `0 12px 24px ${theme.palette.primary.main}40`,
                           }
                         },
                         '&::before': {
@@ -592,7 +567,7 @@ const About = () => {
                           left: 0,
                           right: 0,
                           height: '100%',
-                          background: 'linear-gradient(180deg, rgba(82, 109, 254, 0.1) 0%, transparent 100%)',
+                          background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
                           opacity: 0,
                           transition: 'opacity 0.4s ease',
                         },
@@ -612,8 +587,8 @@ const About = () => {
                             width: '70px',
                             height: '70px',
                             borderRadius: '20px',
-                            background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
-                            boxShadow: '0 8px 20px rgba(82, 109, 254, 0.3)',
+                            background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                            boxShadow: `0 8px 20px ${theme.palette.primary.main}30`,
                             transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                             transform: 'rotate(-5deg)',
                           }}
@@ -631,7 +606,7 @@ const About = () => {
                           sx={{
                             mb: 2,
                             fontWeight: 700,
-                            color: 'white',
+                            color: theme.palette.text.primary,
                             fontSize: { xs: '1.3rem', md: '1.5rem' },
                             letterSpacing: '-0.01em'
                           }}
@@ -642,7 +617,7 @@ const About = () => {
                           variant="body1" 
                           sx={{ 
                             mb: 3,
-                            color: 'rgba(255,255,255,0.7)',
+                            color: theme.palette.text.secondary,
                             fontSize: '1rem',
                             lineHeight: 1.6
                           }}
@@ -665,7 +640,7 @@ const About = () => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 mb: 1.5,
-                                color: 'rgba(255,255,255,0.9)',
+                                color: theme.palette.text.primary,
                                 fontSize: '0.95rem',
                                 '&:last-child': {
                                   mb: 0
@@ -677,7 +652,7 @@ const About = () => {
                                   width: '6px',
                                   height: '6px',
                                   borderRadius: '50%',
-                                  background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                                  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                                   mr: 2,
                                   flexShrink: 0,
                                 }}
@@ -695,7 +670,7 @@ const About = () => {
           </Container>
         </Box>
 
-        {/* Core Strengths Section with Enhanced UI */}
+        {/* Core Strengths Section */}
         <Container maxWidth="lg" sx={{ py: 16, position: 'relative', zIndex: 2 }}>
           <Box
             component={motion.div}
@@ -712,7 +687,7 @@ const About = () => {
                   textAlign: 'center',
                   fontWeight: 800,
                   fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
-                  background: 'linear-gradient(45deg, #FFFFFF 30%, #A5B4FC 90%)',
+                  background: `linear-gradient(45deg, ${theme.palette.text.primary} 30%, ${theme.palette.primary.main} 90%)`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   letterSpacing: '-0.02em',
@@ -725,7 +700,7 @@ const About = () => {
                 variant="h5"
                 sx={{
                   textAlign: 'center',
-                  color: 'rgba(255,255,255,0.8)',
+                  color: theme.palette.text.secondary,
                   maxWidth: '800px',
                   mx: 'auto',
                   fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
@@ -762,21 +737,21 @@ const About = () => {
                   <Card
                     sx={{
                       height: '100%',
-                      background: 'rgba(255, 255, 255, 0.02)',
+                      background: 'rgba(255, 255, 255, 0.9)',
                       backdropFilter: 'blur(20px)',
                       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                       borderRadius: '24px',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
                       overflow: 'hidden',
                       position: 'relative',
                       '&:hover': {
                         transform: 'translateY(-10px)',
-                        boxShadow: '0 20px 40px rgba(82, 109, 254, 0.15)',
-                        border: '1px solid rgba(82, 109, 254, 0.3)',
+                        boxShadow: `0 20px 40px ${theme.palette.primary.main}15`,
+                        border: `1px solid ${theme.palette.primary.main}30`,
                         '& .strength-icon': {
                           transform: 'scale(1.1) rotate(10deg)',
-                          background: 'linear-gradient(135deg, #526DFE 0%, #8E5FFE 100%)',
+                          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                         }
                       },
                       '&::before': {
@@ -786,7 +761,7 @@ const About = () => {
                         left: 0,
                         right: 0,
                         height: '100%',
-                        background: 'linear-gradient(180deg, rgba(82, 109, 254, 0.1) 0%, transparent 100%)',
+                        background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
                         opacity: 0,
                         transition: 'opacity 0.4s ease',
                       },
@@ -806,18 +781,18 @@ const About = () => {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          background: 'rgba(255, 255, 255, 0.1)',
+                          background: `rgba(${theme.palette.primary.main}40, 0.1)`,
                           backdropFilter: 'blur(5px)',
                           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+                          boxShadow: '0 10px 20px rgba(0, 0, 0, 0.05)',
                           transform: 'rotate(-5deg)',
                         }}
                       >
                         {React.cloneElement(item.icon, { 
                           sx: { 
                             fontSize: 35,
-                            color: 'white',
-                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
+                            color: theme.palette.primary.main,
+                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
                           } 
                         })}
                       </Box>
@@ -826,7 +801,7 @@ const About = () => {
                         sx={{
                           mb: 2,
                           fontWeight: 700,
-                          color: 'white',
+                          color: theme.palette.text.primary,
                           fontSize: { xs: '1.3rem', md: '1.5rem' },
                           letterSpacing: '-0.01em'
                         }}
@@ -836,7 +811,7 @@ const About = () => {
                       <Typography 
                         variant="body1" 
                         sx={{ 
-                          color: 'rgba(255,255,255,0.7)',
+                          color: theme.palette.text.secondary,
                           fontSize: '1rem',
                           lineHeight: 1.6
                         }}
@@ -851,24 +826,14 @@ const About = () => {
           </Grid>
         </Container>
 
-        {/* Why Choose Us Section with Enhanced UI */}
+        {/* Why Choose Us Section */}
         <Box sx={{ 
           position: 'relative',
           py: 16,
           zIndex: 2,
+          background: `linear-gradient(135deg, ${theme.palette.primary.main}15 0%, ${theme.palette.secondary.main}10 100%)`,
+          backdropFilter: 'blur(20px)',
         }}>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'linear-gradient(135deg, rgba(26, 35, 126, 0.95) 0%, rgba(13, 71, 161, 0.95) 100%)',
-              backdropFilter: 'blur(20px)',
-              zIndex: -1
-            }}
-          />
           
           <Container maxWidth="lg">
             <Box
@@ -886,14 +851,13 @@ const About = () => {
                     textAlign: 'center',
                     fontWeight: 800,
                     fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
-                    color: 'white',
+                    color: theme.palette.text.primary,
                     mb: 2,
                     '& span': {
-                      background: 'linear-gradient(45deg, #FFD700 30%, #FFA500 90%)',
+                      background: `linear-gradient(45deg, ${theme.palette.secondary.main} 30%, ${theme.palette.primary.main} 90%)`,
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       display: 'inline-block',
-                      filter: 'drop-shadow(0 2px 5px rgba(255, 215, 0, 0.3))'
                     }
                   }}
                 >
@@ -903,7 +867,7 @@ const About = () => {
                   variant="h5"
                   sx={{
                     textAlign: 'center',
-                    color: 'rgba(255,255,255,0.8)',
+                    color: theme.palette.text.secondary,
                     maxWidth: '800px',
                     mx: 'auto',
                     fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
@@ -940,11 +904,11 @@ const About = () => {
                     <Box 
                       sx={{ 
                         height: '100%',
-                        background: 'rgba(255, 255, 255, 0.03)',
+                        background: 'rgba(255, 255, 255, 0.8)',
                         backdropFilter: 'blur(10px)',
                         borderRadius: '24px',
                         p: 4,
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
                         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                         display: 'flex',
                         flexDirection: 'column',
@@ -953,12 +917,11 @@ const About = () => {
                         overflow: 'hidden',
                         '&:hover': {
                           transform: 'translateY(-10px)',
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          border: '1px solid rgba(255, 215, 0, 0.3)',
+                          background: 'rgba(255, 255, 255, 0.9)',
+                          border: `1px solid ${theme.palette.primary.main}30`,
                           '& .choose-icon': {
                             transform: 'scale(1.1) rotate(10deg)',
-                            color: '#FFD700',
-                            filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.5))'
+                            color: theme.palette.primary.main,
                           }
                         },
                         '&::before': {
@@ -968,7 +931,7 @@ const About = () => {
                           left: 0,
                           right: 0,
                           height: '100%',
-                          background: 'linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, transparent 100%)',
+                          background: `linear-gradient(180deg, ${theme.palette.primary.main}10 0%, transparent 100%)`,
                           opacity: 0,
                           transition: 'opacity 0.4s ease',
                         },
@@ -982,8 +945,7 @@ const About = () => {
                         sx={{ 
                           fontSize: 70,
                           mb: 3,
-                          color: '#FFD700',
-                          filter: 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.3))',
+                          color: theme.palette.secondary.main,
                           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                           transform: 'rotate(-5deg)',
                         }} 
@@ -994,17 +956,16 @@ const About = () => {
                           mb: 2,
                           textAlign: 'center', 
                           fontWeight: 700,
-                          color: 'white',
+                          color: theme.palette.text.primary,
                           fontSize: { xs: '1.3rem', md: '1.5rem' },
                           letterSpacing: '-0.01em',
-                          textShadow: '0 2px 4px rgba(0,0,0,0.2)'
                         }}
                       >
                         {item.title}
                       </Typography>
                       <Typography 
                         sx={{ 
-                          color: 'rgba(255,255,255,0.8)',
+                          color: theme.palette.text.secondary,
                           textAlign: 'center',
                           fontSize: '1rem',
                           lineHeight: 1.6

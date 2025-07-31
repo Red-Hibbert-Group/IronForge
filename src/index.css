@@ -8,15 +8,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: #0a0a18;
-  color: white;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 a {
   text-decoration: none;
 }
 
-/* Add these styles to enhance the Services component */
+/* Enhanced animations for modern effects */
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0);
@@ -39,7 +40,7 @@ a {
 }
 
 .MuiCard-root::selection {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(82, 109, 254, 0.1);
 }
 
 /* Add these new styles for ServicesOverview */
@@ -122,10 +123,14 @@ a {
   --card-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
   --primary-color: #526DFE;
   --secondary-color: #8E5FFE;
+  --light-bg: #ffffff;
+  --light-bg-subtle: #f8fafc;
   --dark-bg: #0a0a18;
   --dark-bg-lighter: #14142a;
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-primary: #1a1a1a;
+  --text-secondary: #6e6e73;
+  --text-white: #ffffff;
+  --text-white-secondary: rgba(255, 255, 255, 0.8);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -158,8 +163,16 @@ a {
   display: none;
 }
 
-/* New styles for the refactored home page */
+/* New styles for the unified theme */
 .gradient-text {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-text-light {
   background: linear-gradient(90deg, #FFFFFF, #D1D5DB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -214,7 +227,7 @@ a {
 
 /* Hero section enhancements */
 .hero-gradient {
-  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
 }
 
 .dark-hero-gradient {
@@ -222,8 +235,13 @@ a {
   position: relative;
 }
 
+.light-hero-gradient {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+  position: relative;
+}
+
 .hero-bg-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23526DFE' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .hero-particles::before {
@@ -252,6 +270,14 @@ a {
 
 /* 3D and glass effect styles */
 .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card-dark {
   background: rgba(20, 20, 35, 0.8);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -338,13 +364,13 @@ a {
 }
 
 .outline-btn {
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(82, 109, 254, 0.3);
   border-radius: 50px;
   padding: 12px 28px;
   font-weight: 600;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  color: white;
+  color: #526DFE;
   background: transparent;
   text-transform: none;
 }
@@ -352,4 +378,5 @@ a {
 .outline-btn:hover {
   border-color: #526DFE;
   background-color: rgba(82, 109, 254, 0.1);
+  transform: translateY(-2px);
 }

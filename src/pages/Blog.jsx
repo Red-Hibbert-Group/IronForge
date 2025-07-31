@@ -1,17 +1,19 @@
-import { Box, Container, Typography, Paper, Chip, Divider, Button } from '@mui/material';
+import { Box, Container, Typography, Paper, Chip, Divider, Button, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { ArrowBack, CalendarToday, Person, Category, TrendingUp, Build, Psychology } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 const Blog = () => {
+  const theme = useTheme();
+  
   return (
     <>
       <Navbar />
       <Box
         sx={{
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #0a0a18 0%, #14142a 100%)',
+          background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%)',
           position: 'relative',
           overflow: 'hidden',
           pt: 12,
@@ -31,11 +33,11 @@ const Blog = () => {
                 to="/"
                 startIcon={<ArrowBack />}
                 sx={{
-                  color: '#526DFE',
+                  color: theme.palette.primary.main,
                   textTransform: 'none',
                   fontWeight: 600,
                   '&:hover': {
-                    backgroundColor: 'rgba(82, 109, 254, 0.1)'
+                    backgroundColor: `${theme.palette.primary.main}10`
                   }
                 }}
               >
@@ -49,421 +51,374 @@ const Blog = () => {
               sx={{
                 p: { xs: 3, md: 5 },
                 mb: 4,
-                borderRadius: '16px',
-                background: 'rgba(255, 255, 255, 0.05)',
+                background: 'rgba(255, 255, 255, 0.9)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                transition: 'all 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)'
-                }
+                borderRadius: '20px',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
               }}
             >
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: '2rem', md: '2.5rem' },
-                  fontWeight: 700,
-                  color: '#ffffff',
+                  fontSize: { xs: '2rem', md: '3rem' },
+                  fontWeight: 800,
+                  color: theme.palette.text.primary,
                   mb: 2,
-                  lineHeight: 1.2,
-                  letterSpacing: '-0.03em'
+                  lineHeight: 1.2
                 }}
               >
-                OneStream Custom Dev: From MVP to Millions
+                Latest Insights & Updates
               </Typography>
-              
-              <Typography
-                variant="h5"
-                sx={{
-                  color: '#526DFE',
-                  fontWeight: 600,
-                  mb: 3,
-                  fontStyle: 'italic'
-                }}
-              >
-                How custom OneStream development transforms business operations and drives exponential growth
-              </Typography>
-
-              {/* Meta Information */}
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
-                <Chip
-                  icon={<CalendarToday sx={{ fontSize: '1rem' }} />}
-                  label="December 15, 2024"
-                  sx={{ 
-                    backgroundColor: 'rgba(82, 109, 254, 0.1)', 
-                    color: '#526DFE',
-                    border: '1px solid rgba(82, 109, 254, 0.3)'
-                  }}
-                />
-                <Chip
-                  icon={<Person sx={{ fontSize: '1rem' }} />}
-                  label="IronForge Team"
-                  sx={{ 
-                    backgroundColor: 'rgba(82, 109, 254, 0.1)', 
-                    color: '#526DFE',
-                    border: '1px solid rgba(82, 109, 254, 0.3)'
-                  }}
-                />
-                <Chip
-                  icon={<Category sx={{ fontSize: '1rem' }} />}
-                  label="OneStream Development"
-                  sx={{ 
-                    backgroundColor: 'rgba(82, 109, 254, 0.1)', 
-                    color: '#526DFE',
-                    border: '1px solid rgba(82, 109, 254, 0.3)'
-                  }}
-                />
-              </Box>
-            </Paper>
-
-            {/* Blog Content */}
-            <Paper
-              elevation={0}
-              sx={{
-                p: { xs: 3, md: 5 },
-                borderRadius: '16px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                lineHeight: 1.8,
-                transition: 'all 0.3s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)'
-                }
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                In modern finance departments, OneStream has become the backbone for consolidation, planning, and reporting. But for companies with unique needs and bold goals, using the platform "as-is" is only the beginning.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                That's where custom development inside OneStream comes in — a way to extend, enhance, and personalize the platform to solve problems traditional features can't. And often, it all starts with a single idea — a simple proof of concept or Minimum Viable Product (MVP) — that can grow into something transformative.
-              </Typography>
-
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  mb: 2,
-                  mt: 4,
-                  letterSpacing: '-0.02em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1
-                }}
-              >
-                <Build sx={{ color: '#526DFE', fontSize: '1.5rem' }} />
-                Phase 1: A Simple Start
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                A large retail company once needed a basic dashboard to monitor store-level sales performance across their international branches. Their challenge was simple but urgent: they needed real-time visibility without relying on monthly manual data dumps from regional teams.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                A small MVP was built — a straightforward dashboard inside OneStream that connected to their existing data warehouse and showed daily sales trends. It allowed them to filter by store, region, and product category.
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                The MVP went live within a month. It worked well, solved their immediate pain point, and got leadership's attention.
-              </Typography>
-
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  mb: 2,
-                  mt: 4,
-                  letterSpacing: '-0.02em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1
-                }}
-              >
-                <TrendingUp sx={{ color: '#526DFE', fontSize: '1.5rem' }} />
-                Phase 2: Scale, Automate, Transform
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                The company soon realized they could go further. They didn't just want to view sales data — they wanted to:
-              </Typography>
-
-              <Box sx={{ ml: 3, mb: 3 }}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Compare it with forecasts
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Trigger alerts when targets weren't met
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Tie performance to staffing and promotional campaigns
-                </Typography>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                Over the next few months, the MVP evolved into a fully integrated performance management module:
-              </Typography>
-
-              <Box sx={{ ml: 3, mb: 3 }}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  A custom forecasting engine using Business Rules
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Drillable dashboards linked to workforce data
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Automated alerts and task workflows inside OneStream
-                </Typography>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                What began as a small dashboard became a strategic tool used by sales, HR, and finance. The solution eliminated weeks of manual consolidation and helped the company respond faster to market shifts — leading to measurable savings and stronger financial control.
-              </Typography>
-
-              <Typography
-                variant="h4"
-                sx={{
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  mb: 2,
-                  mt: 4,
-                  letterSpacing: '-0.02em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1
-                }}
-              >
-                <Psychology sx={{ color: '#526DFE', fontSize: '1.5rem' }} />
-                Why Custom Dev Is the Key to OneStream's Power
-              </Typography>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                OneStream is powerful out of the box — but not every business fits into a box. Custom development allows teams to:
-              </Typography>
-
-              <Box sx={{ ml: 3, mb: 3 }}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Build tools tailored to internal processes
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Automate complex calculations and approvals
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: '1.1rem',
-                    color: '#e0e0e0',
-                    mb: 1,
-                    '&::before': {
-                      content: '"• "',
-                      color: '#526DFE',
-                      fontWeight: 'bold'
-                    }
-                  }}
-                >
-                  Integrate with CRMs, ERPs, or other internal platforms
-                </Typography>
-              </Box>
-
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: '1.1rem',
-                  color: '#e0e0e0',
-                  mb: 3,
-                  textAlign: 'justify'
-                }}
-              >
-                By leveraging the extensibility of OneStream — from business rules to custom dashboards to marketplace components — companies can build exactly what they need, rather than forcing a workaround.
-              </Typography>
-
-              <Divider sx={{ my: 4, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
-
               <Typography
                 variant="h6"
                 sx={{
-                  color: '#526DFE',
-                  fontWeight: 600,
-                  textAlign: 'center',
-                  fontStyle: 'italic'
+                  color: theme.palette.text.secondary,
+                  mb: 3,
+                  lineHeight: 1.6
                 }}
               >
-                Ready to transform your OneStream implementation? Contact IronForge to discover how custom development can accelerate your journey from MVP to millions.
+                Stay informed about OneStream implementation best practices, industry trends, and expert insights
               </Typography>
+              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                <Chip 
+                  label="Implementation" 
+                  sx={{ 
+                    background: `${theme.palette.primary.main}15`,
+                    color: theme.palette.primary.main,
+                    fontWeight: 500
+                  }} 
+                />
+                <Chip 
+                  label="Best Practices" 
+                  sx={{ 
+                    background: `${theme.palette.accent.success}15`,
+                    color: theme.palette.accent.success,
+                    fontWeight: 500
+                  }} 
+                />
+                <Chip 
+                  label="Industry Trends" 
+                  sx={{ 
+                    background: `${theme.palette.secondary.main}15`,
+                    color: theme.palette.secondary.main,
+                    fontWeight: 500
+                  }} 
+                />
+              </Box>
             </Paper>
+
+            {/* Featured Article */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Paper
+                elevation={0}
+                sx={{
+                  p: { xs: 3, md: 5 },
+                  mb: 4,
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '4px',
+                    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  }
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
+                  <Box
+                    sx={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: '12px',
+                      background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white'
+                    }}
+                  >
+                    <TrendingUp sx={{ fontSize: 24 }} />
+                  </Box>
+                  <Box>
+                    <Typography variant="overline" sx={{ 
+                      color: theme.palette.primary.main,
+                      fontWeight: 600,
+                      fontSize: '0.75rem'
+                    }}>
+                      FEATURED ARTICLE
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+                      Published on January 15, 2024
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 700,
+                    color: theme.palette.text.primary,
+                    mb: 3,
+                    fontSize: { xs: '1.75rem', md: '2.25rem' },
+                    lineHeight: 1.3
+                  }}
+                >
+                  Accelerating Financial Close: 5 Key Strategies for OneStream Implementation
+                </Typography>
+                
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    mb: 4,
+                    lineHeight: 1.7,
+                    fontSize: '1.1rem'
+                  }}
+                >
+                  Discover proven methodologies and best practices that leading organizations use to reduce their financial close cycle time by up to 60% through strategic OneStream XF implementation. Learn from real-world case studies and expert insights.
+                </Typography>
+
+                <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap' }}>
+                  <Chip 
+                    icon={<Category />}
+                    label="Implementation" 
+                    variant="outlined"
+                    sx={{ 
+                      borderColor: theme.palette.primary.main,
+                      color: theme.palette.primary.main
+                    }} 
+                  />
+                  <Chip 
+                    icon={<Person />}
+                    label="Expert Insights" 
+                    variant="outlined"
+                    sx={{ 
+                      borderColor: theme.palette.accent.success,
+                      color: theme.palette.accent.success
+                    }} 
+                  />
+                  <Chip 
+                    icon={<CalendarToday />}
+                    label="15 min read" 
+                    variant="outlined"
+                    sx={{ 
+                      borderColor: theme.palette.text.secondary,
+                      color: theme.palette.text.secondary
+                    }} 
+                  />
+                </Box>
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    px: 4,
+                    py: 1.5,
+                    fontSize: '1rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Read Full Article
+                </Button>
+              </Paper>
+            </motion.div>
+
+            {/* Recent Articles */}
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 700,
+                color: theme.palette.text.primary,
+                mb: 4,
+                fontSize: { xs: '1.5rem', md: '2rem' }
+              }}
+            >
+              Recent Articles
+            </Typography>
+
+            {[
+              {
+                title: "OneStream Data Integration Best Practices",
+                excerpt: "Learn how to seamlessly integrate data from multiple sources into your OneStream environment with these proven strategies and techniques.",
+                date: "January 10, 2024",
+                readTime: "8 min read",
+                category: "Integration",
+                icon: Build,
+                color: theme.palette.accent.success
+              },
+              {
+                title: "Advanced Financial Reporting with OneStream",
+                excerpt: "Explore advanced reporting capabilities and learn how to create dynamic, interactive financial reports that drive business insights.",
+                date: "January 5, 2024",
+                readTime: "12 min read",
+                category: "Reporting",
+                icon: TrendingUp,
+                color: theme.palette.secondary.main
+              },
+              {
+                title: "OneStream Security Framework Implementation",
+                excerpt: "Comprehensive guide to implementing robust security frameworks and access controls in your OneStream deployment.",
+                date: "December 28, 2023",
+                readTime: "10 min read",
+                category: "Security",
+                icon: Psychology,
+                color: theme.palette.accent.warning
+              }
+            ].map((article, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    mb: 3,
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      transform: 'translateY(-5px)',
+                      boxShadow: `0 15px 35px ${article.color}15`,
+                      '& .article-icon': {
+                        transform: 'scale(1.1)',
+                        color: article.color
+                      }
+                    }
+                  }}
+                >
+                  <Box sx={{ display: 'flex', gap: 3 }}>
+                    <Box
+                      className="article-icon"
+                      sx={{
+                        width: 56,
+                        height: 56,
+                        borderRadius: '12px',
+                        background: `${article.color}15`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'all 0.3s ease',
+                        flexShrink: 0
+                      }}
+                    >
+                      <article.icon sx={{ fontSize: 28, color: article.color }} />
+                    </Box>
+                    
+                    <Box sx={{ flex: 1 }}>
+                      <Box sx={{ display: 'flex', gap: 2, mb: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+                        <Chip 
+                          label={article.category}
+                          size="small"
+                          sx={{ 
+                            background: `${article.color}15`,
+                            color: article.color,
+                            fontWeight: 500,
+                            fontSize: '0.75rem'
+                          }} 
+                        />
+                        <Typography variant="caption" sx={{ color: theme.palette.text.secondary }}>
+                          {article.date} • {article.readTime}
+                        </Typography>
+                      </Box>
+                      
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: 600,
+                          color: theme.palette.text.primary,
+                          mb: 2,
+                          fontSize: '1.25rem',
+                          lineHeight: 1.4
+                        }}
+                      >
+                        {article.title}
+                      </Typography>
+                      
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: theme.palette.text.secondary,
+                          lineHeight: 1.6
+                        }}
+                      >
+                        {article.excerpt}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Paper>
+              </motion.div>
+            ))}
+
+            {/* Newsletter Signup */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 5,
+                  mt: 6,
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main}15 0%, ${theme.palette.secondary.main}10 100%)`,
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  textAlign: 'center'
+                }}
+              >
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: theme.palette.text.primary,
+                    mb: 2
+                  }}
+                >
+                  Stay Updated
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    mb: 4,
+                    maxWidth: '500px',
+                    mx: 'auto',
+                    lineHeight: 1.6
+                  }}
+                >
+                  Subscribe to our newsletter for the latest OneStream insights, implementation tips, and industry best practices delivered to your inbox.
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    px: 4,
+                    py: 1.5,
+                    fontSize: '1rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Subscribe Now
+                </Button>
+              </Paper>
+            </motion.div>
           </motion.div>
         </Container>
       </Box>
